@@ -1,9 +1,13 @@
-﻿Build started 8/27/2015 8:02:37 AM.
-     1>Project "H:\C++\CPP-SRHS\SRHS\HelloWorld\HelloWorld.vcxproj" on node 2 (build target(s)).
-       Project file contains ToolsVersion="14.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Platforms\x64\Microsoft.Cpp.x64.Targets(514,5): error MSB8008: Specified platform toolset (v140) is not installed or invalid. Please make sure that a supported PlatformToolset value is selected.
-     1>Done Building Project "H:\C++\CPP-SRHS\SRHS\HelloWorld\HelloWorld.vcxproj" (build target(s)) -- FAILED.
+﻿Build started 8/27/2015 17:05:40.
+     1>Project "D:\Users\Thomas\Documents\Development\C++\SRHS\SRHS\HelloWorld\HelloWorld.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\Thomas\Documents\Development\C++\SRHS\SRHS\x64\Debug\HelloWorld.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\Users\Thomas\Documents\Development\C++\SRHS\SRHS\x64\Debug\HelloWorld.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\Thomas\Documents\Development\C++\SRHS\SRHS\x64\Debug\HelloWorld.lib" /MACHINE:X64 x64\Debug\main.obj
+         HelloWorld.vcxproj -> D:\Users\Thomas\Documents\Development\C++\SRHS\SRHS\x64\Debug\HelloWorld.exe
+     1>Done Building Project "D:\Users\Thomas\Documents\Development\C++\SRHS\SRHS\HelloWorld\HelloWorld.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.24
+Time Elapsed 00:00:01.62
