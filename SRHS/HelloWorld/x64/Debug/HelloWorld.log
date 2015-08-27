@@ -1,0 +1,9 @@
+﻿Build started 8/27/2015 8:02:37 AM.
+     1>Project "H:\C++\CPP-SRHS\SRHS\HelloWorld\HelloWorld.vcxproj" on node 2 (build target(s)).
+       Project file contains ToolsVersion="14.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="4.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=291333.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Platforms\x64\Microsoft.Cpp.x64.Targets(514,5): error MSB8008: Specified platform toolset (v140) is not installed or invalid. Please make sure that a supported PlatformToolset value is selected.
+     1>Done Building Project "H:\C++\CPP-SRHS\SRHS\HelloWorld\HelloWorld.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.24
