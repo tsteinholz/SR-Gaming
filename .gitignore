@@ -1,4 +1,5 @@
 # Compiled Object files
+*.suo
 *.slo
 *.lo
 *.o
@@ -26,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+x64/
+Win32/
