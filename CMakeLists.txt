@@ -8,11 +8,3 @@ set(HW_SOURCE_FILES
     )
 
 add_executable(HelloWorld_CPP_SRHS ${SOURCE_FILES})
-
-project(RandProgram)
-
-set(Rand_SOURCE_FILES
-
-    )
-
-add_executable(Rand_SOURCE_FILES RandProgram)
