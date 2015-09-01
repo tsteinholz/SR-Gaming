@@ -3,38 +3,77 @@
 
 using namespace std;
 
-void prompt(const string& s, int& i)
+void prompt(const string& s)
 {
-    cout << s << endl;
-    cin >> i;
+    cout << s << " : ";
+}
+
+template<typename T>
+void prompt(const string& s, T& t)
+{
+    prompt(s);
+    cin >> t;
 }
 
 void prompt(const string& s, string& str)
 {
-    cout << s << endl;
+    prompt(s);
     getline(cin, str);
-}
-
-void prompt(const string& s, double& d)
-{
-    cout << s << endl;
-    cin >> d;
 }
 
 int main()
 {
-    string name;
-    int test = 0;
-    prompt("insert nums: ", test);
+    // The Variables
+    string fName, lName;
+    int age, battles;
+    double weight, height;
 
-    /*
-     * I'll never forget that  I went poaching with Tam. The  was so thick, you'd've needed four pairs of  to see anything.
-     * There was nothing to be heard, save the water running in the . Suddenly there was a noise from above us. What a
-     * I got! I thought I was going to  my  . "Haud yer  " Tam hissed, "It's just a ". We crept on and I was glad I had
-     * my  on, for the  were everywhere. "Who's there?" came a voice from ahead. "Run!" said Tam, as he . "It's the !".
-     * I took off in the other direction and ran straight into the  I was absolutely through to my  and up to my  in water.
-     * Fortunately, the  was going after Tam, so I managed to get away. I began to  home, absolutely , and took off my wet
-     * before having a . Never again, I thought.
-     */
+    // Strings
+    prompt("First Name", fName);
+    prompt("Last Name", lName);
+
+    // Integers
+    prompt("Age", age);
+    prompt("How many battles you have been in", battles);
+
+    // Doubles
+    prompt("Weight", weight);
+    prompt("Height", height);
+
+    cout << endl << "All done information gathering!" << endl;
+    cout << "Computing Personalized Story..." << endl;
+    cout << "Done!" << endl << endl;
+
+    // The Story
+    cout << "One day, " << fName << " of the " << lName << " Dynasty had shown up to the battle field." << endl;
+    cout << "This dangerous solider stood " << height << "ft tall! Weighing in at an amazing " << weight << "!!" << endl;
+    cout << "The opponent was obviously out-matched, " << fName << " has already won " << battles << " battles and was" << endl;
+    cout << "no stranger to the battle-field. This is suprising for " << fName << " being only " << age << " years old!" << endl;
+    cout << "None the less " << fName << " won the battle as expected! Three cheers for the " << lName << " Dynasty!!" << endl;
+
     return 0;
 }
+
+/*
+ * Program I/O
+ *
+ * First Name : Thomas
+ * Last Name : Steinholz
+ * Age : 15
+ * How many battles you have been in : 69
+ * Weight : 524.32
+ * Height : 6.1
+ *
+ * All done information gathering!
+ * Computing Personalized Story...
+ * Done!
+ *
+ * One day, Thomas of the Steinholz Dynasty had shown up to the battle field.
+ * This dangerous solider stood 6.1ft tall! Weighing in at an amazing 524.32!!
+ * The opponent was obviously out-matched, Thomas has already won 69 battles and was
+ * no stranger to the battle-field. This is suprising for Thomas being only 15 years old!
+ * None the less Thomas won the battle as expected! Three cheers for the Steinholz Dynasty!!
+ *
+ * Process finished with exit code 0
+ *
+ */
