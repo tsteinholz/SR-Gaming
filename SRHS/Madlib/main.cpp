@@ -1,3 +1,7 @@
+// Thomas Alexander Steinholz
+// South River High School
+// C++ w/ Gaming : 1A
+
 #include <iostream>
 #include <string>
 
@@ -50,6 +54,7 @@ int main()
     cout << "The opponent was obviously out-matched, " << fName << " has already won " << battles << " battles and was" << endl;
     cout << "no stranger to the battle-field. This is suprising for " << fName << " being only " << age << " years old!" << endl;
     cout << "None the less " << fName << " won the battle as expected! Three cheers for the " << lName << " Dynasty!!" << endl;
+    cout << fName << " won because of the height-weight ratio of " << height / weight << "!!" << endl;
 
     return 0;
 }
@@ -61,7 +66,7 @@ int main()
  * Last Name : Steinholz
  * Age : 15
  * How many battles you have been in : 69
- * Weight : 524.32
+ * Weight : 564
  * Height : 6.1
  *
  * All done information gathering!
@@ -69,10 +74,11 @@ int main()
  * Done!
  *
  * One day, Thomas of the Steinholz Dynasty had shown up to the battle field.
- * This dangerous solider stood 6.1ft tall! Weighing in at an amazing 524.32!!
+ * This dangerous solider stood 6.1ft tall! Weighing in at an amazing 564!!
  * The opponent was obviously out-matched, Thomas has already won 69 battles and was
  * no stranger to the battle-field. This is suprising for Thomas being only 15 years old!
  * None the less Thomas won the battle as expected! Three cheers for the Steinholz Dynasty!!
+ * Thomas won because of the height-weight ratio of 0.0108156!!
  *
  * Process finished with exit code 0
  *
