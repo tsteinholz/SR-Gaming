@@ -8,3 +8,4 @@ peers plagiarizing my code, I will make this repo private for at least the durat
       1. Hello World : What's a programming course w/o one?
       2. Number Play : Learning basic i/o & math operations
       3. Word Play : Basic i/o & playing with strings
+      4. Madlib : Basic i/o with a plot
