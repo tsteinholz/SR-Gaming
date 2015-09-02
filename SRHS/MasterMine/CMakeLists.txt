@@ -3,5 +3,5 @@ project(MasterMine)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Game.h MasterMine.cpp MasterMine.h Utils.h)
 add_executable(MasterMine ${SOURCE_FILES})
