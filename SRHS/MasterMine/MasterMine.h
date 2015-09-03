@@ -4,10 +4,10 @@
 
 #ifndef MASTERMINE_MASTERMINE_H
 #define MASTERMINE_MASTERMINE_H
-
-#define OVERRIDE_SMART
-#define OVERRIDE_EASY
+#define OVERRIDE_SMART 0
+#define OVERRIDE_EASY 0
 #define OVERRIDE_PLAYER_FIRST 0
+#define DEBUG 1
 
 #include <ctime>
 #include <stdlib.h>
@@ -41,6 +41,9 @@ private:
     Mode Difficulty = EASY;
     int Pile;
 
+    bool HumanTurn();
+
+    bool AiTurn();
 };
 
 
