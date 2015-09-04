@@ -2,7 +2,7 @@
 // South River High School
 // C++ w/ Gaming : 1A
 
-#include "MasterMine.h"
+#include "Nim.h"
 
 using namespace std;
 
