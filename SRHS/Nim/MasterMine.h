@@ -4,10 +4,10 @@
 
 #ifndef MASTERMINE_MASTERMINE_H
 #define MASTERMINE_MASTERMINE_H
-#define OVERRIDE_SMART 1
+#define OVERRIDE_SMART 0
 #define OVERRIDE_EASY 0
-#define OVERRIDE_PLAYER_FIRST 1
-#define DEBUG 1
+#define OVERRIDE_PLAYER_FIRST 0
+#define DEBUG 0
 
 #include <ctime>
 #include <stdlib.h>
