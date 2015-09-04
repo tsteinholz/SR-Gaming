@@ -40,16 +40,16 @@ void MasterMine::Initialize()
 
 void MasterMine::Execute()
 {
-#if DEBUG
-    std::cout << "DEBUG: Difficulty = " << Difficulty << std::endl;
-    std::cout << "DEBUG: Pile = " << Pile << std::endl;
-    std::cout << "DEBUG: Human First = " << HumanFirst << std::endl;
-#endif
     bool playing = true;
     while (playing)
     {
+#if DEBUG
+        std::cout << "DEBUG: Pile = " << Pile << std::endl;
+        std::cout << "DEBUG: Difficulty = " << Difficulty << std::endl;
+        std::cout << "DEBUG: Human First = " << HumanFirst << std::endl;
+#endif
         playing = HumanFirst ? HumanTurn() : AiTurn();
-        playing = HumanFirst ? AiTurn() : HumanTurn();
+        if (playing) playing = HumanFirst ? AiTurn() : HumanTurn();
     }
     Shutdown();
 }
@@ -61,22 +61,30 @@ void MasterMine::Shutdown()
 
 bool MasterMine::AiTurn()
 {
-    int turn = 0;
+    std::cout << "AI's Turn!" << std::endl;
+    int turns = 0;
     switch (Difficulty)
     {
         default:
         case SMART:
-            turn = rand() % (Pile/2) + 1;
-            while (turn % 2 != 0)
-            {
-
-            }
+            // TODO : Fix "Smart" difficulty
+            while ((Pile % 2 != 0) && (Pile > 1) && (turns <= (Pile/2)))
+            { Pile--; turns++; }
+            //Pile--;
             break;
         case EASY:
-            turn = rand() % (Pile/2) + 1;
+            if(Pile == 1)
+            {
+                std::cout << "-------------" << std::endl;
+                std::cout << "You just WON!" << std::endl;
+                std::cout << "-------------" << std::endl;
+                return false;
+            }
+            else Pile -= rand() % (Pile/2) + 1;
             break;
     }
-    return false;
+    std::cout << "Done AI's Turn!" << std::endl;
+    return true;
 }
 
 bool MasterMine::HumanTurn()
@@ -84,17 +92,21 @@ bool MasterMine::HumanTurn()
     int turn;
     std::cout << "Your Turn!" << std::endl << "How many marbles do you want to take out?" << std::endl;
     std::cin >> turn;
-    if ((turn < 2) || (turn > (Pile / 2)))
+    if ((turn < 1) || ((turn > (Pile / 2)) && turn != 1))
     {
+        std::cout << std::endl << "--------------------------------" << std::endl;
         std::cout << "This Move is Invalid! Try again!" << std::endl;
-        // something, i guess
-        //return HumanTurn();
+        std::cout << "--------------------------------" << std::endl;
+        return HumanTurn();
     }
-    if((Pile -= turn) <= 0)
+    Pile -= turn;
+    if(Pile < 1)
     {
-        std::cout << "You just loss!" << std::endl;
-        return true;
+        std::cout << "-----------------------" << std::endl;
+        std::cout << "You just LOST! AI WINS!" << std::endl;
+        std::cout << "-----------------------" << std::endl;
+        return false;
     }
-    else return false;
+    else return true;
 
 }
