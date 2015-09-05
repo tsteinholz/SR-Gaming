@@ -20,14 +20,11 @@ struct Code
 
     Code()
     {
-        srand(time(NULL));
         Peg temp[4];
         for(int i = 0; i < 4; i++)
         {
             switch(rand() % 6)
             {
-                default:
-                    temp[i] = NOTHING;
                 case 0:
                     temp[i] = RED;
                     break;
@@ -51,7 +48,7 @@ struct Code
         A = temp[0];
         B = temp[1];
         C = temp[2];
-        D = temp[4];
+        D = temp[3];
     }
 
     Code(Peg x)
@@ -68,7 +65,7 @@ struct Code
     //TODO
     void PrintState()
     {
-        std::cout << std::endl;
+        std::cout<<ToString(A)<<" "<<ToString(B)<<" "<<ToString(C)<<" "<<ToString(D)<<" "<<std::endl;
     }
 
     bool Verify()
@@ -138,9 +135,9 @@ struct Code
 
     bool operator!=(const Code &c) const
     {
-        return !((A == c.A) &&
-                 (B == c.B) &&
-                 (C == c.C) &&
+        return !((A == c.A) ||
+                 (B == c.B) ||
+                 (C == c.C) ||
                  (D == c.D));
     }
 };
@@ -153,33 +150,52 @@ Code* Turn()
     while (!correct)
     {
         std::cout << "GUESS: ";
-        std::getline(std::cin, result);
+        std::cin.get(result, 5);
 
-        out = new Code(
-            Code::ToPeg(result[0]),
-            Code::ToPeg(result[1]),
-            Code::ToPeg(result[2]),
-            Code::ToPeg(result[3])
-        );
+        Code::Peg A = Code::ToPeg(result[0]);
+        if (A != Code::Peg::NOTHING)
+        {
+            Code::Peg B = Code::ToPeg(result[1]);
+            if (B != Code::Peg::NOTHING)
+            {
+                Code::Peg C = Code::ToPeg(result[2]);
+                if (C != Code::Peg::NOTHING)
+                {
+                    Code::Peg D = Code::ToPeg(result[3]);
+                    if (D != Code::Peg::NOTHING)
+                    {
+                        out = new Code(A, B, C, D);
+                        out->PrintState();
+                    }
+                    else std::cout<<std::endl<<"ERROR: Col 4 '"<<result[3]<<"'"<<std::endl;
+                }
+                else std::cout<<std::endl<<"ERROR: Col 3 '"<<result[2]<<"'"<<std::endl;
+            }
+            else std::cout<<std::endl<<"ERROR: Col 2 '"<<result[1]<<"'"<<std::endl;
+        }
+        else std::cout<<std::endl<<"ERROR: Col 1 '"<<result[0]<<"'" <<std::endl;
 
         correct = out->Verify();
+
+        //if (!correct){ std::cout << std::end; }
     }
     return out;
 }
 
 //TODO
-void Feedback(Code* code)
+void Feedback(Code* code, Code* guess)
 {
 
 }
 
 int main()
 {
+    srand(time(NULL));
     bool executing = true;
     int guesses = 0;
     Code* code = new Code();
+    code->PrintState();//DEBUG
     Code* guess = NULL;
-
     std::cout << "Welcome to Mastermind by Thomas Steinholz!" << std::endl;
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
     std::cout << "of colors that the AI will generate. Your options are R-B-Y-G-W-O. For example to type in" << std::endl;
@@ -189,11 +205,12 @@ int main()
     while (executing)
     {
         guesses++;
-
-        code->PrintState();
+        std::cout << "|-------------|" << std::endl;
+        std::cout << "[ Guess #" << guesses << "/10 ]" << std::endl;
+        std::cout << "|-------------|" << std::endl;
 
         guess = Turn();
-        Feedback(guess);
+        Feedback(code, guess);
 
         if (code == guess)
         {
