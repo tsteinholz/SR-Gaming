@@ -125,20 +125,14 @@ struct Code
         }
     }
 
-    bool operator==(const Code &c) const
+    bool operator==(const Code& other) const
     {
-        return (A == c.A) &&
-               (B == c.B) &&
-               (C == c.C) &&
-               (D == c.D);
+        // TODO : Fix this sheet
+        return ((A == other.A) && (B == other.B) && (C == other.C) && (D == other.D));
     }
 
-    bool operator!=(const Code &c) const
-    {
-        return !((A == c.A) ||
-                 (B == c.B) ||
-                 (C == c.C) ||
-                 (D == c.D));
+    bool operator!=(const Code &other) const {
+        return !(*this == other);
     }
 };
 
@@ -162,7 +156,12 @@ Code* Turn()
                     Code::Peg D = Code::ToPeg(result.at(3));
                     if (D != Code::Peg::NOTHING)
                     {
-                        return new Code(A, B, C, D);
+                        Code* out = new Code(A, B, C, D);
+                        Code* smh = new Code(A, B, C, D);
+                        std::cout << (out == smh) << std::endl;
+                        out->PrintState();
+                        delete smh;
+                        return out;
                     }
                     else std::cout << std::endl << "ERROR: Col 4 '" << result.at(3) << "'" << std::endl;
                 }
