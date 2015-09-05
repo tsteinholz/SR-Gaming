@@ -144,42 +144,35 @@ struct Code
 
 Code* Turn()
 {
-    Code* out = NULL;
-    bool correct = false;
-    char result[4];
-    while (!correct)
-    {
-        std::cout << "GUESS: ";
-        std::cin.get(result, 5);
+    std::string result;
+    std::cout << "GUESS: ";
+    std::getline(std::cin, result);
 
-        Code::Peg A = Code::ToPeg(result[0]);
+    if (result.length() > 3)
+    {
+        Code::Peg A = Code::ToPeg(result.at(0));
         if (A != Code::Peg::NOTHING)
         {
-            Code::Peg B = Code::ToPeg(result[1]);
+            Code::Peg B = Code::ToPeg(result.at(1));
             if (B != Code::Peg::NOTHING)
             {
-                Code::Peg C = Code::ToPeg(result[2]);
+                Code::Peg C = Code::ToPeg(result.at(2));
                 if (C != Code::Peg::NOTHING)
                 {
-                    Code::Peg D = Code::ToPeg(result[3]);
+                    Code::Peg D = Code::ToPeg(result.at(3));
                     if (D != Code::Peg::NOTHING)
                     {
-                        out = new Code(A, B, C, D);
-                        out->PrintState();
+                        return new Code(A, B, C, D);
                     }
-                    else std::cout<<std::endl<<"ERROR: Col 4 '"<<result[3]<<"'"<<std::endl;
+                    else std::cout << std::endl << "ERROR: Col 4 '" << result.at(3) << "'" << std::endl;
                 }
-                else std::cout<<std::endl<<"ERROR: Col 3 '"<<result[2]<<"'"<<std::endl;
+                else std::cout << std::endl << "ERROR: Col 3 '" << result.at(2) << "'" << std::endl;
             }
-            else std::cout<<std::endl<<"ERROR: Col 2 '"<<result[1]<<"'"<<std::endl;
+            else std::cout << std::endl << "ERROR: Col 2 '" << result.at(1) << "'" << std::endl;
         }
-        else std::cout<<std::endl<<"ERROR: Col 1 '"<<result[0]<<"'" <<std::endl;
-
-        correct = out->Verify();
-
-        //if (!correct){ std::cout << std::end; }
+        else std::cout << std::endl << "ERROR: Col 1 '" << result.at(0) << "'" << std::endl;
     }
-    return out;
+    return NULL;
 }
 
 //TODO
@@ -200,16 +193,19 @@ int main()
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
     std::cout << "of colors that the AI will generate. Your options are R-B-Y-G-W-O. For example to type in" << std::endl;
     std::cout << "the colors red, blue, yellow, and orange you would type \"RBYO\" untill you get the right combo." << std::endl;
+    std::cout << "Scoring Code:" << std::endl << "o - Right Color, Right Place" << std::endl;
+    std::cout << "~ - Right Color, Wrong Place" << std::endl << "x - Neither" << std::endl;
     std::cout << "Good Luck, and don't forget to have fun!" << std::endl << std::endl;
 
     while (executing)
     {
         guesses++;
-        std::cout << "|-------------|" << std::endl;
-        std::cout << "[ Guess #" << guesses << "/10 ]" << std::endl;
-        std::cout << "|-------------|" << std::endl;
+        std::cout << "|------------|" << std::endl;
+        std::cout << "[ Guess " << guesses << "/10 ]" << std::endl;
+        std::cout << "|------------|" << std::endl;
 
-        guess = Turn();
+        guess = NULL;
+        while (!guess) guess = Turn();
         Feedback(code, guess);
 
         if (code == guess)
@@ -220,7 +216,7 @@ int main()
             std::cout << "----------------------------------" << std::endl;
         }
 
-        if (guesses > 10)
+        if (guesses > 9)
         {
             executing = false;
             std::cout << "-----------------------------------------------------" << std::endl;
