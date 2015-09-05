@@ -157,10 +157,7 @@ Code* Turn()
                     if (D != Code::Peg::NOTHING)
                     {
                         Code* out = new Code(A, B, C, D);
-                        Code* smh = new Code(A, B, C, D);
-                        std::cout << (out == smh) << std::endl;
                         out->PrintState();
-                        delete smh;
                         return out;
                     }
                     else std::cout << std::endl << "ERROR: Col 4 '" << result.at(3) << "'" << std::endl;
@@ -174,10 +171,14 @@ Code* Turn()
     return NULL;
 }
 
-//TODO
-void Feedback(Code* code, Code* guess)
+bool Feedback(Code* code, Code* guess)
 {
+    std::string result = "xxxx";
 
+    for (int i = 0; i < 4; i++)
+    {
+
+    }
 }
 
 int main()
@@ -205,9 +206,8 @@ int main()
 
         guess = NULL;
         while (!guess) guess = Turn();
-        Feedback(code, guess);
 
-        if (code == guess)
+        if (Feedback(code, guess))
         {
             executing = false;
             std::cout << "----------------------------------" << std::endl;
