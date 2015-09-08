@@ -171,6 +171,7 @@ Code* Turn()
     return NULL;
 }
 
+//TODO
 bool Feedback(Code* code, Code* guess)
 {
     std::string result = "xxxx";
