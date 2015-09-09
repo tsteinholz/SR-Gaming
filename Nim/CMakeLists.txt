@@ -4,10 +4,11 @@ project(Nim)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-    Game.h
-    main.cpp
-    Nim.cpp
-    Nim.h
-    Utils.h)
+        Game.h
+        main.cpp
+        Utils.h
+        Nim.cpp
+        Nim.h
+)
 
 add_executable(Nim ${SOURCE_FILES})

@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    MasterMine game = MasterMine();
+    Nim game = Nim();
 
     game.Execute();
 
