@@ -144,23 +144,30 @@ Code* Turn()
 bool Feedback(Code* code, Code* guess)
 {
     std::string result = "";
+    bool checked;
     Code::Peg codePeg[4] = {code->A, code->B, code->C, code->D}, guessPeg[4]= {guess->A, guess->B, guess->C, guess->D};
 
     for (int i = 0; i < 4; i++)
     {
         for (int j = i; j < 4; j++)
         {
+            checked = false;
             if (codePeg[i] == guessPeg[j])
             {
-                if (i == j) result += "o";
+                if (i == j)
+                {
+                    result += "o";
+                    checked = true;
+                }
             }
             else
             {
                 for (int k = i+1; k < 4; k++)
                 {
-                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]))
+                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]) && (k > j) && !checked)
                     {
                         result += "~";
+                        checked = true;
                     }
                 }
             }
@@ -175,24 +182,26 @@ bool Feedback(Code* code, Code* guess)
 int main()
 {
     srand(time(NULL));
-    bool executing = true;
+    bool executing = true, won = false;
     int guesses = 1;
-    Code* code = new Code();
-    //code->PrintState();//DEBUG
+    Code* code = new Code(Code::Peg::WHITE);
+    code->PrintState();//DEBUG
     Code* guess = NULL;
     std::cout << "Welcome to Mastermind by Thomas Steinholz!" << std::endl;
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
     std::cout << "of colors that the AI will generate. Your options are R-B-Y-G-W-O. For example to type in" << std::endl;
     std::cout << "the colors red, blue, yellow, and orange you would type \"RBYO\" untill you get the right combo." << std::endl;
     std::cout << "Scoring Code:" << std::endl << "o - Right Color, Right Place" << std::endl;
-    std::cout << "~ - Right Color, Wrong Place" << std::endl << "x - Neither" << std::endl;
+    std::cout << "~ - Right Color, Wrong Place" << std::endl;
     std::cout << "Good Luck, and don't forget to have fun!" << std::endl << std::endl;
 
     while (executing)
     {
-        std::cout << "|------------|" << std::endl;
-        std::cout << "[ Guess " << guesses << "/10 ]" << std::endl;
-        std::cout << "|------------|" << std::endl;
+        std::cout << std::endl;
+        std::cout << "|-------------|" << std::endl;
+        std::cout << "[ Guess: " << guesses << "/10 ]" << std::endl;
+        std::cout << "[ R-B-Y-G-W-O ]" << std::endl;
+        std::cout << "|-------------|" << std::endl;
 
         guess = NULL;
         while (!guess) guess = Turn();
@@ -200,19 +209,23 @@ int main()
         if (Feedback(code, guess))
         {
             executing = false;
+            won = true;
             std::cout << "----------------------------------" << std::endl;
             std::cout << "Good Work! You just won the game!!" << std::endl;
             std::cout << "----------------------------------" << std::endl;
+            std::cout << std::endl;
+
         }
 
-        if (guesses > 9)
+        guesses++;
+
+        if (guesses > 10 && !won)
         {
             executing = false;
             std::cout << "-----------------------------------------------------" << std::endl;
             std::cout << "Sorry! You lost because you have used all 10 guesses!" << std::endl;
             std::cout << "-----------------------------------------------------" << std::endl;
         }
-        guesses++;
     }
 
     delete code;
