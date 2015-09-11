@@ -153,15 +153,14 @@ bool Feedback(Code* code, Code* guess)
             if (codePeg[i] == guessPeg[j])
             {
                 if (i == j) result += "o";
-                else
+            }
+            else
+            {
+                for (int k = i+1; k < 4; k++)
                 {
-                    //TODO : Fix the ~ Detection
-                    for (int k = i+1; k < 4; k++)
+                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]))
                     {
-                        if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]))
-                        {
-                            result += "~";
-                        }
+                        result += "~";
                     }
                 }
             }
@@ -179,7 +178,7 @@ int main()
     bool executing = true;
     int guesses = 1;
     Code* code = new Code();
-    code->PrintState();//DEBUG
+    //code->PrintState();//DEBUG
     Code* guess = NULL;
     std::cout << "Welcome to Mastermind by Thomas Steinholz!" << std::endl;
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
