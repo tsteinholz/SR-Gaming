@@ -184,8 +184,8 @@ int main()
     srand(time(NULL));
     bool executing = true, won = false;
     int guesses = 1;
-    Code* code = new Code();
-    //code->PrintState();//DEBUG
+    Code* code = new Code(Code::Peg::WHITE);
+    code->PrintState();//DEBUG
     Code* guess = NULL;
     std::cout << "Welcome to Mastermind by Thomas Steinholz!" << std::endl;
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
