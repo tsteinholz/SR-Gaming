@@ -2,6 +2,7 @@
 // South River High School
 // C++ w/ Gaming : 1A
 
+#include <ctime>
 #include <iostream>
 #include <string>
 
@@ -9,12 +10,8 @@ struct Code
 {
     enum Peg
     {
-        RED,
-        BLUE,
-        YELLOW,
-        GREEN,
-        WHITE,
-        ORANGE,
+        RED, BLUE, YELLOW,
+        GREEN, WHITE, ORANGE,
         NOTHING,
     };
 
@@ -25,30 +22,17 @@ struct Code
         {
             switch(rand() % 6)
             {
-                case 0:
-                    temp[i] = RED;
-                    break;
-                case 1:
-                    temp[i] = BLUE;
-                    break;
-                case 2:
-                    temp[i] = YELLOW;
-                    break;
-                case 3:
-                    temp[i] = GREEN;
-                    break;
-                case 4:
-                    temp[i] = WHITE;
-                    break;
-                case 5:
-                    temp[i] = ORANGE;
-                    break;
+                case 0:  temp[i] = RED;    break;
+                case 1:  temp[i] = BLUE;   break;
+                case 2:  temp[i] = YELLOW; break;
+                case 3:  temp[i] = GREEN;  break;
+                case 4:  temp[i] = WHITE;  break;
+                case 5:  temp[i] = ORANGE; break;
+                default: temp[i] = NOTHING;
             }
         }
-        A = temp[0];
-        B = temp[1];
-        C = temp[2];
-        D = temp[3];
+        A = temp[0]; B = temp[1];
+        C = temp[2]; D = temp[3];
     }
 
     Code(Peg x)
@@ -81,25 +65,18 @@ struct Code
         switch (x)
         {
             case 'r':
-            case 'R':
-                return RED;
+            case 'R': return RED;
             case 'b':
-            case 'B':
-                return BLUE;
+            case 'B': return BLUE;
             case 'y':
-            case 'Y':
-                return YELLOW;
+            case 'Y': return YELLOW;
             case 'g':
-            case 'G':
-                return GREEN;
+            case 'G': return GREEN;
             case 'w':
-            case 'W':
-                return WHITE;
+            case 'W': return WHITE;
             case 'o':
-            case 'O':
-                return ORANGE;
-            default:
-                return NOTHING;
+            case 'O': return ORANGE;
+            default:  return NOTHING;
         }
     }
 
@@ -107,21 +84,14 @@ struct Code
     {
         switch(x)
         {
-            case RED:
-                return "Red";
-            case BLUE:
-                return "Blue";
-            case YELLOW:
-                return "Yellow";
-            case GREEN:
-                return "Green";
-            case WHITE:
-                return "White";
-            case ORANGE:
-                return "Orange";
+            case RED:     return "Red";
+            case BLUE:    return "Blue";
+            case YELLOW:  return "Yellow";
+            case GREEN:   return "Green";
+            case WHITE:   return "White";
+            case ORANGE:  return "Orange";
             default:
-            case NOTHING:
-                return "Nothing";
+            case NOTHING: return "Nothing";
         }
     }
 
@@ -160,49 +130,78 @@ Code* Turn()
                         out->PrintState();
                         return out;
                     }
-                    else std::cout << std::endl << "ERROR: Col 4 '" << result.at(3) << "'" << std::endl;
+                    else std::cout << std::endl << "ERROR: Col 4 '" << result.at(3) << "'" << std::endl << std::endl;
                 }
-                else std::cout << std::endl << "ERROR: Col 3 '" << result.at(2) << "'" << std::endl;
+                else std::cout << std::endl << "ERROR: Col 3 '" << result.at(2) << "'" << std::endl << std::endl;
             }
-            else std::cout << std::endl << "ERROR: Col 2 '" << result.at(1) << "'" << std::endl;
+            else std::cout << std::endl << "ERROR: Col 2 '" << result.at(1) << "'" << std::endl << std::endl;
         }
-        else std::cout << std::endl << "ERROR: Col 1 '" << result.at(0) << "'" << std::endl;
+        else std::cout << std::endl << "ERROR: Col 1 '" << result.at(0) << "'" << std::endl << std::endl;
     }
     return NULL;
 }
 
 bool Feedback(Code* code, Code* guess)
 {
-    std::string result = "xxxx";
+    std::string result = "";
+    bool checked;
+    Code::Peg codePeg[4] = {code->A, code->B, code->C, code->D}, guessPeg[4]= {guess->A, guess->B, guess->C, guess->D};
 
     for (int i = 0; i < 4; i++)
     {
-
+        for (int j = i; j < 4; j++)
+        {
+            checked = false;
+            if (codePeg[i] == guessPeg[j])
+            {
+                if (i == j)
+                {
+                    result += "o";
+                    checked = true;
+                }
+            }
+            else
+            {
+                for (int k = i+1; k < 4; k++)
+                {
+                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]) && (k > j) && !checked)
+                    {
+                        result += "~";
+                        checked = true;
+                    }
+                }
+            }
+        }
     }
+
+    std::cout << "Results : " << result << std::endl;
+
+    return (bool) !result.compare("oooo");
 }
 
 int main()
 {
     srand(time(NULL));
-    bool executing = true;
-    int guesses = 0;
+    bool executing = true, won = false;
+    int guesses = 1;
     Code* code = new Code();
-    code->PrintState();//DEBUG
+    //code->PrintState();//DEBUG
     Code* guess = NULL;
     std::cout << "Welcome to Mastermind by Thomas Steinholz!" << std::endl;
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
     std::cout << "of colors that the AI will generate. Your options are R-B-Y-G-W-O. For example to type in" << std::endl;
     std::cout << "the colors red, blue, yellow, and orange you would type \"RBYO\" untill you get the right combo." << std::endl;
     std::cout << "Scoring Code:" << std::endl << "o - Right Color, Right Place" << std::endl;
-    std::cout << "~ - Right Color, Wrong Place" << std::endl << "x - Neither" << std::endl;
+    std::cout << "~ - Right Color, Wrong Place" << std::endl;
     std::cout << "Good Luck, and don't forget to have fun!" << std::endl << std::endl;
 
     while (executing)
     {
-        guesses++;
-        std::cout << "|------------|" << std::endl;
-        std::cout << "[ Guess " << guesses << "/10 ]" << std::endl;
-        std::cout << "|------------|" << std::endl;
+        std::cout << std::endl;
+        std::cout << "|-------------|" << std::endl;
+        std::cout << "[ Guess: " << guesses << "/10 ]" << std::endl;
+        std::cout << "[ R-B-Y-G-W-O ]" << std::endl;
+        std::cout << "|-------------|" << std::endl;
 
         guess = NULL;
         while (!guess) guess = Turn();
@@ -210,12 +209,17 @@ int main()
         if (Feedback(code, guess))
         {
             executing = false;
+            won = true;
             std::cout << "----------------------------------" << std::endl;
             std::cout << "Good Work! You just won the game!!" << std::endl;
             std::cout << "----------------------------------" << std::endl;
+            std::cout << std::endl;
+
         }
 
-        if (guesses > 9)
+        guesses++;
+
+        if (guesses > 10 && !won)
         {
             executing = false;
             std::cout << "-----------------------------------------------------" << std::endl;
