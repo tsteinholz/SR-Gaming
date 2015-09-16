@@ -52,7 +52,7 @@ struct Code
         std::cout<<ToString(A)<<" "<<ToString(B)<<" "<<ToString(C)<<" "<<ToString(D)<<" "<<std::endl;
     }
 
-    bool Verify()
+    inline bool Verify()
     {
         return A != NOTHING &&
                B != NOTHING &&
@@ -60,7 +60,7 @@ struct Code
                D != NOTHING;
     }
 
-    static Peg ToPeg(const char x)
+    inline static Peg ToPeg(const char x)
     {
         switch (x)
         {
@@ -80,7 +80,7 @@ struct Code
         }
     }
 
-    static std::string ToString(const Peg x)
+    inline static std::string ToString(const Peg x)
     {
         switch(x)
         {
@@ -184,8 +184,8 @@ int main()
     srand(time(NULL));
     bool executing = true, won = false;
     int guesses = 1;
-    Code* code = new Code(Code::Peg::WHITE);
-    code->PrintState();//DEBUG
+    Code* code = new Code();
+    //code->PrintState();//DEBUG
     Code* guess = NULL;
     std::cout << "Welcome to Mastermind by Thomas Steinholz!" << std::endl;
     std::cout << "You are playing as the \"Code Breaker\" that means you will need to guess the combonations" << std::endl;
