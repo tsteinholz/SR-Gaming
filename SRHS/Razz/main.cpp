@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int* GetLine(int line, const char* file, int arr[])
+void GetLine(int line, const char* file, int arr[])
 {
     ifstream game (file);
     if (game.is_open())
@@ -15,31 +15,30 @@ int* GetLine(int line, const char* file, int arr[])
             game.get(data, 7);
         }
         game.close();
-        int out[] = {(int)data[0],(int)data[0],(int)data[0],(int)data[0],(int)data[0],(int)data[0],(int)data[0]};
-        return out;
+        for (unsigned int i = 0; i < 7; i++) arr[i] = (int)data[i];
     }
-    return nullptr;
 }
 
 bool HasMoreLines(int line, const char* file)
 {
-
+    return true;
 }
 
 int main()
 {
     const char* game = "Game.pkr";
     unsigned int i = 0;
-    while (HasMoreLines(i, game))
-    {
+    //while (HasMoreLines(i, game))
+    //{
         int hand[7];
         GetLine(i, game, hand);
+        cout << hand[0];
         for (auto& x : hand)
         {
-
+            cout << x;
         }
 
-        i++;
-    }
+        //i++;
+    //}
     return 0;
 }
