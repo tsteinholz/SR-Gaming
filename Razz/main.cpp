@@ -23,15 +23,6 @@ void Load(const string file, int data[10][7])
     {
         cout << "Not loading " << file << "..." << endl;
     }
-}
-
-void PlayGame(int x)
-{
-    ostringstream oss;
-    oss << "Game" << x << ".pkr";
-    int data[10][7] = {0};
-    Load(oss.str(), data);
-
     for (unsigned int i = 0; i < 10; i++)
     {
         for (unsigned int j = 0; j < 7; j++)
@@ -40,14 +31,22 @@ void PlayGame(int x)
         }
         cout << endl;
     }
+}
 
+void PlayGame(int x)
+{
+    ostringstream oss;
+    oss << "Game" << x << ".pkr";
+    int data[10][7] = {0};
+    Load(oss.str(), data);
+    oss.clear();
 }
 
 int main()
 {
     PlayGame(1);
-    //PlayGame(2);
-    //PlayGame(3);
-    //PlayGame(4);
+    PlayGame(2);
+    PlayGame(3);
+    PlayGame(4);
     return 0;
 }
