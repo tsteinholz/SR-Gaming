@@ -1,44 +1,53 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+//#include <string>
+#include <sstream>
 
 using namespace std;
 
-void GetLine(int line, const char* file, int arr[])
+void Load(const string file, int data[10][7])
 {
-    ifstream game (file);
-    if (game.is_open())
+    fstream game(file);
+    if (game.good())
     {
-        char data[7];
-        for (unsigned int i = 0; i < line; i++)
-        {
-            game.get(data, 7);
+        cout << "Loading File...";
+        unsigned int x = 0, i = 0, j = 0;
+        while (game >> x) {
+            data[j][i] = x;
+            i = i > 6 ? i + 1 : 0;
+            j = i == 0 ? j + 1 : j;
         }
-        game.close();
-        for (unsigned int i = 0; i < 7; i++) arr[i] = (int)data[i];
+        getchar();
+    }
+    else
+    {
+        cout << "Not loading " << file << "..." << endl;
     }
 }
 
-bool HasMoreLines(int line, const char* file)
+void PlayGame(int x)
 {
-    return true;
+    ostringstream oss;
+    oss << "Game" << x << ".pkr";
+    int data[10][7] = {0};
+    Load(oss.str(), data);
+
+    for (unsigned int i = 0; i < 10; i++)
+    {
+        for (unsigned int j = 0; j < 7; j++)
+        {
+            cout << data[i][j] << " ";
+        }
+        cout << endl;
+    }
+
 }
 
 int main()
 {
-    const char* game = "Game.pkr";
-    unsigned int i = 0;
-    //while (HasMoreLines(i, game))
-    //{
-        int hand[7];
-        GetLine(i, game, hand);
-        cout << hand[0];
-        for (auto& x : hand)
-        {
-            cout << x;
-        }
-
-        //i++;
-    //}
+    PlayGame(1);
+    //PlayGame(2);
+    //PlayGame(3);
+    //PlayGame(4);
     return 0;
 }
