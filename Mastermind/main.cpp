@@ -4,7 +4,6 @@
 
 #include <ctime>
 #include <iostream>
-#include <string>
 
 struct Code
 {
@@ -115,16 +114,16 @@ Code* Turn()
     if (result.length() > 3)
     {
         Code::Peg A = Code::ToPeg(result.at(0));
-        if (A != Code::Peg::NOTHING)
+        if (A != Code::NOTHING)
         {
             Code::Peg B = Code::ToPeg(result.at(1));
-            if (B != Code::Peg::NOTHING)
+            if (B != Code::NOTHING)
             {
                 Code::Peg C = Code::ToPeg(result.at(2));
-                if (C != Code::Peg::NOTHING)
+                if (C != Code::NOTHING)
                 {
                     Code::Peg D = Code::ToPeg(result.at(3));
-                    if (D != Code::Peg::NOTHING)
+                    if (D != Code::NOTHING)
                     {
                         Code* out = new Code(A, B, C, D);
                         out->PrintState();
