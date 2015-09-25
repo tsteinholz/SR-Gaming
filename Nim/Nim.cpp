@@ -4,13 +4,13 @@
 
 #include "Nim.h"
 
-Nim::Nim()
+MasterMine::MasterMine()
 { Initialize(); }
 
-Nim::~Nim()
+MasterMine::~MasterMine()
 { Shutdown(); }
 
-void Nim::Initialize()
+void MasterMine::Initialize()
 {
     srand(time(NULL));
     HumanFirst = (bool) (rand() % 2);
@@ -38,7 +38,7 @@ void Nim::Initialize()
 #endif
 }
 
-void Nim::Execute()
+void MasterMine::Execute()
 {
 #if DEBUG
     std::cout << "DEBUG: Difficulty = " << Difficulty << std::endl;
@@ -53,54 +53,96 @@ void Nim::Execute()
     Shutdown();
 }
 
-void Nim::Shutdown()
+void MasterMine::Shutdown()
 {
 
 }
 
-bool Nim::AiTurn()
+bool MasterMine::AiTurn()
 {
     std::cout << "AI's Turn!" << std::endl;
-    int half = Pile != 1 ? Pile/2 : Pile/2 + 1;
+    int half = Pile != 1 ? Pile/2 : Pile/2 + 1, turn;
     switch (Difficulty)
     {
         default:
         case SMART:
             if (Pile == 100)
             {
-                if (Pile-65 <= half) Pile -= 65;
-                else Pile -= rand() % half + 1;
+                if (Pile-65 <= half)
+                {
+                    Pile -= 65;
+                    std::cout << "The AI Just took out 65 marbles" << std::endl;
+                }
+                else
+                {
+                    turn = rand() % half + 1;
+                    Pile -= turn;
+                    std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+                }
             }
             else if (Pile >= 64)
             {
-                if (Pile-33 <= half) Pile -= 33;
-                else Pile -= rand() % half + 1;
+                if (Pile-33 <= half)
+                {
+                    Pile -= 33;
+                    std::cout << "The AI Just took out 33 marbles" << std::endl;
+                }
+                else
+                {
+                    turn = rand() % half + 1;
+                    Pile -= turn;
+                    std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+                }
             }
             else if (Pile >= 32)
             {
-                if (Pile-17 <= half) Pile -= 17;
-                else Pile -= rand() % half + 1;
+                if (Pile-17 <= half)
+                {
+                    Pile -= 17;
+                    std::cout << "The AI Just took out 17 marbles" << std::endl;
+                }
+                else
+                {
+                    turn = rand() % half + 1;
+                    Pile -= turn;
+                    std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+                }
             }
             else if (Pile >= 16)
             {
-                if (Pile-9  <= half) Pile -= 9;
-                else Pile -= rand() % half + 1;
+                if (Pile-9 <= half)
+                {
+                    Pile -= 9;
+                    std::cout << "The AI Just took out 9 marbles" << std::endl;
+                }
+                else
+                {
+                    turn = rand() % half + 1;
+                    Pile -= turn;
+                    std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+                }
             }
             else if (Pile >= 8)
             {
-                if (Pile-5  <= half) Pile -= 5;
-                else Pile -= rand() % half + 1;
+                if (Pile-5  <= half)
+                {
+                    Pile -= 5;
+                    std::cout << "The AI Just took out 5 marbles" << std::endl;
+                }
+                else
+                {
+                    turn = rand() % half + 1;
+                    Pile -= turn;
+                    std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+                }
             }
-            else Pile -= rand() % half + 1;
+            else
+            {
+                turn = rand() % half + 1;
+                Pile -= turn;
+                std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+            }
 
-
-
-            if (Pile == 100)     { if (Pile-65 <= half) Pile = 63; else Pile -= rand() % half + 1; }
-            else if (Pile >= 64) { if (Pile-33 <= half) Pile = 31; else Pile -= rand() % half + 1; }
-            else if (Pile >= 32) { if (Pile-17 <= half) Pile = 15; else Pile -= rand() % half + 1; }
-            else if (Pile >= 16) { if (Pile-9  <= half) Pile = 7;  else Pile -= rand() % half + 1; }
-            else if (Pile >= 8)  { if (Pile-5  <= half) Pile = 3;  else Pile -= rand() % half + 1; }
-            else Pile -= rand() % half + 1;
             if(Pile < 1)
             {
                 std::cout << "-------------" << std::endl;
@@ -110,7 +152,10 @@ bool Nim::AiTurn()
             }
             break;
         case EASY:
-            Pile -= rand() % half + 1;
+            turn = rand() % half + 1;
+            Pile -= turn;
+            std::cout << "The AI Just took out " << turn << " marbles" << std::endl;
+
             if(Pile < 1)
             {
                 std::cout << "-------------" << std::endl;
@@ -124,11 +169,11 @@ bool Nim::AiTurn()
     return true;
 }
 
-bool Nim::HumanTurn()
+bool MasterMine::HumanTurn()
 {
     int turn;
     std::cout << "Your Turn!" << std::endl << "The Pile is " << Pile << ", pick a number between 1 & " << Pile/2
-    << "?" << std::endl;
+        << "?" << std::endl;
     std::cout << "[1," << Pile/2 << "]:";
     std::cin >> turn;
     if ((turn < 1) || ((turn > (Pile / 2)) && turn != 1))
@@ -147,5 +192,4 @@ bool Nim::HumanTurn()
         return false;
     }
     else return true;
-
 }

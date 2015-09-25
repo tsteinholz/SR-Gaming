@@ -2,9 +2,8 @@
 // South River High School
 // C++ w/ Gaming : 1A
 
-#ifndef Nim_Nim_H
-#define Nim_Nim_H
-
+#ifndef MASTERMINE_MASTERMINE_H
+#define MASTERMINE_MASTERMINE_H
 #define OVERRIDE_SMART 0
 #define OVERRIDE_EASY 0
 #define OVERRIDE_PLAYER_FIRST 0
@@ -18,11 +17,11 @@
 
 using namespace SRHSCode;
 
-class Nim : public Game
+class MasterMine : public Game
 {
 public:
-    Nim();
-    virtual ~Nim();
+    MasterMine();
+    virtual ~MasterMine();
 
     virtual void Initialize() override;
 
@@ -48,4 +47,4 @@ private:
 };
 
 
-#endif //Nim_Nim_H
+#endif //MASTERMINE_MASTERMINE_H
