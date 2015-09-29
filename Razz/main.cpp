@@ -77,3 +77,34 @@ int main(int argc, char* argv[])
     PlayGame(4);
     return 0;
 }
+
+/*
+ * Output :
+ *
+ * Loading Game1.pkr...
+ * 1  2  3  4  5  6  7  | Bet
+ * 1  2  3  4  6  7  8  | Fold
+ * 1  2  3  3  4  4  4  | Fold
+ * 11  1  5  4 12  2  3 | Bet
+ * 5  1  3  2  6  7  9  | Fold
+ * Loading Game2.pkr...
+ * 12 12 12 12 11 11 11 | Fold
+ * 13 13 13 13  1  1  1 | Fold
+ * 1  1  1  1  2  2  2  | Fold
+ * 5  5  5  5  3  3  3  | Fold
+ * Loading Game3.pkr...
+ * 1  2  1  2  3  4  5  | Bet
+ * 2  2  1  2  3  4  5  | Bet
+ * 3  2  1  2  3  4  5  | Bet
+ * 13 13  1  2  3  4  5 | Bet
+ * 12 12  1  2  3  4  5 | Bet
+ * Loading Game4.pkr...
+ * 5  4  3  2  1  6  7  | Bet
+ * 5  4  3  2  1 13 12  | Bet
+ * 5  4  3  2  1  8  8  | Bet
+ * 8  5  4  3  2  1  8  | Bet
+ * 5  8  4  3  2  8  1  | Bet
+ * 8  2  5  4  3 10  1  | Bet
+ *
+ * Process finished with exit code 0
+ */
