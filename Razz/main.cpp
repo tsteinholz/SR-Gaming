@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void Load(const string file, int data[10][7])
+void Load(const string& file, unsigned int data[10][7])
 {
     fstream game(file, ios_base::in);
     if (game.good())
@@ -24,31 +24,38 @@ void Load(const string file, int data[10][7])
     }
 }
 
-void Calculate(int data[10][7])
+void Calculate(unsigned int data[10][7])
 {
-    bool used = false;
-    int total = 0;
+    bool valid = false;
     for (unsigned int i = 0; i < 10; i++)
     {
+        bool test[5] = {false};
         for (unsigned int j = 0; j < 7; j++)
         {
             if (data[i][j] != 0)
             {
+                valid = true;
                 if (data[i][j] < 10) cout << " ";
                 cout << data[i][j] << " ";
-                used = true;
-                total += data[i][j];
+                switch (data[i][j])
+                {
+                    case 1: test[0] = true; break;
+                    case 2: test[1] = true; break;
+                    case 3: test[2] = true; break;
+                    case 4: test[3] = true; break;
+                    case 5: test[4] = true; break;
+                    default: break;
+                }
             }
         }
-        if (used)
+        if (valid)
         {
             cout << " | ";
-            if (total - 28 == 0) cout << "Bet ";
+            if (test[0] && test[1] && test[2] && test[3] && test[4]) cout << "Bet";
             else cout << "Fold";
-            cout << " [" << total << "]" << endl;
-            total = 0;
+            cout << endl;
         }
-        used = false;
+        valid = false;
     }
 }
 
@@ -56,7 +63,7 @@ void PlayGame(int x)
 {
     ostringstream oss;
     oss << "Game" << x << ".pkr";
-    int data[10][7] = {0};
+    unsigned int data[10][7] = {0};
     Load(oss.str(), data);
     Calculate(data);
     oss.clear();
