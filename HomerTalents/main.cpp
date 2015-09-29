@@ -9,6 +9,7 @@ void Load(const string& file, string s[2])
     fstream stream(file.c_str(), ios_base::in);
     if (stream.good())
     {
+        cout << "------------------------" << endl;
         cout << "Loading " << file << "..." << endl;
         string line; unsigned int x = 0;
         while (getline(stream ,line))
@@ -34,11 +35,13 @@ void Talent(unsigned int x)
         string temp = data[0].substr(0, i);
         if (data[1].rfind(temp) != string::npos && temp[temp.length()-1] == data[1][data[1].length()-1])
         {
-            cout << temp << " " << temp.length() << endl << endl;
+            cout << temp << " " << temp.length() << endl;
+            cout << "------------------------" << endl << endl;
             return;
         }
     }
-    cout << "0" << endl << endl;
+    cout << "0" << endl;
+    cout << "------------------------" << endl << endl;
 }
 
 int main(int argc, char* argv[])
