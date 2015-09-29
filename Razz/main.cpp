@@ -34,7 +34,7 @@ void Calculate(int data[10][7])
         {
             if (data[i][j] != 0)
             {
-                if (data[i][j] < 10) cout << "0";
+                if (data[i][j] < 10) cout << " ";
                 cout << data[i][j] << " ";
                 used = true;
                 total += data[i][j];
@@ -43,9 +43,9 @@ void Calculate(int data[10][7])
         if (used)
         {
             cout << " | ";
-            if (total - 28 == 0) cout << "Bet";
+            if (total - 28 == 0) cout << "Bet ";
             else cout << "Fold";
-            cout << " " << total << endl;
+            cout << " [" << total << "]" << endl;
             total = 0;
         }
         used = false;
