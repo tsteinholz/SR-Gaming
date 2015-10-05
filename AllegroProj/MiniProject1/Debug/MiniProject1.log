@@ -1,0 +1,20 @@
+﻿Build started 10/5/2015 8:41:03 AM.
+     1>Project "H:\C++\CPP-SRHS\AllegroProj\MiniProject1\MiniProject1.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\MiniProject1.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\C++\CPP-SRHS\AllegroProj\Debug\MiniProject1.exe" /NOLOGO /LIBPATH:"H:\C++\CPP-SRHS\AllegroProj\lib" "allegro-4.4.2-monolith-md-debug.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\MiniProject1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"H:\C++\CPP-SRHS\AllegroProj\Debug\MiniProject1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\C++\CPP-SRHS\AllegroProj\Debug\MiniProject1.lib" /MACHINE:X86 Debug\main.obj
+         LINK : H:\C++\CPP-SRHS\AllegroProj\Debug\MiniProject1.exe not found or not built by the last incremental link; performing full link
+         MiniProject1.vcxproj -> H:\C++\CPP-SRHS\AllegroProj\Debug\MiniProject1.exe
+       Manifest:
+         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"H:\C++\CPP-SRHS\AllegroProj\Debug\MiniProject1.exe;#1" /manifest Debug\MiniProject1.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\MiniProject1.unsuccessfulbuild".
+         Touching "Debug\MiniProject1.lastbuildstate".
+     1>Done Building Project "H:\C++\CPP-SRHS\AllegroProj\MiniProject1\MiniProject1.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.10
