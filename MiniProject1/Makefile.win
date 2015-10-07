@@ -4,9 +4,9 @@
 CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
-RES  = Miniproject1_private.res
-OBJ  = main.o $(RES)
-LINKOBJ  = main.o $(RES)
+RES  = 
+OBJ  = main.o Rectangle.o $(RES)
+LINKOBJ  = main.o Rectangle.o $(RES)
 LIBS =  -L"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/lib" -mwindows -lalleg_s -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lole32 -ldinput -lddraw -ldxguid -lwinmm -ldsound 
 INCS =  -I"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/include" 
 CXXINCS =  -I"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/include/c++/3.4.2/backward"  -I"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/include/c++/3.4.2"  -I"G:/Roberts Computer Science/CPP IDE/Dev-Cpp/include" 
@@ -29,5 +29,5 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-Miniproject1_private.res: Miniproject1_private.rc 
-	$(WINDRES) -i Miniproject1_private.rc --input-format=rc -o Miniproject1_private.res -O coff 
+Rectangle.o: Rectangle.cpp
+	$(CPP) -c Rectangle.cpp -o Rectangle.o $(CXXFLAGS)

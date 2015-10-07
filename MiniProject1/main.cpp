@@ -1,5 +1,8 @@
 #include <allegro.h>
 
+#include "Object.h"
+#include "Rectangle.h"
+
 void init();
 void deinit();
 
@@ -7,7 +10,7 @@ int main() {
 	init();
 
 	while (!key[KEY_ESC]) {
-		/* put your code here */
+		
 	}
 
 	deinit();
@@ -30,10 +33,8 @@ void init() {
 	install_timer();
 	install_keyboard();
 	install_mouse();
-	/* add other initializations here */
 }
 
 void deinit() {
 	clear_keybuf();
-	/* add other deinitializations here */
 }
