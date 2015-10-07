@@ -1,308 +1,304 @@
 #ifndef COLORS_H
 #define COLORS_H
 
-#define BROWN makecol(174, 123, 0)
-
-
-
+#define indianred 0x0171F
+#define crimson	0xC143C
+#define lightpink 0xFFB6C1
+#define lightpink 0xFFAEB9
+#define lightpink 0xEEA2AD
+#define lightpink 0xCD8C95
+#define lightpink 0x8B5F65
+#define pink 0xFFC0CB
+#define pink1	0xFFB5C5
+#define pink2	0xEEA9B8
+#define pink3	0xCD919E
+#define pink4	0x8B636C
+#define palevioletred	 	palevioletred	#DB7093	219	112	147	9662683
+#define palevioletred 1	 	palevioletred 1	#FF82AB	255	130	171	11240191
+#define palevioletred 2	 	palevioletred 2	#EE799F	238	121	159	10451438
+#define palevioletred 3	 	palevioletred 3	#CD6889	205	104	137	9005261
+#define palevioletred 4	 	palevioletred 4	#8B475D	139	71	93	6113163
+#define lavenderblush 1 (lavenderblush)	 	lavenderblush 1 (lavenderblush)	#FFF0F5	255	240	245	16118015
+#define lavenderblush 2	 	lavenderblush 2	#EEE0E5	238	224	229	15065326
+#define lavenderblush 3	 	lavenderblush 3	#CDC1C5	205	193	197	12960205
+#define lavenderblush 4	 	lavenderblush 4	#8B8386	139	131	134	8815499
+#define violetred 1	 	violetred 1	#FF3E96	255	62	150	9846527
+#define violetred 2	 	violetred 2	#EE3A8C	238	58	140	9190126
+#define violetred 3	 	violetred 3	#CD3278	205	50	120	7877325
+#define violetred 4	 	violetred 4	#8B2252	139	34	82	5382795
+#define hotpink	 	hotpink	#FF69B4	255	105	180	11823615
+#define hotpink 1	 	hotpink 1	#FF6EB4	255	110	180	11824895
+#define hotpink 2	 	hotpink 2	#EE6AA7	238	106	167	10971886
+#define hotpink 3	 	hotpink 3	#CD6090	205	96	144	9461965
+#define hotpink 4	 	hotpink 4	#8B3A62	139	58	98	6437515
+#define raspberry	 	raspberry	#872657	135	38	87	5711495
+#define deeppink 1 (deeppink)	 	deeppink 1 (deeppink)	#FF1493	255	20	147	9639167
+#define deeppink 2	 	deeppink 2	#EE1289	238	18	137	8983278
+#define deeppink 3	 	deeppink 3	#CD1076	205	16	118	7737549
+#define deeppink 4	 	deeppink 4	#8B0A50	139	10	80	5245579
+#define maroon 1	 	maroon 1	#FF34B3	255	52	179	11744511
+#define maroon 2	 	maroon 2	#EE30A7	238	48	167	10957038
+#define maroon 3	 	maroon 3	#CD2990	205	41	144	9447885
+#define maroon 4	 	maroon 4	#8B1C62	139	28	98	6429835
+#define mediumvioletred	 	mediumvioletred	#C71585	199	21	133	8721863
+#define violetred	 	violetred	#D02090	208	32	144	9445584
+#define orchid	 	orchid	#DA70D6	218	112	214	14053594
+#define orchid 1	 	orchid 1	#FF83FA	255	131	250	16417791
+#define orchid 2	 	orchid 2	#EE7AE9	238	122	233	15301358
+#define orchid 3	 	orchid 3	#CD69C9	205	105	201	13199821
+#define orchid 4	 	orchid 4	#8B4789	139	71	137	8996747
+#define thistle	 	thistle	#D8BFD8	216	191	216	14204888
+#define thistle 1	 	thistle 1	#FFE1FF	255	225	255	16769535
+#define thistle 2	 	thistle 2	#EED2EE	238	210	238	15651566
+#define thistle 3	 	thistle 3	#CDB5CD	205	181	205	13481421
+#define thistle 4	 	thistle 4	#8B7B8B	139	123	139	9141131
+#define plum 1	 	plum 1	#FFBBFF	255	187	255	16759807
+#define plum 2	 	plum 2	#EEAEEE	238	174	238	15642350
+#define plum 3	 	plum 3	#CD96CD	205	150	205	13473485
+#define plum 4	 	plum 4	#8B668B	139	102	139	9135755
+#define plum	 	plum	#DDA0DD	221	160	221	14524637
+#define violet	 	violet	#EE82EE	238	130	238	15631086
+#define magenta (fuchsia*)	 	magenta (fuchsia*)	#FF00FF	255	0	255	16711935
+#define #define magenta 2	 	magenta 2	#EE00EE	238	0	238	15597806
+#define magenta 3	 	magenta 3	#CD00CD	205	0	205	13435085
+#define magenta 4 (darkmagenta)	 	magenta 4 (darkmagenta)	#8B008B	139	0	139	9109643
+#define purple*	 	purple*	#800080	128	0	128	8388736
+#define mediumorchid	 	mediumorchid	#BA55D3	186	85	211	13850042
+#define mediumorchid 1	 	mediumorchid 1	#E066FF	224	102	255	16738016
+#define mediumorchid 2	 	mediumorchid 2	#D15FEE	209	95	238	15622097
+#define mediumorchid 3	 	mediumorchid 3	#B452CD	180	82	205	13456052
+#define mediumorchid 4	 	mediumorchid 4	#7A378B	122	55	139	9123706
+#define darkviolet	 	darkviolet	#9400D3	148	0	211	13828244
+#define darkorchid	 	darkorchid	#9932CC	153	50	204	13382297
+#define darkorchid 1	 	darkorchid 1	#BF3EFF	191	62	255	16727743
+#define darkorchid 2	 	darkorchid 2	#B23AEE	178	58	238	15612594
+#define darkorchid 3	 	darkorchid 3	#9A32CD	154	50	205	13447834
+#define darkorchid 4	 	darkorchid 4	#68228B	104	34	139	9118312
+#define indigo	 	indigo	#4B0082	75	0	130	8519755
+#define #define blueviolet	 	blueviolet	#8A2BE2	138	43	226	14822282
+#define purple 1	 	purple 1	#9B30FF	155	48	255	16724123
+#define purple 2	 	purple 2	#912CEE	145	44	238	15608977
+#define purple 3	 	purple 3	#7D26CD	125	38	205	13444733
+#define purple 4	 	purple 4	#551A8B	85	26	139	9116245
+#define mediumpurple	 	mediumpurple	#9370DB	147	112	219	14381203
+#define mediumpurple 1	 	mediumpurple 1	#AB82FF	171	130	255	16745131
+#define mediumpurple 2	 	mediumpurple 2	#9F79EE	159	121	238	15628703
+#define mediumpurple 3	 	mediumpurple 3	#8968CD	137	104	205	13461641
+#define mediumpurple 4	 	mediumpurple 4	#5D478B	93	71	139	9127773
+#define darkslateblue	 	darkslateblue	#483D8B	72	61	139	9125192
+#define lightslateblue	 	lightslateblue	#8470FF	132	112	255	16740484
+#define mediumslateblue	 	mediumslateblue	#7B68EE	123	104	238	15624315
+#define slateblue	 	slateblue	#6A5ACD	106	90	205	13458026
+#define slateblue 1	 	slateblue 1	#836FFF	131	111	255	16740227
+#define slateblue 2	 	slateblue 2	#7A67EE	122	103	238	15624058
+#define slateblue 3	 	slateblue 3	#6959CD	105	89	205	13457769
+#define #define #define slateblue 4	 	slateblue 4	#473C8B	71	60	139	9124935
+#define ghostwhite	 	ghostwhite	#F8F8FF	248	248	255	16775416
+#define lavender	 	lavender	#E6E6FA	230	230	250	16443110
+#define blue*	 	blue*	#0000FF	0	0	255	16711680
+#define blue 2	 	blue 2	#0000EE	0	0	238	15597568
+#define blue 3 (mediumblue)	 	blue 3 (mediumblue)	#0000CD	0	0	205	13434880
+#define blue 4 (darkblue)	 	blue 4 (darkblue)	#00008B	0	0	139	9109504
+#define navy*	 	navy*	#000080	0	0	128	8388608
+#define midnightblue	 	midnightblue	#191970	25	25	112	7346457
+#define cobalt	 	cobalt	#3D59AB	61	89	171	11229501
+#define royalblue	 	royalblue	#4169E1	65	105	225	14772545
+#define royalblue 1	 	royalblue 1	#4876FF	72	118	255	16741960
+#define royalblue 2	 	royalblue 2	#436EEE	67	110	238	15625795
+#define royalblue 3	 	royalblue 3	#3A5FCD	58	95	205	13459258
+#define royalblue 4	 	royalblue 4	#27408B	39	64	139	9125927
+#define cornflowerblue	 	cornflowerblue	#6495ED	100	149	237	15570276
+#define lightsteelblue	 	lightsteelblue	#B0C4DE	176	196	222	14599344
+#define lightsteelblue 1	 	lightsteelblue 1	#CAE1FF	202	225	255	16769482
+#define lightsteelblue 2	 	lightsteelblue 2	#BCD2EE	188	210	238	15651516
+#define lightsteelblue 3	 	lightsteelblue 3	#A2B5CD	162	181	205	13481378
+#define lightsteelblue 4	 	lightsteelblue 4	#6E7B8B	110	123	139	9141102
+#define #define lightslategray	 	lightslategray	#778899	119	136	153	10061943
+#define slategray	 	slategray	#708090	112	128	144	9470064
+#define slategray 1	 	slategray 1	#C6E2FF	198	226	255	16769734
+#define slategray 2	 	slategray 2	#B9D3EE	185	211	238	15651769
+#define slategray 3	 	slategray 3	#9FB6CD	159	182	205	13481631
+#define slategray 4	 	slategray 4	#6C7B8B	108	123	139	9141100
+#define dodgerblue 1 (dodgerblue)	 	dodgerblue 1 (dodgerblue)	#1E90FF	30	144	255	16748574
+#define dodgerblue 2	 	dodgerblue 2	#1C86EE	28	134	238	15631900
+#define dodgerblue 3	 	dodgerblue 3	#1874CD	24	116	205	13464600
+#define dodgerblue 4	 	dodgerblue 4	#104E8B	16	78	139	9129488
+#define aliceblue	 	aliceblue	#F0F8FF	240	248	255	16775408
+#define steelblue	 	steelblue	#4682B4	70	130	180	11829830
+#define #define steelblue 1	 	steelblue 1	#63B8FF	99	184	255	16758883
+#define steelblue 2	 	steelblue 2	#5CACEE	92	172	238	15641692
+#define steelblue 3	 	steelblue 3	#4F94CD	79	148	205	13472847
+#define steelblue 4	 	steelblue 4	#36648B	54	100	139	9135158
+#define lightskyblue	 	lightskyblue	#87CEFA	135	206	250	16436871
+#define lightskyblue 1	 	lightskyblue 1	#B0E2FF	176	226	255	16769712
+#define lightskyblue 2	 	lightskyblue 2	#A4D3EE	164	211	238	15651748
+#define lightskyblue 3	 	lightskyblue 3	#8DB6CD	141	182	205	13481613
+#define lightskyblue 4	 	lightskyblue 4	#607B8B	96	123	139	9141088
+#define skyblue 1	 	skyblue 1	#87CEFF	135	206	255	16764551
+#define skyblue 2	 	skyblue 2	#7EC0EE	126	192	238	15646846
+#define skyblue 3	 	skyblue 3	#6CA6CD	108	166	205	13477484
+#define skyblue 4	 	skyblue 4	#4A708B	74	112	139	9138250
+#define skyblue	 	skyblue	#87CEEB	135	206	235	15453831
+#define deepskyblue 1 (deepskyblue)	 	deepskyblue 1 (deepskyblue)	#00BFFF	0	191	255	16760576
+#define deepskyblue 2	 	deepskyblue 2	#00B2EE	0	178	238	15643136
+#define deepskyblue 3	 	deepskyblue 3	#009ACD	0	154	205	13474304
+#define deepskyblue 4	 	deepskyblue 4	#00688B	0	104	139	9136128
+#define peacock	 	peacock	#33A1C9	51	161	201	13214003
+#define lightblue	 	lightblue	#ADD8E6	173	216	230	15128749
+#define lightblue 1	 	lightblue 1	#BFEFFF	191	239	255	16773055
+#define lightblue 2	 	lightblue 2	#B2DFEE	178	223	238	15654834
+#define lightblue 3	 	lightblue 3	#9AC0CD	154	192	205	13484186
+#define lightblue 4	 	lightblue 4	#68838B	104	131	139	9143144
+#define powderblue	 	powderblue	#B0E0E6	176	224	230	15130800
+#define cadetblue 1	 	cadetblue 1	#98F5FF	152	245	255	16774552
+#define cadetblue 2	 	cadetblue 2	#8EE5EE	142	229	238	15656334
+#define cadetblue 3	 	cadetblue 3	#7AC5CD	122	197	205	13485434
+#define cadetblue 4	 	cadetblue 4	#53868B	83	134	139	9143891
+#define turquoise 1	 	turquoise 1	#00F5FF	0	245	255	16774400
+#define turquoise 2	 	turquoise 2	#00E5EE	0	229	238	15656192
+#define turquoise 3	 	turquoise 3	#00C5CD	0	197	205	13485312
+#define turquoise 4	 	turquoise 4	#00868B	0	134	139	9143808
+#define cadetblue	 	cadetblue	#5F9EA0	95	158	160	10526303
+#define darkturquoise	 	darkturquoise	#00CED1	0	206	209	13749760
+#define azure 1 (azure)	 	azure 1 (azure)	#F0FFFF	240	255	255	16777200
+#define azure 2	 	azure 2	#E0EEEE	224	238	238	15658720
+#define azure 3	 	azure 3	#C1CDCD	193	205	205	13487553
+#define azure 4	 	azure 4	#838B8B	131	139	139	9145219
+#define lightcyan 1 (lightcyan)	 	lightcyan 1 (lightcyan)	#E0FFFF	224	255	255	16777184
+#define lightcyan 2	 	lightcyan 2	#D1EEEE	209	238	238	15658705
+#define lightcyan 3	 	lightcyan 3	#B4CDCD	180	205	205	13487540
+#define lightcyan 4	 	lightcyan 4	#7A8B8B	122	139	139	9145210
+#define paleturquoise 1	 	paleturquoise 1	#BBFFFF	187	255	255	16777147
+#define paleturquoise 2 (paleturquoise)	 	paleturquoise 2 (paleturquoise)	#AEEEEE	174	238	238	15658670
+#define paleturquoise 3	 	paleturquoise 3	#96CDCD	150	205	205	13487510
+#define paleturquoise 4	 	paleturquoise 4	#668B8B	102	139	139	9145190
+#define darkslategray	 	darkslategray	#2F4F4F	47	79	79	5197615
+#define darkslategray 1	 	darkslategray 1	#97FFFF	151	255	255	16777111
+#define darkslategray 3	 	darkslategray 3	#79CDCD	121	205	205	13487481
+#define darkslategray 4	 	darkslategray 4	#528B8B	82	139	139	9145170
+#define cyan / aqua*	 	cyan / aqua*	#00FFFF	0	255	255	16776960
+#define darkslategray 2	 	darkslategray 2	#8DEEEE	141	238	238	15658637
+#define cyan 2	 	cyan 2	#00EEEE	0	238	238	15658496
+#define cyan 3	 	cyan 3	#00CDCD	0	205	205	13487360
+#define cyan 4 (darkcyan)	 	cyan 4 (darkcyan)	#008B8B	0	139	139	9145088
+#define teal*	 	teal*	#008080	0	128	128	8421376
+#define mediumturquoise	 	mediumturquoise	#48D1CC	72	209	204	13422920
+#define manganeseblue	 	manganeseblue	#03A89E	3	168	158	10397699
+#define turquoise	 	turquoise	#40E0D0	64	224	208	13688896
+#define lightseagreen	 	lightseagreen	#20B2AA	32	178	170	11186720
+#define coldgrey	 	coldgrey	#808A87	128	138	135	8882816
+#define turquoiseblue	 	turquoiseblue	#00C78C	0	199	140	9225984
+#define aquamarine 1 (aquamarine)	 	aquamarine 1 (aquamarine)	#7FFFD4	127	255	212	13959039
+#define aquamarine 2	 	aquamarine 2	#76EEC6	118	238	198	13037174
+#define aquamarine 3 (mediumaquamarine)	 	aquamarine 3 (mediumaquamarine)	#66CDAA	102	205	170	11193702
+#define aquamarine 4	 	aquamarine 4	#458B74	69	139	116	7637829
+#define mediumspringgreen	 	mediumspringgreen	#00FA9A	0	250	154	10156544
+#define mintcream	 	mintcream	#F5FFFA	245	255	250	16449525
+#define springgreen	 	springgreen	#00FF7F	0	255	127	8388352
+#define springgreen 1	 	springgreen 1	#00EE76	0	238	118	7794176
+#define springgreen 2	 	springgreen 2	#00CD66	0	205	102	6737152
+#define springgreen 3	 	springgreen 3	#008B45	0	139	69	4557568
+#define mediumseagreen	 	mediumseagreen	#3CB371	60	179	113	7451452
+#define seagreen 1	 	seagreen 1	#54FF9F	84	255	159	10485588
+#define seagreen 2	 	seagreen 2	#4EEE94	78	238	148	9760334
+#define seagreen 3	 	seagreen 3	#43CD80	67	205	128	8441155
+#define seagreen 4 (seagreen)	 	seagreen 4 (seagreen)	#2E8B57	46	139	87	5737262
+#define emeraldgreen	 	emeraldgreen	#00C957	0	201	87	5753088
+#define mint	 	mint	#BDFCC9	189	252	201	13237437
+#define cobaltgreen	 	cobaltgreen	#3D9140	61	145	64	4231485
+#define honeydew 2	 	honeydew 2	#E0EEE0	224	238	224	14741216
+#define honeydew 1 (honeydew)	 	honeydew 1 (honeydew)	#F0FFF0	240	255	240	15794160
+#define honeydew 3	 	honeydew 3	#C1CDC1	193	205	193	12701121
+#define honeydew 4	 	honeydew 4	#838B83	131	139	131	8620931
+#define darkseagreen	 	darkseagreen	#8FBC8F	143	188	143	9419919
+#define darkseagreen 1	 	darkseagreen 1	#C1FFC1	193	255	193	12713921
+#define darkseagreen 2	 	darkseagreen 2	#B4EEB4	180	238	180	11857588
+#define darkseagreen 3	 	darkseagreen 3	#9BCD9B	155	205	155	10210715
+#define darkseagreen 4	 	darkseagreen 4	#698B69	105	139	105	6916969
+#define palegreen	 	palegreen	#98FB98	152	251	152	10025880
+#define palegreen 1	 	palegreen 1	#9AFF9A	154	255	154	10157978
+#define palegreen 2 (lightgreen)	 	palegreen 2 (lightgreen)	#90EE90	144	238	144	9498256
+#define palegreen 3	 	palegreen 3	#7CCD7C	124	205	124	8179068
+#define palegreen 4	 	palegreen 4	#548B54	84	139	84	5540692
+#define limegreen	 	limegreen	#32CD32	50	205	50	3329330
+#define forestgreen	 	forestgreen	#228B22	34	139	34	2263842
+#define green 1 (lime*)	 	green 1 (lime*)	#00FF00	0	255	0	65280
+#define green 2	 	green 2	#00EE00	0	238	0	60928
+#define green 3	 	green 3	#00CD00	0	205	0	52480
+#define green 4	 	green 4	#008B00	0	139	0	35584
+#define green*	 	green*	#008000	0	128	0	32768
+#define darkgreen	 	darkgreen	#006400	0	100	0	25600
+#define sapgreen	 	sapgreen	#308014	48	128	20	1343536
+#define lawngreen	 	lawngreen	#7CFC00	124	252	0	64636
+#define chartreuse 1 (chartreuse)	 	chartreuse 1 (chartreuse)	#7FFF00	127	255	0	65407
+#define chartreuse 2	 	chartreuse 2	#76EE00	118	238	0	61046
+#define chartreuse 3	 	chartreuse 3	#66CD00	102	205	0	52582
+#define chartreuse 4	 	chartreuse 4	#458B00	69	139	0	35653
+#define greenyellow	 	greenyellow	#ADFF2F	173	255	47	3145645
+#define darkolivegreen 1	 	darkolivegreen 1	#CAFF70	202	255	112	7405514
+#define darkolivegreen 2	 	darkolivegreen 2	#BCEE68	188	238	104	6876860
+#define darkolivegreen 3	 	darkolivegreen 3	#A2CD5A	162	205	90	5950882
+#define darkolivegreen 4	 	darkolivegreen 4	#6E8B3D	110	139	61	4033390
+#define darkolivegreen	 	darkolivegreen	#556B2F	85	107	47	3107669
+#define olivedrab	 	olivedrab	#6B8E23	107	142	35	2330219
+#define olivedrab 1	 	olivedrab 1	#C0FF3E	192	255	62	4128704
+#define olivedrab 2	 	olivedrab 2	#B3EE3A	179	238	58	3862195
+#define olivedrab 3 (yellowgreen)	 	olivedrab 3 (yellowgreen)	#9ACD32	154	205	50	3329434
+#define olivedrab 4	 	olivedrab 4	#698B22	105	139	34	2263913
+#define ivory 1 (ivory)	 	ivory 1 (ivory)	#FFFFF0	255	255	240	15794175
+#define ivory 2	 	ivory 2	#EEEEE0	238	238	224	14741230
+#define ivory 3	 	ivory 3	#CDCDC1	205	205	193	12701133
+#define ivory 4	 	ivory 4	#8B8B83	139	139	131	8620939
+#define beige	 	beige	#F5F5DC	245	245	220	14480885
+#define lightyellow 1 (lightyellow)	 	lightyellow 1 (lightyellow)	#FFFFE0	255	255	224	14745599
+#define lightyellow 2	 	lightyellow 2	#EEEED1	238	238	209	13758190
+#define lightyellow 3	 	lightyellow 3	#CDCDB4	205	205	180	11849165
+#define lightyellow 4	 	lightyellow 4	#8B8B7A	139	139	122	8031115
+#define lightgoldenrodyellow	 	lightgoldenrodyellow	#FAFAD2	250	250	210	13826810
+#define yellow 1 (yellow*)	 	yellow 1 (yellow*)	#FFFF00	255	255	0	65535
+#define yellow 2	 	yellow 2	#EEEE00	238	238	0	61166
+#define yellow 3	 	yellow 3	#CDCD00	205	205	0	52685
+#define yellow 4	 	yellow 4	#8B8B00	139	139	0	35723
+#define warmgrey	 	warmgrey	#808069	128	128	105	6914176
+#define olive*	 	olive*	#808000	128	128	0	32896
+#define darkkhaki	 	darkkhaki	#BDB76B	189	183	107	7059389
+#define khaki 1	 	khaki 1	#FFF68F	255	246	143	9434879
+#define khaki 2	 	khaki 2	#EEE685	238	230	133	8775406
+#define khaki 3	 	khaki 3	#CDC673	205	198	115	7587533
+#define khaki 4	 	khaki 4	#8B864E	139	134	78	5146251
+#define khaki	 	khaki	#F0E68C	240	230	140	9234160
+#define palegoldenrod	 	palegoldenrod	#EEE8AA	238	232	170	11200750
+#define lemonchiffon 1 (lemonchiffon)	 	lemonchiffon 1 (lemonchiffon)	#FFFACD	255	250	205	13499135
+#define lemonchiffon 2	 	lemonchiffon 2	#EEE9BF	238	233	191	12577262
+#define lemonchiffon 3	 	lemonchiffon 3	#CDC9A5	205	201	165	10865101
+#define lemonchiffon 4	 	lemonchiffon 4	#8B8970	139	137	112	7375243
+#define lightgoldenrod 1	 	lightgoldenrod 1	#FFEC8B	255	236	139	9170175
+#define lightgoldenrod 2	 	lightgoldenrod 2	#EEDC82	238	220	130	8576238
+#define lightgoldenrod 3	 	lightgoldenrod 3	#CDBE70	205	190	112	7388877
+#define lightgoldenrod 4	 	lightgoldenrod 4	#8B814C	139	129	76	5013899
+#define banana	 	banana	#E3CF57	227	207	87	5754851
+#define gold 1 (gold)	 	gold 1 (gold)	#FFD700	255	215	0	55295
+#define gold 2	 	gold 2	#EEC900	238	201	0	51694
+#define gold 3	 	gold 3	#CDAD00	205	173	0	44493
+#define gold 4	 	gold 4	#8B7500	139	117	0	30091
+#define cornsilk 1 (cornsilk)	 	cornsilk 1 (cornsilk)	#FFF8DC	255	248	220	14481663
+#define cornsilk 2	 	cornsilk 2	#EEE8CD	238	232	205	13494510
+#define cornsilk 3	 	cornsilk 3	#CDC8B1	205	200	177	11651277
+#define cornsilk 4	 	cornsilk 4	#8B8878	139	136	120	7899275
+#define goldenrod	 	goldenrod	#DAA520	218	165	32	2139610
+#define goldenrod 1	 	goldenrod 1	#FFC125	255	193	37	2474495
+#define goldenrod 2	 	goldenrod 2	#EEB422	238	180	34	2274542
+#define goldenrod 3	 	goldenrod 3	#CD9B1D	205	155	29	1940429
+#define goldenrod 4	 	goldenrod 4	#8B6914	139	105	20	1337739
+#define darkgoldenrod	 	darkgoldenrod	#B8860B	184	134	11	755384
+#define darkgoldenrod 1	 	darkgoldenrod 1	#FFB90F	255	185	15	1030655
+#define darkgoldenrod 2	 	darkgoldenrod 2	#EEAD0E	238	173	14	962030
+#define darkgoldenrod 3	 	darkgoldenrod 3	#CD950C	205	149	12	824781
+#define darkgoldenrod 4	 	darkgoldenrod 4	#8B6508	139	101	8	550283
+#define orange 1 (orange)	 	orange 1 (orange)	#FFA500	255	165	0	42495
+#define orange 2	 	orange 2	#EE9A00	238	154	0	39662
+#define orange 3	 	orange 3	#CD8500	205	133	0	34253
 /*
-indian red	 	indian red	#B0171F	176	23	31	2037680
-crimson	 	crimson	#DC143C	220	20	60	3937500
-lightpink	 	lightpink	#FFB6C1	255	182	193	12695295
-lightpink 1	 	lightpink 1	#FFAEB9	255	174	185	12168959
-lightpink 2	 	lightpink 2	#EEA2AD	238	162	173	11379438
-lightpink 3	 	lightpink 3	#CD8C95	205	140	149	9800909
-lightpink 4	 	lightpink 4	#8B5F65	139	95	101	6643595
-pink	 	pink	#FFC0CB	255	192	203	13353215
-pink 1	 	pink 1	#FFB5C5	255	181	197	12957183
-pink 2	 	pink 2	#EEA9B8	238	169	184	12102126
-pink 3	 	pink 3	#CD919E	205	145	158	10392013
-pink 4	 	pink 4	#8B636C	139	99	108	7103371
-palevioletred	 	palevioletred	#DB7093	219	112	147	9662683
-palevioletred 1	 	palevioletred 1	#FF82AB	255	130	171	11240191
-palevioletred 2	 	palevioletred 2	#EE799F	238	121	159	10451438
-palevioletred 3	 	palevioletred 3	#CD6889	205	104	137	9005261
-palevioletred 4	 	palevioletred 4	#8B475D	139	71	93	6113163
-lavenderblush 1 (lavenderblush)	 	lavenderblush 1 (lavenderblush)	#FFF0F5	255	240	245	16118015
-lavenderblush 2	 	lavenderblush 2	#EEE0E5	238	224	229	15065326
-lavenderblush 3	 	lavenderblush 3	#CDC1C5	205	193	197	12960205
-lavenderblush 4	 	lavenderblush 4	#8B8386	139	131	134	8815499
-violetred 1	 	violetred 1	#FF3E96	255	62	150	9846527
-violetred 2	 	violetred 2	#EE3A8C	238	58	140	9190126
-violetred 3	 	violetred 3	#CD3278	205	50	120	7877325
-violetred 4	 	violetred 4	#8B2252	139	34	82	5382795
-hotpink	 	hotpink	#FF69B4	255	105	180	11823615
-hotpink 1	 	hotpink 1	#FF6EB4	255	110	180	11824895
-hotpink 2	 	hotpink 2	#EE6AA7	238	106	167	10971886
-hotpink 3	 	hotpink 3	#CD6090	205	96	144	9461965
-hotpink 4	 	hotpink 4	#8B3A62	139	58	98	6437515
-raspberry	 	raspberry	#872657	135	38	87	5711495
-deeppink 1 (deeppink)	 	deeppink 1 (deeppink)	#FF1493	255	20	147	9639167
-deeppink 2	 	deeppink 2	#EE1289	238	18	137	8983278
-deeppink 3	 	deeppink 3	#CD1076	205	16	118	7737549
-deeppink 4	 	deeppink 4	#8B0A50	139	10	80	5245579
-maroon 1	 	maroon 1	#FF34B3	255	52	179	11744511
-maroon 2	 	maroon 2	#EE30A7	238	48	167	10957038
-maroon 3	 	maroon 3	#CD2990	205	41	144	9447885
-maroon 4	 	maroon 4	#8B1C62	139	28	98	6429835
-mediumvioletred	 	mediumvioletred	#C71585	199	21	133	8721863
-violetred	 	violetred	#D02090	208	32	144	9445584
-orchid	 	orchid	#DA70D6	218	112	214	14053594
-orchid 1	 	orchid 1	#FF83FA	255	131	250	16417791
-orchid 2	 	orchid 2	#EE7AE9	238	122	233	15301358
-orchid 3	 	orchid 3	#CD69C9	205	105	201	13199821
-orchid 4	 	orchid 4	#8B4789	139	71	137	8996747
-thistle	 	thistle	#D8BFD8	216	191	216	14204888
-thistle 1	 	thistle 1	#FFE1FF	255	225	255	16769535
-thistle 2	 	thistle 2	#EED2EE	238	210	238	15651566
-thistle 3	 	thistle 3	#CDB5CD	205	181	205	13481421
-thistle 4	 	thistle 4	#8B7B8B	139	123	139	9141131
-plum 1	 	plum 1	#FFBBFF	255	187	255	16759807
-plum 2	 	plum 2	#EEAEEE	238	174	238	15642350
-plum 3	 	plum 3	#CD96CD	205	150	205	13473485
-plum 4	 	plum 4	#8B668B	139	102	139	9135755
-plum	 	plum	#DDA0DD	221	160	221	14524637
-violet	 	violet	#EE82EE	238	130	238	15631086
-magenta (fuchsia*)	 	magenta (fuchsia*)	#FF00FF	255	0	255	16711935
-magenta 2	 	magenta 2	#EE00EE	238	0	238	15597806
-magenta 3	 	magenta 3	#CD00CD	205	0	205	13435085
-magenta 4 (darkmagenta)	 	magenta 4 (darkmagenta)	#8B008B	139	0	139	9109643
-purple*	 	purple*	#800080	128	0	128	8388736
-mediumorchid	 	mediumorchid	#BA55D3	186	85	211	13850042
-mediumorchid 1	 	mediumorchid 1	#E066FF	224	102	255	16738016
-mediumorchid 2	 	mediumorchid 2	#D15FEE	209	95	238	15622097
-mediumorchid 3	 	mediumorchid 3	#B452CD	180	82	205	13456052
-mediumorchid 4	 	mediumorchid 4	#7A378B	122	55	139	9123706
-darkviolet	 	darkviolet	#9400D3	148	0	211	13828244
-darkorchid	 	darkorchid	#9932CC	153	50	204	13382297
-darkorchid 1	 	darkorchid 1	#BF3EFF	191	62	255	16727743
-darkorchid 2	 	darkorchid 2	#B23AEE	178	58	238	15612594
-darkorchid 3	 	darkorchid 3	#9A32CD	154	50	205	13447834
-darkorchid 4	 	darkorchid 4	#68228B	104	34	139	9118312
-indigo	 	indigo	#4B0082	75	0	130	8519755
-blueviolet	 	blueviolet	#8A2BE2	138	43	226	14822282
-purple 1	 	purple 1	#9B30FF	155	48	255	16724123
-purple 2	 	purple 2	#912CEE	145	44	238	15608977
-purple 3	 	purple 3	#7D26CD	125	38	205	13444733
-purple 4	 	purple 4	#551A8B	85	26	139	9116245
-mediumpurple	 	mediumpurple	#9370DB	147	112	219	14381203
-mediumpurple 1	 	mediumpurple 1	#AB82FF	171	130	255	16745131
-mediumpurple 2	 	mediumpurple 2	#9F79EE	159	121	238	15628703
-mediumpurple 3	 	mediumpurple 3	#8968CD	137	104	205	13461641
-mediumpurple 4	 	mediumpurple 4	#5D478B	93	71	139	9127773
-darkslateblue	 	darkslateblue	#483D8B	72	61	139	9125192
-lightslateblue	 	lightslateblue	#8470FF	132	112	255	16740484
-mediumslateblue	 	mediumslateblue	#7B68EE	123	104	238	15624315
-slateblue	 	slateblue	#6A5ACD	106	90	205	13458026
-slateblue 1	 	slateblue 1	#836FFF	131	111	255	16740227
-slateblue 2	 	slateblue 2	#7A67EE	122	103	238	15624058
-slateblue 3	 	slateblue 3	#6959CD	105	89	205	13457769
-slateblue 4	 	slateblue 4	#473C8B	71	60	139	9124935
-ghostwhite	 	ghostwhite	#F8F8FF	248	248	255	16775416
-lavender	 	lavender	#E6E6FA	230	230	250	16443110
-blue*	 	blue*	#0000FF	0	0	255	16711680
-blue 2	 	blue 2	#0000EE	0	0	238	15597568
-blue 3 (mediumblue)	 	blue 3 (mediumblue)	#0000CD	0	0	205	13434880
-blue 4 (darkblue)	 	blue 4 (darkblue)	#00008B	0	0	139	9109504
-navy*	 	navy*	#000080	0	0	128	8388608
-midnightblue	 	midnightblue	#191970	25	25	112	7346457
-cobalt	 	cobalt	#3D59AB	61	89	171	11229501
-royalblue	 	royalblue	#4169E1	65	105	225	14772545
-royalblue 1	 	royalblue 1	#4876FF	72	118	255	16741960
-royalblue 2	 	royalblue 2	#436EEE	67	110	238	15625795
-royalblue 3	 	royalblue 3	#3A5FCD	58	95	205	13459258
-royalblue 4	 	royalblue 4	#27408B	39	64	139	9125927
-cornflowerblue	 	cornflowerblue	#6495ED	100	149	237	15570276
-lightsteelblue	 	lightsteelblue	#B0C4DE	176	196	222	14599344
-lightsteelblue 1	 	lightsteelblue 1	#CAE1FF	202	225	255	16769482
-lightsteelblue 2	 	lightsteelblue 2	#BCD2EE	188	210	238	15651516
-lightsteelblue 3	 	lightsteelblue 3	#A2B5CD	162	181	205	13481378
-lightsteelblue 4	 	lightsteelblue 4	#6E7B8B	110	123	139	9141102
-lightslategray	 	lightslategray	#778899	119	136	153	10061943
-slategray	 	slategray	#708090	112	128	144	9470064
-slategray 1	 	slategray 1	#C6E2FF	198	226	255	16769734
-slategray 2	 	slategray 2	#B9D3EE	185	211	238	15651769
-slategray 3	 	slategray 3	#9FB6CD	159	182	205	13481631
-slategray 4	 	slategray 4	#6C7B8B	108	123	139	9141100
-dodgerblue 1 (dodgerblue)	 	dodgerblue 1 (dodgerblue)	#1E90FF	30	144	255	16748574
-dodgerblue 2	 	dodgerblue 2	#1C86EE	28	134	238	15631900
-dodgerblue 3	 	dodgerblue 3	#1874CD	24	116	205	13464600
-dodgerblue 4	 	dodgerblue 4	#104E8B	16	78	139	9129488
-aliceblue	 	aliceblue	#F0F8FF	240	248	255	16775408
-steelblue	 	steelblue	#4682B4	70	130	180	11829830
-steelblue 1	 	steelblue 1	#63B8FF	99	184	255	16758883
-steelblue 2	 	steelblue 2	#5CACEE	92	172	238	15641692
-steelblue 3	 	steelblue 3	#4F94CD	79	148	205	13472847
-steelblue 4	 	steelblue 4	#36648B	54	100	139	9135158
-lightskyblue	 	lightskyblue	#87CEFA	135	206	250	16436871
-lightskyblue 1	 	lightskyblue 1	#B0E2FF	176	226	255	16769712
-lightskyblue 2	 	lightskyblue 2	#A4D3EE	164	211	238	15651748
-lightskyblue 3	 	lightskyblue 3	#8DB6CD	141	182	205	13481613
-lightskyblue 4	 	lightskyblue 4	#607B8B	96	123	139	9141088
-skyblue 1	 	skyblue 1	#87CEFF	135	206	255	16764551
-skyblue 2	 	skyblue 2	#7EC0EE	126	192	238	15646846
-skyblue 3	 	skyblue 3	#6CA6CD	108	166	205	13477484
-skyblue 4	 	skyblue 4	#4A708B	74	112	139	9138250
-skyblue	 	skyblue	#87CEEB	135	206	235	15453831
-deepskyblue 1 (deepskyblue)	 	deepskyblue 1 (deepskyblue)	#00BFFF	0	191	255	16760576
-deepskyblue 2	 	deepskyblue 2	#00B2EE	0	178	238	15643136
-deepskyblue 3	 	deepskyblue 3	#009ACD	0	154	205	13474304
-deepskyblue 4	 	deepskyblue 4	#00688B	0	104	139	9136128
-peacock	 	peacock	#33A1C9	51	161	201	13214003
-lightblue	 	lightblue	#ADD8E6	173	216	230	15128749
-lightblue 1	 	lightblue 1	#BFEFFF	191	239	255	16773055
-lightblue 2	 	lightblue 2	#B2DFEE	178	223	238	15654834
-lightblue 3	 	lightblue 3	#9AC0CD	154	192	205	13484186
-lightblue 4	 	lightblue 4	#68838B	104	131	139	9143144
-powderblue	 	powderblue	#B0E0E6	176	224	230	15130800
-cadetblue 1	 	cadetblue 1	#98F5FF	152	245	255	16774552
-cadetblue 2	 	cadetblue 2	#8EE5EE	142	229	238	15656334
-cadetblue 3	 	cadetblue 3	#7AC5CD	122	197	205	13485434
-cadetblue 4	 	cadetblue 4	#53868B	83	134	139	9143891
-turquoise 1	 	turquoise 1	#00F5FF	0	245	255	16774400
-turquoise 2	 	turquoise 2	#00E5EE	0	229	238	15656192
-turquoise 3	 	turquoise 3	#00C5CD	0	197	205	13485312
-turquoise 4	 	turquoise 4	#00868B	0	134	139	9143808
-cadetblue	 	cadetblue	#5F9EA0	95	158	160	10526303
-darkturquoise	 	darkturquoise	#00CED1	0	206	209	13749760
-azure 1 (azure)	 	azure 1 (azure)	#F0FFFF	240	255	255	16777200
-azure 2	 	azure 2	#E0EEEE	224	238	238	15658720
-azure 3	 	azure 3	#C1CDCD	193	205	205	13487553
-azure 4	 	azure 4	#838B8B	131	139	139	9145219
-lightcyan 1 (lightcyan)	 	lightcyan 1 (lightcyan)	#E0FFFF	224	255	255	16777184
-lightcyan 2	 	lightcyan 2	#D1EEEE	209	238	238	15658705
-lightcyan 3	 	lightcyan 3	#B4CDCD	180	205	205	13487540
-lightcyan 4	 	lightcyan 4	#7A8B8B	122	139	139	9145210
-paleturquoise 1	 	paleturquoise 1	#BBFFFF	187	255	255	16777147
-paleturquoise 2 (paleturquoise)	 	paleturquoise 2 (paleturquoise)	#AEEEEE	174	238	238	15658670
-paleturquoise 3	 	paleturquoise 3	#96CDCD	150	205	205	13487510
-paleturquoise 4	 	paleturquoise 4	#668B8B	102	139	139	9145190
-darkslategray	 	darkslategray	#2F4F4F	47	79	79	5197615
-darkslategray 1	 	darkslategray 1	#97FFFF	151	255	255	16777111
-darkslategray 2	 	darkslategray 2	#8DEEEE	141	238	238	15658637
-darkslategray 3	 	darkslategray 3	#79CDCD	121	205	205	13487481
-darkslategray 4	 	darkslategray 4	#528B8B	82	139	139	9145170
-cyan / aqua*	 	cyan / aqua*	#00FFFF	0	255	255	16776960
-cyan 2	 	cyan 2	#00EEEE	0	238	238	15658496
-cyan 3	 	cyan 3	#00CDCD	0	205	205	13487360
-cyan 4 (darkcyan)	 	cyan 4 (darkcyan)	#008B8B	0	139	139	9145088
-teal*	 	teal*	#008080	0	128	128	8421376
-mediumturquoise	 	mediumturquoise	#48D1CC	72	209	204	13422920
-lightseagreen	 	lightseagreen	#20B2AA	32	178	170	11186720
-manganeseblue	 	manganeseblue	#03A89E	3	168	158	10397699
-turquoise	 	turquoise	#40E0D0	64	224	208	13688896
-coldgrey	 	coldgrey	#808A87	128	138	135	8882816
-turquoiseblue	 	turquoiseblue	#00C78C	0	199	140	9225984
-aquamarine 1 (aquamarine)	 	aquamarine 1 (aquamarine)	#7FFFD4	127	255	212	13959039
-aquamarine 2	 	aquamarine 2	#76EEC6	118	238	198	13037174
-aquamarine 3 (mediumaquamarine)	 	aquamarine 3 (mediumaquamarine)	#66CDAA	102	205	170	11193702
-aquamarine 4	 	aquamarine 4	#458B74	69	139	116	7637829
-mediumspringgreen	 	mediumspringgreen	#00FA9A	0	250	154	10156544
-mintcream	 	mintcream	#F5FFFA	245	255	250	16449525
-springgreen	 	springgreen	#00FF7F	0	255	127	8388352
-springgreen 1	 	springgreen 1	#00EE76	0	238	118	7794176
-springgreen 2	 	springgreen 2	#00CD66	0	205	102	6737152
-springgreen 3	 	springgreen 3	#008B45	0	139	69	4557568
-mediumseagreen	 	mediumseagreen	#3CB371	60	179	113	7451452
-seagreen 1	 	seagreen 1	#54FF9F	84	255	159	10485588
-seagreen 2	 	seagreen 2	#4EEE94	78	238	148	9760334
-seagreen 3	 	seagreen 3	#43CD80	67	205	128	8441155
-seagreen 4 (seagreen)	 	seagreen 4 (seagreen)	#2E8B57	46	139	87	5737262
-emeraldgreen	 	emeraldgreen	#00C957	0	201	87	5753088
-mint	 	mint	#BDFCC9	189	252	201	13237437
-cobaltgreen	 	cobaltgreen	#3D9140	61	145	64	4231485
-honeydew 1 (honeydew)	 	honeydew 1 (honeydew)	#F0FFF0	240	255	240	15794160
-honeydew 2	 	honeydew 2	#E0EEE0	224	238	224	14741216
-honeydew 3	 	honeydew 3	#C1CDC1	193	205	193	12701121
-honeydew 4	 	honeydew 4	#838B83	131	139	131	8620931
-darkseagreen	 	darkseagreen	#8FBC8F	143	188	143	9419919
-darkseagreen 1	 	darkseagreen 1	#C1FFC1	193	255	193	12713921
-darkseagreen 2	 	darkseagreen 2	#B4EEB4	180	238	180	11857588
-darkseagreen 3	 	darkseagreen 3	#9BCD9B	155	205	155	10210715
-darkseagreen 4	 	darkseagreen 4	#698B69	105	139	105	6916969
-palegreen	 	palegreen	#98FB98	152	251	152	10025880
-palegreen 1	 	palegreen 1	#9AFF9A	154	255	154	10157978
-palegreen 2 (lightgreen)	 	palegreen 2 (lightgreen)	#90EE90	144	238	144	9498256
-palegreen 3	 	palegreen 3	#7CCD7C	124	205	124	8179068
-palegreen 4	 	palegreen 4	#548B54	84	139	84	5540692
-limegreen	 	limegreen	#32CD32	50	205	50	3329330
-forestgreen	 	forestgreen	#228B22	34	139	34	2263842
-green 1 (lime*)	 	green 1 (lime*)	#00FF00	0	255	0	65280
-green 2	 	green 2	#00EE00	0	238	0	60928
-green 3	 	green 3	#00CD00	0	205	0	52480
-green 4	 	green 4	#008B00	0	139	0	35584
-green*	 	green*	#008000	0	128	0	32768
-darkgreen	 	darkgreen	#006400	0	100	0	25600
-sapgreen	 	sapgreen	#308014	48	128	20	1343536
-lawngreen	 	lawngreen	#7CFC00	124	252	0	64636
-chartreuse 1 (chartreuse)	 	chartreuse 1 (chartreuse)	#7FFF00	127	255	0	65407
-chartreuse 2	 	chartreuse 2	#76EE00	118	238	0	61046
-chartreuse 3	 	chartreuse 3	#66CD00	102	205	0	52582
-chartreuse 4	 	chartreuse 4	#458B00	69	139	0	35653
-greenyellow	 	greenyellow	#ADFF2F	173	255	47	3145645
-darkolivegreen 1	 	darkolivegreen 1	#CAFF70	202	255	112	7405514
-darkolivegreen 2	 	darkolivegreen 2	#BCEE68	188	238	104	6876860
-darkolivegreen 3	 	darkolivegreen 3	#A2CD5A	162	205	90	5950882
-darkolivegreen 4	 	darkolivegreen 4	#6E8B3D	110	139	61	4033390
-darkolivegreen	 	darkolivegreen	#556B2F	85	107	47	3107669
-olivedrab	 	olivedrab	#6B8E23	107	142	35	2330219
-olivedrab 1	 	olivedrab 1	#C0FF3E	192	255	62	4128704
-olivedrab 2	 	olivedrab 2	#B3EE3A	179	238	58	3862195
-olivedrab 3 (yellowgreen)	 	olivedrab 3 (yellowgreen)	#9ACD32	154	205	50	3329434
-olivedrab 4	 	olivedrab 4	#698B22	105	139	34	2263913
-ivory 1 (ivory)	 	ivory 1 (ivory)	#FFFFF0	255	255	240	15794175
-ivory 2	 	ivory 2	#EEEEE0	238	238	224	14741230
-ivory 3	 	ivory 3	#CDCDC1	205	205	193	12701133
-ivory 4	 	ivory 4	#8B8B83	139	139	131	8620939
-beige	 	beige	#F5F5DC	245	245	220	14480885
-lightyellow 1 (lightyellow)	 	lightyellow 1 (lightyellow)	#FFFFE0	255	255	224	14745599
-lightyellow 2	 	lightyellow 2	#EEEED1	238	238	209	13758190
-lightyellow 3	 	lightyellow 3	#CDCDB4	205	205	180	11849165
-lightyellow 4	 	lightyellow 4	#8B8B7A	139	139	122	8031115
-lightgoldenrodyellow	 	lightgoldenrodyellow	#FAFAD2	250	250	210	13826810
-yellow 1 (yellow*)	 	yellow 1 (yellow*)	#FFFF00	255	255	0	65535
-yellow 2	 	yellow 2	#EEEE00	238	238	0	61166
-yellow 3	 	yellow 3	#CDCD00	205	205	0	52685
-yellow 4	 	yellow 4	#8B8B00	139	139	0	35723
-warmgrey	 	warmgrey	#808069	128	128	105	6914176
-olive*	 	olive*	#808000	128	128	0	32896
-darkkhaki	 	darkkhaki	#BDB76B	189	183	107	7059389
-khaki 1	 	khaki 1	#FFF68F	255	246	143	9434879
-khaki 2	 	khaki 2	#EEE685	238	230	133	8775406
-khaki 3	 	khaki 3	#CDC673	205	198	115	7587533
-khaki 4	 	khaki 4	#8B864E	139	134	78	5146251
-khaki	 	khaki	#F0E68C	240	230	140	9234160
-palegoldenrod	 	palegoldenrod	#EEE8AA	238	232	170	11200750
-lemonchiffon 1 (lemonchiffon)	 	lemonchiffon 1 (lemonchiffon)	#FFFACD	255	250	205	13499135
-lemonchiffon 2	 	lemonchiffon 2	#EEE9BF	238	233	191	12577262
-lemonchiffon 3	 	lemonchiffon 3	#CDC9A5	205	201	165	10865101
-lemonchiffon 4	 	lemonchiffon 4	#8B8970	139	137	112	7375243
-lightgoldenrod 1	 	lightgoldenrod 1	#FFEC8B	255	236	139	9170175
-lightgoldenrod 2	 	lightgoldenrod 2	#EEDC82	238	220	130	8576238
-lightgoldenrod 3	 	lightgoldenrod 3	#CDBE70	205	190	112	7388877
-lightgoldenrod 4	 	lightgoldenrod 4	#8B814C	139	129	76	5013899
-banana	 	banana	#E3CF57	227	207	87	5754851
-gold 1 (gold)	 	gold 1 (gold)	#FFD700	255	215	0	55295
-gold 2	 	gold 2	#EEC900	238	201	0	51694
-gold 3	 	gold 3	#CDAD00	205	173	0	44493
-gold 4	 	gold 4	#8B7500	139	117	0	30091
-cornsilk 1 (cornsilk)	 	cornsilk 1 (cornsilk)	#FFF8DC	255	248	220	14481663
-cornsilk 2	 	cornsilk 2	#EEE8CD	238	232	205	13494510
-cornsilk 3	 	cornsilk 3	#CDC8B1	205	200	177	11651277
-cornsilk 4	 	cornsilk 4	#8B8878	139	136	120	7899275
-goldenrod	 	goldenrod	#DAA520	218	165	32	2139610
-goldenrod 1	 	goldenrod 1	#FFC125	255	193	37	2474495
-goldenrod 2	 	goldenrod 2	#EEB422	238	180	34	2274542
-goldenrod 3	 	goldenrod 3	#CD9B1D	205	155	29	1940429
-goldenrod 4	 	goldenrod 4	#8B6914	139	105	20	1337739
-darkgoldenrod	 	darkgoldenrod	#B8860B	184	134	11	755384
-darkgoldenrod 1	 	darkgoldenrod 1	#FFB90F	255	185	15	1030655
-darkgoldenrod 2	 	darkgoldenrod 2	#EEAD0E	238	173	14	962030
-darkgoldenrod 3	 	darkgoldenrod 3	#CD950C	205	149	12	824781
-darkgoldenrod 4	 	darkgoldenrod 4	#8B6508	139	101	8	550283
-orange 1 (orange)	 	orange 1 (orange)	#FFA500	255	165	0	42495
-orange 2	 	orange 2	#EE9A00	238	154	0	39662
-orange 3	 	orange 3	#CD8500	205	133	0	34253
 orange 4	 	orange 4	#8B5A00	139	90	0	23179
 floralwhite	 	floralwhite	#FFFAF0	255	250	240	15792895
 oldlace	 	oldlace	#FDF5E6	253	245	230	15136253
@@ -485,82 +481,82 @@ gray 79	 	gray 79	#C9C9C9	201	201	201	13224393
 gray 78	 	gray 78	#C7C7C7	199	199	199	13092807
 gray 77	 	gray 77	#C4C4C4	196	196	196	12895428
 gray 76	 	gray 76	#C2C2C2	194	194	194	12763842
-gray 75	 	gray 75	#BFBFBF	191	191	191	12566463
-gray 74	 	gray 74	#BDBDBD	189	189	189	12434877
-gray 73	 	gray 73	#BABABA	186	186	186	12237498
-gray 72	 	gray 72	#B8B8B8	184	184	184	12105912
-gray 71	 	gray 71	#B5B5B5	181	181	181	11908533
-gray 70	 	gray 70	#B3B3B3	179	179	179	11776947
-gray 69	 	gray 69	#B0B0B0	176	176	176	11579568
-gray 68	 	gray 68	#ADADAD	173	173	173	11382189
-gray 67	 	gray 67	#ABABAB	171	171	171	11250603
-gray 66	 	gray 66	#A8A8A8	168	168	168	11053224
-gray 65	 	gray 65	#A6A6A6	166	166	166	10921638
-gray 64	 	gray 64	#A3A3A3	163	163	163	10724259
-gray 63	 	gray 63	#A1A1A1	161	161	161	10592673
-gray 62	 	gray 62	#9E9E9E	158	158	158	10395294
-gray 61	 	gray 61	#9C9C9C	156	156	156	10263708
-gray 60	 	gray 60	#999999	153	153	153	10066329
-gray 59	 	gray 59	#969696	150	150	150	9868950
-gray 58	 	gray 58	#949494	148	148	148	9737364
-gray 57	 	gray 57	#919191	145	145	145	9539985
-gray 56	 	gray 56	#8F8F8F	143	143	143	9408399
-gray 55	 	gray 55	#8C8C8C	140	140	140	9211020
-gray 54	 	gray 54	#8A8A8A	138	138	138	9079434
-gray 53	 	gray 53	#878787	135	135	135	8882055
-gray 52	 	gray 52	#858585	133	133	133	8750469
-gray 51	 	gray 51	#828282	130	130	130	8553090
-gray 50	 	gray 50	#7F7F7F	127	127	127	8355711
-gray 49	 	gray 49	#7D7D7D	125	125	125	8224125
-gray 48	 	gray 48	#7A7A7A	122	122	122	8026746
-gray 47	 	gray 47	#787878	120	120	120	7895160
-gray 46	 	gray 46	#757575	117	117	117	7697781
-gray 45	 	gray 45	#737373	115	115	115	7566195
-gray 44	 	gray 44	#707070	112	112	112	7368816
-gray 43	 	gray 43	#6E6E6E	110	110	110	7237230
-gray 42	 	gray 42	#6B6B6B	107	107	107	7039851
-dimgray (gray 42)	 	dimgray (gray 42)	#696969	105	105	105	6908265
-gray 40	 	gray 40	#666666	102	102	102	6710886
-gray 39	 	gray 39	#636363	99	99	99	6513507
-gray 38	 	gray 38	#616161	97	97	97	6381921
-gray 37	 	gray 37	#5E5E5E	94	94	94	6184542
-gray 36	 	gray 36	#5C5C5C	92	92	92	6052956
-gray 35	 	gray 35	#595959	89	89	89	5855577
-gray 34	 	gray 34	#575757	87	87	87	5723991
-gray 33	 	gray 33	#545454	84	84	84	5526612
-gray 32	 	gray 32	#525252	82	82	82	5395026
-gray 31	 	gray 31	#4F4F4F	79	79	79	5197647
-gray 30	 	gray 30	#4D4D4D	77	77	77	5066061
-gray 29	 	gray 29	#4A4A4A	74	74	74	4868682
-gray 28	 	gray 28	#474747	71	71	71	4671303
-gray 27	 	gray 27	#454545	69	69	69	4539717
-gray 26	 	gray 26	#424242	66	66	66	4342338
-gray 25	 	gray 25	#404040	64	64	64	4210752
-gray 24	 	gray 24	#3D3D3D	61	61	61	4013373
-gray 23	 	gray 23	#3B3B3B	59	59	59	3881787
-gray 22	 	gray 22	#383838	56	56	56	3684408
-gray 21	 	gray 21	#363636	54	54	54	3552822
-gray 20	 	gray 20	#333333	51	51	51	3355443
-gray 19	 	gray 19	#303030	48	48	48	3158064
-gray 18	 	gray 18	#2E2E2E	46	46	46	3026478
-gray 17	 	gray 17	#2B2B2B	43	43	43	2829099
-gray 16	 	gray 16	#292929	41	41	41	2697513
-gray 15	 	gray 15	#262626	38	38	38	2500134
-gray 14	 	gray 14	#242424	36	36	36	2368548
-gray 13	 	gray 13	#212121	33	33	33	2171169
-gray 12	 	gray 12	#1F1F1F	31	31	31	2039583
-gray 11	 	gray 11	#1C1C1C	28	28	28	1842204
-gray 10	 	gray 10	#1A1A1A	26	26	26	1710618
-gray 9	 	gray 9	#171717	23	23	23	1513239
-gray 8	 	gray 8	#141414	20	20	20	1315860
-gray 7	 	gray 7	#121212	18	18	18	1184274
-gray 6	 	gray 6	#0F0F0F	15	15	15	986895
-gray 5	 	gray 5	#0D0D0D	13	13	13	855309
-gray 4	 	gray 4	#0A0A0A	10	10	10	657930
-gray 3	 	gray 3	#080808	8	8	8	526344
-gray 2	 	gray 2	#050505	5	5	5	328965
-gray 1	 	gray 1	#030303	3	3	3	197379
-
 */
+#define gray 75	 	gray 75	#BFBFBF	191	191	191	12566463
+#define gray 74	 	gray 74	#BDBDBD	189	189	189	12434877
+#define gray 73	 	gray 73	#BABABA	186	186	186	12237498
+#define gray 72	 	gray 72	#B8B8B8	184	184	184	12105912
+#define gray 71	 	gray 71	#B5B5B5	181	181	181	11908533
+#define gray 70	 	gray 70	#B3B3B3	179	179	179	11776947
+#define gray 69	 	gray 69	#B0B0B0	176	176	176	11579568
+#define gray 68	 	gray 68	#ADADAD	173	173	173	11382189
+#define gray 67	 	gray 67	#ABABAB	171	171	171	11250603
+#define gray 66	 	gray 66	#A8A8A8	168	168	168	11053224
+#define gray 65	 	gray 65	#A6A6A6	166	166	166	10921638
+#define gray 64	 	gray 64	#A3A3A3	163	163	163	10724259
+#define gray 63	 	gray 63	#A1A1A1	161	161	161	10592673
+#define gray 62	 	gray 62	#9E9E9E	158	158	158	10395294
+#define gray 61	 	gray 61	#9C9C9C	156	156	156	10263708
+#define gray 60	 	gray 60	#999999	153	153	153	10066329
+#define gray 59	 	gray 59	#969696	150	150	150	9868950
+#define gray 58	 	gray 58	#949494	148	148	148	9737364
+#define gray 57	 	gray 57	#919191	145	145	145	9539985
+#define gray 56	 	gray 56	#8F8F8F	143	143	143	9408399
+#define gray 55	 	gray 55	#8C8C8C	140	140	140	9211020
+#define gray 54	 	gray 54	#8A8A8A	138	138	138	9079434
+#define gray 53	 	gray 53	#878787	135	135	135	8882055
+#define gray 52	 	gray 52	#858585	133	133	133	8750469
+#define gray 51	 	gray 51	#828282	130	130	130	8553090
+#define gray 50	 	gray 50	#7F7F7F	127	127	127	8355711
+#define gray 49	 	gray 49	#7D7D7D	125	125	125	8224125
+#define gray 48	 	gray 48	#7A7A7A	122	122	122	8026746
+#define gray 47	 	gray 47	#787878	120	120	120	7895160
+#define gray 46	 	gray 46	#757575	117	117	117	7697781
+#define gray 44	 	gray 44	#707070	112	112	112	7368816
+#define gray 45	 	gray 45	#737373	115	115	115	7566195
+#define gray 43	 	gray 43	#6E6E6E	110	110	110	7237230
+#define gray 42	 	gray 42	#6B6B6B	107	107	107	7039851
+#define dimgray (gray 42)	 	dimgray (gray 42)	#696969	105	105	105	6908265
+#define gray 40	 	gray 40	#666666	102	102	102	6710886
+#define gray 39	 	gray 39	#636363	99	99	99	6513507
+#define gray 38	 	gray 38	#616161	97	97	97	6381921
+#define gray 37	 	gray 37	#5E5E5E	94	94	94	6184542
+#define gray 36	 	gray 36	#5C5C5C	92	92	92	6052956
+#define gray 35	 	gray 35	#595959	89	89	89	5855577
+#define gray 34	 	gray 34	#575757	87	87	87	5723991
+#define gray 33	 	gray 33	#545454	84	84	84	5526612
+#define gray 32	 	gray 32	#525252	82	82	82	5395026
+#define gray 31	 	gray 31	#4F4F4F	79	79	79	5197647
+#define gray 30	 	gray 30	#4D4D4D	77	77	77	5066061
+#define gray 29	 	gray 29	#4A4A4A	74	74	74	4868682
+#define gray 28	 	gray 28	#474747	71	71	71	4671303
+#define gray 27	 	gray 27	#454545	69	69	69	4539717
+#define gray 26	 	gray 26	#424242	66	66	66	4342338
+#define gray 25	 	gray 25	#404040	64	64	64	4210752
+#define gray 24	 	gray 24	#3D3D3D	61	61	61	4013373
+#define gray 23	 	gray 23	#3B3B3B	59	59	59	3881787
+#define gray 22	 	gray 22	#383838	56	56	56	3684408
+#define gray 21	 	gray 21	#363636	54	54	54	3552822
+#define gray 20	 	gray 20	#333333	51	51	51	3355443
+#define gray 19	 	gray 19	#303030	48	48	48	3158064
+#define gray 18	 	gray 18	#2E2E2E	46	46	46	3026478
+#define gray 17	 	gray 17	#2B2B2B	43	43	43	2829099
+#define gray 16	 	gray 16	#292929	41	41	41	2697513
+#define gray 15	 	gray 15	#262626	38	38	38	2500134
+#define gray 14	 	gray 14	#242424	36	36	36	2368548
+#define gray 13	 	gray 13	#212121	33	33	33	2171169
+#define gray 12	 	gray 12	#1F1F1F	31	31	31	2039583
+#define gray 11	 	gray 11	#1C1C1C	28	28	28	1842204
+#define gray 10	 	gray 10	#1A1A1A	26	26	26	1710618
+#define gray 9	 	gray 9	#171717	23	23	23	1513239
+#define gray 8	 	gray 8	#141414	20	20	20	1315860
+#define gray 7	 	gray 7	#121212	18	18	18	1184274
+#define gray 6	 	gray 6	#0F0F0F	15	15	15	986895
+#define gray 5	 	gray 5	#0D0D0D	13	13	13	855309
+#define gray 4	 	gray 4	#0A0A0A	10	10	10	657930
+#define gray 3	 	gray 3	#080808	8	8	8	526344
+#define gray 2	 	gray 2	#050505	5	5	5	328965
+#define gray 1	 	gray 1	#030303	3	3	3	197379
+
 
 #endif COLORS_H

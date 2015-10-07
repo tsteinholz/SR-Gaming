@@ -1,7 +1,7 @@
 #include "Rectangle.h"
 
 Rectangle::Rectangle(int xc, int yc, int xs, int ys, BITMAP* bmp, int color)
-: xc(xc), yc(yc), xs(xs), ys(ys), color(color) {
+: xc(xc), yc(yc), xs(xs), ys(ys), bmp(bmp), color(color) {
     if (!bmp) bmp = create_bitmap_ex(color, xs, ys);
 }
 

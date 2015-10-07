@@ -9,8 +9,11 @@ void deinit();
 int main() {
 	init();
 
+    Rectangle r(0,0,5,5);
+    
 	while (!key[KEY_ESC]) {
-		
+		r.Render();
+//		blit(screen, screen, 0, 0, SCREEN_W, SCREEN_H);
 	}
 
 	deinit();

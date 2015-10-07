@@ -7,8 +7,7 @@ class Object {
 public:
        virtual void Render() {};
 
-       virtual void Update(float dt) {};
-                   
+       virtual void Update(float dt) {};                 
 };
 
 #endif
