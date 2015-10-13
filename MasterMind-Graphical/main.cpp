@@ -42,8 +42,8 @@ int main(int argc, char **argv)
         }
 
         if (al_is_event_queue_empty(queue)) {
-
-            al_draw_circle(SCREEN_W / 2, SCREEN_H / 2, 10, al_map_rgb(255, 255, 0), 3.0);
+            al_set_target_bitmap(al_get_backbuffer(display));
+            al_draw_circle(SCREEN_W / 2, SCREEN_H / 2, 100, al_map_rgb(255, 255, 0), 3.0);
 
 
             al_flip_display();
@@ -64,6 +64,11 @@ bool init() {
     {
         fprintf(stderr, "Failed to create display!\n");
         return false;
+    }
+    al_init_image_addon();
+    if(!al_init_primitives_addon()) {
+        fprintf(stderr, "Failed to initialize primitives!\n");
+        return -1;
     }
     al_init_font_addon();
     al_init_ttf_addon();
