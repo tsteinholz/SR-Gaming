@@ -15,6 +15,10 @@ ALLEGRO_EVENT_QUEUE* queue;
 ALLEGRO_TIMER* timer;
 
 const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
+const unsigned int pos_1;
+const unsigned int pos_1;
+const unsigned int pos_1;
+const unsigned int pos_1;
 
 int main(int argc, char **argv)
 {
@@ -43,7 +47,7 @@ int main(int argc, char **argv)
 
         if (al_is_event_queue_empty(queue)) {
             al_set_target_bitmap(al_get_backbuffer(display));
-            al_draw_circle(SCREEN_W / 2, SCREEN_H / 2, 100, al_map_rgb(255, 255, 0), 3.0);
+            al_draw_filled_circle(SCREEN_W / 2, SCREEN_H / 2, 100, al_map_rgb(255, 255, 0));
 
 
             al_flip_display();
