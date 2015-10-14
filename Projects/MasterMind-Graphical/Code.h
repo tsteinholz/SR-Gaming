@@ -97,7 +97,7 @@ struct Code
             case WHITE:   return al_map_rgb(255, 255, 255);
             case ORANGE:  return al_map_rgb(255, 255, 0);
             default:
-            case NOTHING: return al_map_rgb(0, 0, 0);
+            case NOTHING: return al_map_rgb(0, 0, 0); //TODO : Grayish color
         }
     }
 

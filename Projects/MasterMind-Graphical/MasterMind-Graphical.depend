@@ -229,7 +229,7 @@
 
 1444229665 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\alcompat.h
 
-1444786217 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\main.cpp
+1444788036 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\main.cpp
 	<iostream>
 	<stdio.h>
 	<allegro5/allegro.h>
@@ -239,7 +239,7 @@
 	<allegro5/allegro_ttf.h>
 	"Code.h"
 
-1444783462 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\code.h
+1444788069 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\code.h
 
 1372631931 d:\users\thomas\documents\development\c++\srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
 	"allegro5/base.h"
@@ -477,4 +477,15 @@
 1362331099 d:\users\thomas\documents\development\c++\srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_ttf.h
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
+
+1444789086 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\src\button.cpp
+	"Button.h"
+
+1444789081 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\include\button.h
+
+1444789074 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\src\peg.cpp
+	"Peg.h"
+
+1444789102 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\include\peg.h
+	"Button.h"
 
