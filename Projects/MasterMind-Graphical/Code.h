@@ -86,9 +86,23 @@ struct Code
         }
     }
 
+    inline static ALLEGRO_COLOR ToHex(const Peg x)
+    {
+        switch(x)
+        {
+            case RED:     return al_map_rgb(255, 0, 0);
+            case BLUE:    return al_map_rgb(0, 0, 255);
+            case YELLOW:  return al_map_rgb(255, 255, 0);
+            case GREEN:   return al_map_rgb(0, 255, 0);
+            case WHITE:   return al_map_rgb(255, 255, 255);
+            case ORANGE:  return al_map_rgb(255, 255, 0);
+            default:
+            case NOTHING: return al_map_rgb(0, 0, 0);
+        }
+    }
+
     bool operator==(const Code& other) const
     {
-        // TODO : Fix this sheet
         return ((A == other.A) && (B == other.B) && (C == other.C) && (D == other.D));
     }
 

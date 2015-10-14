@@ -13,12 +13,15 @@ bool init();
 ALLEGRO_DISPLAY* display = NULL;
 ALLEGRO_EVENT_QUEUE* queue;
 ALLEGRO_TIMER* timer;
+ALLEGRO_BITMAP* background;
 
 const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
-const unsigned int pos_1=0;
-const unsigned int pos_2=0;
-const unsigned int pos_3=0;
-const unsigned int pos_4=0;
+const unsigned int SCREEN_Wh = SCREEN_W/2, SCREEN_Hh = SCREEN_H/2;
+const unsigned int pos_1=SCREEN_Wh-(3*25)-9;
+const unsigned int pos_2=SCREEN_Wh-25-3;
+const unsigned int pos_3=SCREEN_Wh+25+3;
+const unsigned int pos_4=SCREEN_Wh+(3*25)+9;
+const unsigned int pos_y=50;
 
 int main(int argc, char **argv)
 {
@@ -47,12 +50,19 @@ int main(int argc, char **argv)
 
         if (al_is_event_queue_empty(queue)) {
             al_set_target_bitmap(al_get_backbuffer(display));
-            al_draw_filled_circle(SCREEN_W / 2, SCREEN_H / 2, 100, al_map_rgb(255, 255, 0));
+            al_draw_bitmap(background, 0, 0, 0);
+            ////////////////////////////////////////////////////////////////////
 
+            al_draw_filled_circle(pos_1, pos_y, 25, al_map_rgb(255, 255, 0));
+            al_draw_filled_circle(pos_2, pos_y, 25, al_map_rgb(255, 0, 255));
+            al_draw_filled_circle(pos_3, pos_y, 25, al_map_rgb(0, 255, 0));
+            al_draw_filled_circle(pos_4, pos_y, 25, al_map_rgb(0, 0, 255));
 
+            ////////////////////////////////////////////////////////////////////
             al_flip_display();
         }
     }
+    al_destroy_bitmap(background);
     al_destroy_display(display);
     return 0;
 }
@@ -72,11 +82,18 @@ bool init() {
     al_init_image_addon();
     if(!al_init_primitives_addon()) {
         fprintf(stderr, "Failed to initialize primitives!\n");
-        return -1;
+        return false;
     }
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_keyboard();
     al_clear_to_color(al_map_rgb(0,0,0));
+
+    background = al_load_bitmap("res/background.png");
+    if (!background) {
+        fprintf(stderr, "Failed load background image!\n");
+        al_destroy_display(display);
+        return false;
+    }
     return true;
 }
