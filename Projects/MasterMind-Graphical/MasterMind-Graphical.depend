@@ -489,3 +489,27 @@
 1444789102 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\include\peg.h
 	"Button.h"
 
+1444841623 source:h:\c++\cpp-srhs\projects\mastermind-graphical\main.cpp
+	<iostream>
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	"Code.h"
+
+1444229665 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_image.h
+
+1444229666 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_primitives.h
+	<allegro5/allegro.h>
+
+1444229665 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_font.h
+	"allegro5/allegro.h"
+
+1444229666 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_ttf.h
+	"allegro5/allegro.h"
+	"allegro5/allegro_font.h"
+
+1444841176 h:\c++\cpp-srhs\projects\mastermind-graphical\code.h
+

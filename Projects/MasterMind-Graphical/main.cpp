@@ -54,6 +54,7 @@ int main(int argc, char **argv)
             al_clear_to_color(al_map_rgb(0,0,0));
             al_set_target_bitmap(al_get_backbuffer(display));
             al_draw_bitmap(background, 0, 0, 0);
+            al_draw_bitmap(border, 400, 30, 0);
             //TODO : draw border
             al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, pos_y+10, ALLEGRO_ALIGN_CENTRE, "Master Mind");
             ////////////////////////////////////////////////////////////////////
