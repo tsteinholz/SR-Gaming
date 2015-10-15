@@ -6,10 +6,88 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
-#include "Code.h"
-#include "Row.h"
-
 bool init();
+
+
+struct Peg
+{
+public:
+    typedef enum
+    {
+        RED     = 0xCF2104,
+        BLUE    = 0x3F00FF,
+        YELLOW  = 0xBAFF1E,
+        GREEN   = 0x117050,
+        WHITE   = 0xFFFFFF,
+        ORANGE  = 0xC65104,
+        NOTHING = 0x554E44,
+    } COLOR;
+
+    Peg() { SetColor(NOTHING); }
+
+    inline void SetColor(COLOR color)
+    {
+        switch(color)
+        {
+            case RED:     m_Color = al_map_rgb(255, 51,  51);  break;
+            case BLUE:    m_Color = al_map_rgb(51,  51,  255); break;
+            case YELLOW:  m_Color = al_map_rgb(255, 255, 102); break;
+            case GREEN:   m_Color = al_map_rgb(51,  255, 153); break;
+            case WHITE:   m_Color = al_map_rgb(224, 224, 224); break;
+            case ORANGE:  m_Color = al_map_rgb(255, 153, 51);  break;
+            case NOTHING:
+            default:      m_Color = al_map_rgb(96,  96,  96);  break;
+        }
+    }
+
+    inline void Render(unsigned int x, unsigned int y, unsigned int r)
+    {
+        al_draw_filled_circle(x, y, r, m_Color);
+    }
+
+private:
+    ALLEGRO_COLOR m_Color;
+};
+
+class Row
+{
+public:
+    Row(unsigned int x, unsigned int y, bool results)
+        : m_x(x), m_y(y), m_Results(results)
+    {
+        m_Coords[0] = m_x;
+        m_Coords[1] = m_Coords[0] + 100;
+        m_Coords[2] = m_Coords[1] + 100;
+        m_Coords[3] = m_Coords[2] + 100;
+
+        if (m_Results)
+        {
+            //TODO: results math
+        }
+    }
+    virtual ~Row() {}
+
+    void Render()
+    {
+        for (unsigned int i = 0; i < 4; i++)
+        {
+            m_Pegs[i].Render(m_Coords[i], m_y, 25);
+        }
+
+        if (m_Results)
+        {
+            //for (unsigned int i = 0; i < 4; i++)
+            //{
+            //    m_ResultPegs[i].Render(m_Coords[i], m_Coords[i], 5);
+            //}
+        }
+    }
+
+protected:
+    Peg m_Pegs[4], m_ResultPegs[4];
+    unsigned int m_x, m_y, m_Coords[4];
+    bool m_Results;
+};
 
 ALLEGRO_DISPLAY* display = NULL;
 ALLEGRO_EVENT_QUEUE* queue;
@@ -36,16 +114,16 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-    Row eins(500, 300, false);
-    Row zwei(550, 300, false);
-    Row drei(600, 300, false);
-    Row vier(650, 310, false);
-    Row fumf(700, 300, false);
-    Row sechs(750, 300, false);
-    Row sieben(800, 300, false);
-    Row acht(850, 300, false);
-    Row neun(900, 300, false);
-    Row zehn(950, 300, false);
+    Row eins(480, 160, false);
+    Row zwei(480, 207, false);
+    Row drei(480, 254, false);
+    Row vier(480, 301, false);
+    Row fumf(480, 348, false);
+    Row sechs(480, 395, false);
+    Row sieben(480, 442, false);
+    Row acht(480, 536, false);
+    Row neun(480, 583, false);
+    Row zehn(480, 630, false);
 
     bool executing = true;
     while (executing) {
@@ -131,3 +209,4 @@ bool init() {
 
     return true;
 }
+

@@ -37,8 +37,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Code.h" />
+		<Unit filename="include/Row.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Row.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
