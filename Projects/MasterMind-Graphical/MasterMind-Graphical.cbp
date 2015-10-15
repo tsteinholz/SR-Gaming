@@ -13,11 +13,12 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="H:/C++/CodeBlocks/allegro-5.0.10-mingw-4.7.0/allegro-5.0.10-mingw-4.7.0/include" />
+					<Add directory="../../Libraries/allegro-5.0.10-mingw-4.7.0/include" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
-					<Add library="H:\C++\CodeBlocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\bin\allegro-5.0.10-monolith-md-debug.dll" />
-					<Add directory="H:/C++/CodeBlocks/allegro-5.0.10-mingw-4.7.0/allegro-5.0.10-mingw-4.7.0/bin" />
+					<Add library="..\..\Libraries\allegro-5.0.10-mingw-4.7.0\bin\allegro-5.0.10-monolith-md-debug.dll" />
+					<Add directory="../../Libraries/allegro-5.0.10-mingw-4.7.0/bin" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -27,6 +28,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -37,6 +39,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Code.h" />
 		<Unit filename="include/Row.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Row.cpp" />

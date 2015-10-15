@@ -41,11 +41,49 @@ public:
 
     inline void Render(unsigned int x, unsigned int y, unsigned int r)
     {
+        al_draw_circle(x, y, r+1.5f, al_map_rgb(0,0,0), 2.5f);
         al_draw_filled_circle(x, y, r, m_Color);
     }
 
 private:
     ALLEGRO_COLOR m_Color;
+};
+
+class Input
+{
+public:
+    Input(unsigned int x, unsigned int y)
+        : m_x(x), m_y(y)
+    {
+        m_Coords[0] = m_x;
+        m_Coords[1] = m_Coords[0] + 56;
+        m_Coords[2] = m_Coords[1] + 56;
+        m_Coords[3] = m_Coords[2] + 56;
+        m_Coords[4] = m_Coords[3] + 56;
+        m_Coords[5] = m_Coords[4] + 56;
+
+        m_Pegs[0].SetColor(Peg::RED);
+        m_Pegs[1].SetColor(Peg::BLUE);
+        m_Pegs[2].SetColor(Peg::YELLOW);
+        m_Pegs[3].SetColor(Peg::GREEN);
+        m_Pegs[4].SetColor(Peg::WHITE);
+        m_Pegs[5].SetColor(Peg::ORANGE);
+    }
+
+    void Update()
+    {
+
+    }
+
+    void Render()
+    {
+        for (unsigned int i = 0; i < 6; i++)
+        { m_Pegs[i].Render(m_Coords[i], m_y, 20); }
+    }
+
+private:
+    Peg m_Pegs[6];
+    unsigned int m_x, m_y, m_Coords[6];
 };
 
 class Row
@@ -55,23 +93,20 @@ public:
         : m_x(x), m_y(y), m_Results(results)
     {
         m_Coords[0] = m_x;
-        m_Coords[1] = m_Coords[0] + 100;
-        m_Coords[2] = m_Coords[1] + 100;
-        m_Coords[3] = m_Coords[2] + 100;
+        m_Coords[1] = m_Coords[0] + 56;
+        m_Coords[2] = m_Coords[1] + 56;
+        m_Coords[3] = m_Coords[2] + 56;
 
         if (m_Results)
         {
             //TODO: results math
         }
     }
-    virtual ~Row() {}
 
     void Render()
     {
         for (unsigned int i = 0; i < 4; i++)
-        {
-            m_Pegs[i].Render(m_Coords[i], m_y, 20);
-        }
+        { m_Pegs[i].Render(m_Coords[i], m_y, 20); }
 
         if (m_Results)
         {
@@ -107,52 +142,62 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-    Row* Grid[10] =
+    Row Grid[10] =
     {
-        new Row(480, 160, false),
-        new Row(480, 207, false),
-        new Row(480, 254, false),
-        new Row(480, 301, false),
-        new Row(480, 348, false),
-        new Row(480, 395, false),
-        new Row(480, 442, false),
-        new Row(480, 489, false),
-        new Row(480, 536, false),
-        new Row(480, 583, false)
+        Row(500, 140, true),
+        Row(500, 196, true),
+        Row(500, 252, true),
+        Row(500, 308, true),
+        Row(500, 364, true),
+        Row(500, 420, true),
+        Row(500, 476, true),
+        Row(500, 532, true),
+        Row(500, 588, true),
+        Row(500, 645, true)
     };
 
+    Row solution(750, SCREEN_H-38, false);
+    Input input(65, 280);
+
     bool executing = true;
-    while (executing) {
+    while (executing)
+    {
         ALLEGRO_EVENT event;
+        bool render;
         al_wait_for_event(queue, &event);
 
-        switch(event.type) {
+        switch(event.type)
+        {
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 break;
             case ALLEGRO_EVENT_KEY_DOWN:
                 if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
                 break;
             case ALLEGRO_EVENT_TIMER:
+                render = true;
                 break;
         }
 
-        if (al_is_event_queue_empty(queue)) {
+        if (al_is_event_queue_empty(queue) && render)
+        {
             al_clear_to_color(al_map_rgb(0,0,0));
             al_set_target_bitmap(al_get_backbuffer(display));
             al_draw_bitmap(background, 0, 0, 0);
             al_draw_bitmap(border, 400, 30, 0);
             al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
-            //TODO : Add more text
+            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
+            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
             ////////////////////////////////////////////////////////////////////
 
-            for (unsigned int i = 0; i < 10; i++) Grid[i]->Render();
+            for (unsigned int i = 0; i < 10; i++) Grid[i].Render();
+            solution.Render();
+            input.Render();
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
         }
+        render = false;
     }
-
-    for (unsigned int i = 0; i < 10; i++) delete Grid[i];
 
     al_destroy_bitmap(background);
     al_destroy_display(display);
