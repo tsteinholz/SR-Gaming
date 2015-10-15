@@ -7,6 +7,7 @@
 #include <allegro5/allegro_ttf.h>
 
 #include "Code.h"
+#include "Row.h"
 
 bool init();
 
@@ -35,6 +36,8 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
+    Row uno(60, 50, false);
+
     bool executing = true;
     while (executing) {
         ALLEGRO_EVENT event;
@@ -56,13 +59,10 @@ int main(int argc, char **argv)
             al_draw_bitmap(background, 0, 0, 0);
             al_draw_bitmap(border, 400, 30, 0);
             //TODO : draw border
-            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, pos_y+10, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, pos_y, ALLEGRO_ALIGN_CENTRE, "Master Mind");
             ////////////////////////////////////////////////////////////////////
 
-            //al_draw_filled_circle(pos_1, pos_y, 25, al_map_rgb(255, 255, 0));
-            //al_draw_filled_circle(pos_2, pos_y, 25, al_map_rgb(255, 0, 255));
-            //al_draw_filled_circle(pos_3, pos_y, 25, al_map_rgb(0, 255, 0));
-            //al_draw_filled_circle(pos_4, pos_y, 25, al_map_rgb(0, 0, 255));
+            uno.Render();
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();

@@ -229,7 +229,7 @@
 
 1444229665 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\alcompat.h
 
-1444788036 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\main.cpp
+1444874586 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\main.cpp
 	<iostream>
 	<stdio.h>
 	<allegro5/allegro.h>
@@ -238,6 +238,7 @@
 	<allegro5/allegro_font.h>
 	<allegro5/allegro_ttf.h>
 	"Code.h"
+	"Row.h"
 
 1444788069 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\code.h
 
@@ -512,4 +513,14 @@
 	"allegro5/allegro_font.h"
 
 1444841176 h:\c++\cpp-srhs\projects\mastermind-graphical\code.h
+
+1444874672 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\src\row.cpp
+	"Row.h"
+
+1444874812 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\include\row.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
 
