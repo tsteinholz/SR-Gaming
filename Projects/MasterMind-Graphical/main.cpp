@@ -86,6 +86,14 @@ private:
     unsigned int m_x, m_y, m_Coords[6];
 };
 
+class Button
+{
+public:
+
+private:
+
+};
+
 class Row
 {
 public:
