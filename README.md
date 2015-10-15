@@ -4,3 +4,4 @@ control and is a good way for me to manage all of my projects in one place. If t
 peers plagiarizing my code, I will make this repo private for at least the duration I have the class.
 
 #Highlights / Showcase
+![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v1.jpg "MasterMind")
