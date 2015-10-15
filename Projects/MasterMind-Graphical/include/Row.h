@@ -49,16 +49,16 @@ private:
 
 class Row
 {
-    public:
-        Row(unsigned int x, unsigned int y, bool results);
-        virtual ~Row();
+public:
+    Row(unsigned int x, unsigned int y, bool results);
+    virtual ~Row();
 
-        void Render();
+    void Render();
 
-    protected:
-        Peg m_Pegs[4], m_ResultPegs[4];
-        unsigned int m_x, m_y, m_Coords[4];
-        bool m_Results;
+protected:
+    Peg m_Pegs[4], m_ResultPegs[4];
+    unsigned int m_x, m_y, m_Coords[4];
+    bool m_Results;
 };
 
 #endif // ROW_H

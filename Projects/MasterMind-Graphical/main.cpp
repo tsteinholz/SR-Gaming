@@ -36,7 +36,16 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-    Row uno(60, 50, false);
+    Row eins(500, 300, false);
+    Row zwei(550, 300, false);
+    Row drei(600, 300, false);
+    Row vier(650, 310, false);
+    Row fumf(700, 300, false);
+    Row sechs(750, 300, false);
+    Row sieben(800, 300, false);
+    Row acht(850, 300, false);
+    Row neun(900, 300, false);
+    Row zehn(950, 300, false);
 
     bool executing = true;
     while (executing) {
@@ -62,7 +71,17 @@ int main(int argc, char **argv)
             al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, pos_y, ALLEGRO_ALIGN_CENTRE, "Master Mind");
             ////////////////////////////////////////////////////////////////////
 
-            uno.Render();
+            eins.Render();
+            zwei.Render();
+            drei.Render();
+            vier.Render();
+            fumf.Render();
+            sechs.Render();
+            sieben.Render();
+            acht.Render();
+            neun.Render();
+            zehn.Render();
+
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
