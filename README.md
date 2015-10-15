@@ -7,5 +7,5 @@ peers plagiarizing my code, I will make this repo private for at least the durat
 * [Allegro 5](https://www.allegro.cc/manual/5/)
 
 # Highlights / Showcase
-### (MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical)
+### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical)
 ![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v1.jpg "MasterMind")
