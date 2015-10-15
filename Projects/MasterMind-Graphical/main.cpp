@@ -8,7 +8,6 @@
 
 bool init();
 
-
 struct Peg
 {
 public:
@@ -71,7 +70,7 @@ public:
     {
         for (unsigned int i = 0; i < 4; i++)
         {
-            m_Pegs[i].Render(m_Coords[i], m_y, 25);
+            m_Pegs[i].Render(m_Coords[i], m_y, 20);
         }
 
         if (m_Results)
@@ -97,12 +96,6 @@ ALLEGRO_BITMAP* border;
 ALLEGRO_FONT* century_gothic48B;
 
 const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
-const unsigned int SCREEN_Wh = SCREEN_W/2, SCREEN_Hh = SCREEN_H/2;
-const unsigned int pos_1=SCREEN_Wh-(3*25)-9;
-const unsigned int pos_2=SCREEN_Wh-25-3;
-const unsigned int pos_3=SCREEN_Wh+25+3;
-const unsigned int pos_4=SCREEN_Wh+(3*25)+9;
-const unsigned int pos_y=50;
 
 int main(int argc, char **argv)
 {
@@ -114,16 +107,19 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-    Row eins(480, 160, false);
-    Row zwei(480, 207, false);
-    Row drei(480, 254, false);
-    Row vier(480, 301, false);
-    Row fumf(480, 348, false);
-    Row sechs(480, 395, false);
-    Row sieben(480, 442, false);
-    Row acht(480, 536, false);
-    Row neun(480, 583, false);
-    Row zehn(480, 630, false);
+    Row* Grid[10] =
+    {
+        new Row(480, 160, false),
+        new Row(480, 207, false),
+        new Row(480, 254, false),
+        new Row(480, 301, false),
+        new Row(480, 348, false),
+        new Row(480, 395, false),
+        new Row(480, 442, false),
+        new Row(480, 489, false),
+        new Row(480, 536, false),
+        new Row(480, 583, false)
+    };
 
     bool executing = true;
     while (executing) {
@@ -145,26 +141,19 @@ int main(int argc, char **argv)
             al_set_target_bitmap(al_get_backbuffer(display));
             al_draw_bitmap(background, 0, 0, 0);
             al_draw_bitmap(border, 400, 30, 0);
-            //TODO : draw border
-            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, pos_y, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+            //TODO : Add more text
             ////////////////////////////////////////////////////////////////////
 
-            eins.Render();
-            zwei.Render();
-            drei.Render();
-            vier.Render();
-            fumf.Render();
-            sechs.Render();
-            sieben.Render();
-            acht.Render();
-            neun.Render();
-            zehn.Render();
-
+            for (unsigned int i = 0; i < 10; i++) Grid[i]->Render();
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
         }
     }
+
+    for (unsigned int i = 0; i < 10; i++) delete Grid[i];
+
     al_destroy_bitmap(background);
     al_destroy_display(display);
     return 0;
