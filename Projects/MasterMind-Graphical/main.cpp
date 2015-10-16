@@ -6,7 +6,27 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
+// Global Variables
+ALLEGRO_DISPLAY* display = NULL;
+ALLEGRO_EVENT_QUEUE* queue;
+ALLEGRO_TIMER* timer;
+ALLEGRO_BITMAP* background;
+ALLEGRO_BITMAP* border;
+ALLEGRO_FONT* century_gothic48B;
+ALLEGRO_FONT* century_gothic24;
+const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
+
+
 bool init();
+
+class MasterMind
+{
+public:
+
+private:
+
+
+};
 
 struct Peg
 {
@@ -70,7 +90,7 @@ public:
         m_Pegs[5].SetColor(Peg::ORANGE);
     }
 
-    void Update()
+    void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
 
     }
@@ -107,7 +127,8 @@ public:
 
         if (m_Results)
         {
-            //TODO: results math
+            for (unsigned int i = 0; i < 4; i++)
+                m_PegCoords[i] = m_Coords[i] + 300;
         }
     }
 
@@ -118,38 +139,23 @@ public:
 
         if (m_Results)
         {
-            //for (unsigned int i = 0; i < 4; i++)
-            //{
-            //    m_ResultPegs[i].Render(m_Coords[i], m_Coords[i], 5);
-            //}
+            for (unsigned int i = 0; i < 4; i++)
+            { m_ResultPegs[i].Render(m_PegCoords[i], m_y, 5); }
         }
     }
 
 protected:
     Peg m_Pegs[4], m_ResultPegs[4];
-    unsigned int m_x, m_y, m_Coords[4];
+    unsigned int m_x, m_y, m_Coords[4], m_PegCoords[8];
     bool m_Results;
 };
 
-ALLEGRO_DISPLAY* display = NULL;
-ALLEGRO_EVENT_QUEUE* queue;
-ALLEGRO_TIMER* timer;
-ALLEGRO_BITMAP* background;
-ALLEGRO_BITMAP* border;
-ALLEGRO_FONT* century_gothic48B;
-
-const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
-
 int main(int argc, char **argv)
 {
+    // Initialize
     if (!init()) return -1;
 
-    queue = al_create_event_queue();
-    al_register_event_source(queue, al_get_keyboard_event_source());
-    timer = al_create_timer(1.0 / 60);
-    al_register_event_source(queue, al_get_timer_event_source(timer));
-    al_start_timer(timer);
-
+    // Create Game Objects
     Row Grid[10] =
     {
         Row(500, 140, true),
@@ -163,10 +169,10 @@ int main(int argc, char **argv)
         Row(500, 588, true),
         Row(500, 645, true)
     };
-
     Row solution(750, SCREEN_H-38, false);
     Input input(65, 280);
 
+    // Game Loop
     bool executing = true;
     while (executing)
     {
@@ -183,6 +189,9 @@ int main(int argc, char **argv)
                 break;
             case ALLEGRO_EVENT_TIMER:
                 render = true;
+                break;
+            case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+                input.Update(event.mouse);
                 break;
         }
 
@@ -207,6 +216,8 @@ int main(int argc, char **argv)
         render = false;
     }
 
+
+    // De-initialization
     al_destroy_bitmap(background);
     al_destroy_display(display);
     return 0;
@@ -248,7 +259,13 @@ bool init() {
     }
 
     century_gothic48B = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHICB.TTF", 48, ALLEGRO_ALIGN_CENTRE);
+    century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
 
+    queue = al_create_event_queue();
+    al_register_event_source(queue, al_get_keyboard_event_source());
+    timer = al_create_timer(1.0 / 60);
+    al_register_event_source(queue, al_get_timer_event_source(timer));
+    al_start_timer(timer);
     return true;
 }
 
