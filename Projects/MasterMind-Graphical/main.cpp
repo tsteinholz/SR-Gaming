@@ -1,3 +1,7 @@
+// Thomas Alexander Steinholz
+// South River High School
+// C++ w/ Gaming : 1A
+
 #include <iostream>
 #include <stdio.h>
 #include <allegro5/allegro.h>
@@ -18,17 +22,143 @@ ALLEGRO_FONT* century_gothic24;
 ALLEGRO_TIMER* timer;
 const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
 
-
 bool init();
 
-class MasterMind
+struct Code
 {
-public:
+    enum Peg
+    {
+        RED, BLUE, YELLOW,
+        GREEN, WHITE, ORANGE,
+        NOTHING,
+    };
 
-private:
+    Code()
+    {
+        Peg temp[4];
+        for(int i = 0; i < 4; i++)
+        {
+            switch(rand() % 6)
+            {
+                case 0:  temp[i] = RED;    break;
+                case 1:  temp[i] = BLUE;   break;
+                case 2:  temp[i] = YELLOW; break;
+                case 3:  temp[i] = GREEN;  break;
+                case 4:  temp[i] = WHITE;  break;
+                case 5:  temp[i] = ORANGE; break;
+                default: temp[i] = NOTHING;
+            }
+        }
+        A = temp[0]; B = temp[1];
+        C = temp[2]; D = temp[3];
+    }
 
+    Code(Peg x)
+        : A(x), B(x), C(x), D(x) {}
 
+    Code(Peg a, Peg b, Peg c, Peg d)
+        : A(a), B(b), C(c), D(d) {}
+
+    Code(const Code& copy)
+        : A(copy.A), B(copy.B), C(copy.C), D(copy.D) {}
+
+    Peg A, B, C, D;
+
+    inline bool Verify()
+    {
+        return A != NOTHING &&
+               B != NOTHING &&
+               C != NOTHING &&
+               D != NOTHING;
+    }
+
+    inline static Peg ToPeg(const char x)
+    {
+        switch (x)
+        {
+            case 'r':
+            case 'R': return RED;
+            case 'b':
+            case 'B': return BLUE;
+            case 'y':
+            case 'Y': return YELLOW;
+            case 'g':
+            case 'G': return GREEN;
+            case 'w':
+            case 'W': return WHITE;
+            case 'o':
+            case 'O': return ORANGE;
+            default:  return NOTHING;
+        }
+    }
+
+    inline static std::string ToString(const Peg x)
+    {
+        switch(x)
+        {
+            case RED:     return "Red";
+            case BLUE:    return "Blue";
+            case YELLOW:  return "Yellow";
+            case GREEN:   return "Green";
+            case WHITE:   return "White";
+            case ORANGE:  return "Orange";
+            default:
+            case NOTHING: return "Nothing";
+        }
+    }
+
+    bool operator==(const Code& other) const
+    {
+        return ((A == other.A) && (B == other.B) && (C == other.C) && (D == other.D));
+    }
+
+    bool operator!=(const Code &other) const {
+        return !(*this == other);
+    }
 };
+
+Code* Turn()
+{
+    return NULL;
+}
+
+bool Feedback(Code* code, Code* guess)
+{
+    std::string result = "";
+    bool checked;
+    Code::Peg codePeg[4] = {code->A, code->B, code->C, code->D}, guessPeg[4]= {guess->A, guess->B, guess->C, guess->D};
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i; j < 4; j++)
+        {
+            checked = false;
+            if (codePeg[i] == guessPeg[j])
+            {
+                if (i == j)
+                {
+                    result += "o";
+                    checked = true;
+                }
+            }
+            else
+            {
+                for (int k = i+1; k < 4; k++)
+                {
+                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]) && (k > j) && !checked)
+                    {
+                        result += "~";
+                        checked = true;
+                    }
+                }
+            }
+        }
+    }
+
+    std::cout << "Results : " << result << std::endl;
+
+    return (bool) !result.compare("oooo");
+}
 
 struct Peg
 {
@@ -44,20 +174,21 @@ public:
         NOTHING = 0x554E44,
     } COLOR;
 
-    Peg() { SetColor(NOTHING); }
+    Peg()
+    { SetColor(NOTHING); }
 
     inline void SetColor(COLOR color)
     {
         switch(color)
         {
-            case RED:     m_Color = al_map_rgb(255, 51,  51);  break;
-            case BLUE:    m_Color = al_map_rgb(51,  51,  255); break;
-            case YELLOW:  m_Color = al_map_rgb(255, 255, 102); break;
-            case GREEN:   m_Color = al_map_rgb(51,  255, 153); break;
-            case WHITE:   m_Color = al_map_rgb(224, 224, 224); break;
-            case ORANGE:  m_Color = al_map_rgb(255, 153, 51);  break;
-            case NOTHING:
-            default:      m_Color = al_map_rgb(96,  96,  96);  break;
+        case RED:    m_Color = al_map_rgb(255,  51,  51); break;
+        case BLUE:   m_Color = al_map_rgb( 51,  51, 255); break;
+        case YELLOW: m_Color = al_map_rgb(255, 255, 102); break;
+        case GREEN:  m_Color = al_map_rgb( 51, 255, 153); break;
+        case WHITE:  m_Color = al_map_rgb(224, 224, 224); break;
+        case ORANGE: m_Color = al_map_rgb(255, 153,  51); break;
+        case NOTHING:
+        default:     m_Color = al_map_rgb( 96,  96,  96); break;
         }
     }
 
@@ -100,7 +231,9 @@ public:
     void Render()
     {
         for (unsigned int i = 0; i < 6; i++)
-        { m_Pegs[i].Render(m_Coords[i], m_y, 20); }
+        {
+            m_Pegs[i].Render(m_Coords[i], m_y, 20);
+        }
     }
 
 private:
@@ -118,14 +251,41 @@ public:
 
     }
 
+    void Update(ALLEGRO_MOUSE_EVENT mouse)
+    {
+
+
+    }
+
     void Render()
     {
-        al_draw_scaled_bitmap(m_BMP, 0, 0, al_get_bitmap_width(m_BMP), al_get_bitmap_height(m_BMP), m_x, m_y, 110, 50, 0);
+        al_draw_scaled_bitmap(
+            m_BMP,
+            0, 0,
+            al_get_bitmap_width(m_BMP), al_get_bitmap_height(m_BMP),
+            m_x, m_y,
+            110, 50,
+            0);
     }
 
 private:
     unsigned int m_x, m_y;
     ALLEGRO_BITMAP* m_BMP;
+};
+
+class MasterMind
+{
+public:
+
+    void game()
+    {
+
+    }
+
+    bool Turn();
+
+private:
+
 };
 
 class Row
@@ -149,12 +309,16 @@ public:
     void Render()
     {
         for (unsigned int i = 0; i < 4; i++)
-        { m_Pegs[i].Render(m_Coords[i], m_y, 20); }
+        {
+            m_Pegs[i].Render(m_Coords[i], m_y, 20);
+        }
 
         if (m_Results)
         {
             for (unsigned int i = 0; i < 4; i++)
-            { m_ResultPegs[i].Render(m_PegCoords[i], m_y, 5); }
+            {
+                m_ResultPegs[i].Render(m_PegCoords[i], m_y, 5);
+            }
         }
     }
 
@@ -183,6 +347,7 @@ int main(int argc, char **argv)
         Row(500, 588, true),
         Row(500, 645, true)
     };
+
     Row solution(750, SCREEN_H-38, false);
     Input input(65, 280);
     Button enter(85, 320, key_enter);
@@ -198,17 +363,19 @@ int main(int argc, char **argv)
 
         switch(event.type)
         {
-            case ALLEGRO_EVENT_DISPLAY_CLOSE:
-                break;
-            case ALLEGRO_EVENT_KEY_DOWN:
-                if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
-                break;
-            case ALLEGRO_EVENT_TIMER:
-                render = true;
-                break;
-            case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                input.Update(event.mouse);
-                break;
+        case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            break;
+        case ALLEGRO_EVENT_KEY_DOWN:
+            if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
+            break;
+        case ALLEGRO_EVENT_TIMER:
+            render = true;
+            break;
+        case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+            input.Update(event.mouse);
+            enter.Update(event.mouse);
+            backsc.Update(event.mouse);
+            break;
         }
 
         if (al_is_event_queue_empty(queue) && render)
@@ -242,7 +409,7 @@ int main(int argc, char **argv)
 }
 
 bool init()
- {
+{
     if(!al_init())
     {
         fprintf(stderr, "Failed to initialize allegro!\n");
@@ -255,7 +422,8 @@ bool init()
         return false;
     }
     al_init_image_addon();
-    if(!al_init_primitives_addon()) {
+    if(!al_init_primitives_addon())
+    {
         fprintf(stderr, "Failed to initialize primitives!\n");
         return false;
     }
@@ -265,25 +433,29 @@ bool init()
     al_clear_to_color(al_map_rgb(0,0,0));
 
     background = al_load_bitmap("res\\background.png");
-    if (!background) {
+    if (!background)
+    {
         fprintf(stderr, "Failed load background image!\n");
         al_destroy_display(display);
         return false;
     }
     border = al_load_bitmap("res\\border.png");
-    if (!border) {
+    if (!border)
+    {
         fprintf(stderr, "Failed load border image!\n");
         al_destroy_display(display);
         return false;
     }
     key_backspace = al_load_bitmap("res\\backspace.png");
-    if (!key_backspace) {
+    if (!key_backspace)
+    {
         fprintf(stderr, "Failed load backspace image!\n");
         al_destroy_display(display);
         return false;
     }
     key_enter = al_load_bitmap("res\\enter.png");
-    if (!key_enter) {
+    if (!key_enter)
+    {
         fprintf(stderr, "Failed load enter image!\n");
         al_destroy_display(display);
         return false;
