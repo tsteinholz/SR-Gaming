@@ -2,33 +2,26 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="MasterMind-Graphical" />
+		<Option title="MiniProject2" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/MasterMind-Graphical" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/MiniProject2" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../../Libraries/allegro-5.0.10-mingw-4.7.0/include" />
-					<Add directory="include" />
 				</Compiler>
-				<Linker>
-					<Add library="..\..\Libraries\allegro-5.0.10-mingw-4.7.0\bin\allegro-5.0.10-monolith-md-debug.dll" />
-					<Add directory="../../Libraries/allegro-5.0.10-mingw-4.7.0/bin" />
-				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/MasterMind-Graphical" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/MiniProject2" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,11 +29,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
 			<Add option="-Wall" />
-			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

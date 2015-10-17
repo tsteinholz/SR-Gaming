@@ -2,26 +2,21 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="miniproject1" />
+		<Option title="Pong" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/miniproject1" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Pong" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../../../CodeBlocks/allegro-5.0.10-mingw-4.7.0/allegro-5.0.10-mingw-4.7.0/include" />
 				</Compiler>
-				<Linker>
-					<Add library="..\..\..\CodeBlocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\bin\allegro-5.0.10-monolith-md-debug.dll" />
-					<Add directory="../../../CodeBlocks/allegro-5.0.10-mingw-4.7.0/allegro-5.0.10-mingw-4.7.0/bin" />
-				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/miniproject1" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Pong" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -36,11 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
+			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

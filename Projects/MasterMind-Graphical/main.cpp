@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <vector>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
@@ -21,6 +22,8 @@ ALLEGRO_FONT* century_gothic48B;
 ALLEGRO_FONT* century_gothic24;
 ALLEGRO_TIMER* timer;
 const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
+
+using namespace std;
 
 bool init();
 
@@ -70,41 +73,6 @@ struct Code
                B != NOTHING &&
                C != NOTHING &&
                D != NOTHING;
-    }
-
-    inline static Peg ToPeg(const char x)
-    {
-        switch (x)
-        {
-            case 'r':
-            case 'R': return RED;
-            case 'b':
-            case 'B': return BLUE;
-            case 'y':
-            case 'Y': return YELLOW;
-            case 'g':
-            case 'G': return GREEN;
-            case 'w':
-            case 'W': return WHITE;
-            case 'o':
-            case 'O': return ORANGE;
-            default:  return NOTHING;
-        }
-    }
-
-    inline static std::string ToString(const Peg x)
-    {
-        switch(x)
-        {
-            case RED:     return "Red";
-            case BLUE:    return "Blue";
-            case YELLOW:  return "Yellow";
-            case GREEN:   return "Green";
-            case WHITE:   return "White";
-            case ORANGE:  return "Orange";
-            default:
-            case NOTHING: return "Nothing";
-        }
     }
 
     bool operator==(const Code& other) const
@@ -202,6 +170,46 @@ private:
     ALLEGRO_COLOR m_Color;
 };
 
+class Row
+{
+public:
+    Row(unsigned int x, unsigned int y, bool results)
+        : m_x(x), m_y(y), m_Results(results)
+    {
+        m_Coords[0] = m_x;
+        m_Coords[1] = m_Coords[0] + 56;
+        m_Coords[2] = m_Coords[1] + 56;
+        m_Coords[3] = m_Coords[2] + 56;
+
+        if (m_Results)
+        {
+            for (unsigned int i = 0; i < 4; i++)
+                m_PegCoords[i] = m_Coords[i] + 300;
+        }
+    }
+
+    void Render()
+    {
+        for (unsigned int i = 0; i < 4; i++)
+        {
+            m_Pegs[i].Render(m_Coords[i], m_y, 20);
+        }
+
+        if (m_Results)
+        {
+            for (unsigned int i = 0; i < 4; i++)
+            {
+                m_ResultPegs[i].Render(m_PegCoords[i], m_y, 5);
+            }
+        }
+    }
+
+protected:
+    Peg m_Pegs[4], m_ResultPegs[4];
+    unsigned int m_x, m_y, m_Coords[4], m_PegCoords[8];
+    bool m_Results;
+};
+
 class Input
 {
 public:
@@ -277,55 +285,38 @@ class MasterMind
 {
 public:
 
-    void game()
+    MasterMind(vector<Row> grid, Row solution, Button enter, Button backsp, Input input)
+        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) { }
+
+    void Update()
     {
 
-    }
-
-    bool Turn();
-
-private:
-
-};
-
-class Row
-{
-public:
-    Row(unsigned int x, unsigned int y, bool results)
-        : m_x(x), m_y(y), m_Results(results)
-    {
-        m_Coords[0] = m_x;
-        m_Coords[1] = m_Coords[0] + 56;
-        m_Coords[2] = m_Coords[1] + 56;
-        m_Coords[3] = m_Coords[2] + 56;
-
-        if (m_Results)
-        {
-            for (unsigned int i = 0; i < 4; i++)
-                m_PegCoords[i] = m_Coords[i] + 300;
-        }
     }
 
     void Render()
     {
-        for (unsigned int i = 0; i < 4; i++)
-        {
-            m_Pegs[i].Render(m_Coords[i], m_y, 20);
-        }
-
-        if (m_Results)
-        {
-            for (unsigned int i = 0; i < 4; i++)
-            {
-                m_ResultPegs[i].Render(m_PegCoords[i], m_y, 5);
-            }
-        }
+        al_draw_bitmap(background, 0, 0, 0);
+        al_draw_bitmap(border, 400, 30, 0);
+        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
+        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
+        for (auto& x : m_Grid) x.Render();
+        m_Solution.Render();
+        m_Input.Render();
+        m_Enter.Render();
+        m_Backspapce.Render();
     }
 
-protected:
-    Peg m_Pegs[4], m_ResultPegs[4];
-    unsigned int m_x, m_y, m_Coords[4], m_PegCoords[8];
-    bool m_Results;
+    bool Turn()
+    {
+        return false;
+    }
+
+private:
+    vector<Row> m_Grid;
+    Row m_Solution;
+    Button m_Enter, m_Backspapce;
+    Input m_Input;
 };
 
 int main(int argc, char **argv)
@@ -334,7 +325,7 @@ int main(int argc, char **argv)
     if (!init()) return -1;
 
     // Create Game Objects
-    Row Grid[10] =
+    vector<Row> Grid
     {
         Row(500, 140, true),
         Row(500, 196, true),
@@ -352,6 +343,8 @@ int main(int argc, char **argv)
     Input input(65, 280);
     Button enter(85, 320, key_enter);
     Button backsc(210, 320, key_backspace);
+
+    MasterMind master_mind(Grid, solution, enter, backsc, input);
 
     // Game Loop
     bool executing = true;
@@ -382,18 +375,9 @@ int main(int argc, char **argv)
         {
             al_clear_to_color(al_map_rgb(0,0,0));
             al_set_target_bitmap(al_get_backbuffer(display));
-            al_draw_bitmap(background, 0, 0, 0);
-            al_draw_bitmap(border, 400, 30, 0);
-            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
-            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
-            al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
             ////////////////////////////////////////////////////////////////////
 
-            for (unsigned int i = 0; i < 10; i++) Grid[i].Render();
-            solution.Render();
-            input.Render();
-            enter.Render();
-            backsc.Render();
+            master_mind.Render();
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();

@@ -229,9 +229,10 @@
 
 1444229665 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\alcompat.h
 
-1445046034 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\main.cpp
+1445101351 source:d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\main.cpp
 	<iostream>
 	<stdio.h>
+	<vector>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_primitives.h>
