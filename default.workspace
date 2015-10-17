@@ -2,5 +2,9 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="South River">
 		<Project filename="Projects/MasterMind-Graphical/MasterMind-Graphical.cbp" />
+		<Project filename="Projects/MiniProject1/MiniProject1.cbp" />
+		<Project filename="Projects/MiniProject2/MiniProject2.cbp" />
+		<Project filename="Projects/MiniProject3/MiniProject3.cbp" />
+		<Project filename="Projects/Pong/Pong.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

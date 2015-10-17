@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1445105641 source:d:\users\thomas\documents\development\c++\srhs\projects\miniproject1\main.cpp
+1445107589 source:d:\users\thomas\documents\development\c++\srhs\projects\miniproject1\main.cpp
 	<stdio.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
