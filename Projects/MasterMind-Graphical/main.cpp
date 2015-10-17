@@ -7,13 +7,15 @@
 #include <allegro5/allegro_ttf.h>
 
 // Global Variables
-ALLEGRO_DISPLAY* display = NULL;
-ALLEGRO_EVENT_QUEUE* queue;
-ALLEGRO_TIMER* timer;
 ALLEGRO_BITMAP* background;
 ALLEGRO_BITMAP* border;
+ALLEGRO_BITMAP* key_backspace;
+ALLEGRO_BITMAP* key_enter;
+ALLEGRO_EVENT_QUEUE* queue;
+ALLEGRO_DISPLAY* display = NULL;
 ALLEGRO_FONT* century_gothic48B;
 ALLEGRO_FONT* century_gothic24;
+ALLEGRO_TIMER* timer;
 const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
 
 
@@ -109,9 +111,21 @@ private:
 class Button
 {
 public:
+    Button(unsigned int x, unsigned int y, ALLEGRO_BITMAP* image)
+        : m_x(x), m_y(y), m_BMP(image)
+    {
+
+
+    }
+
+    void Render()
+    {
+        al_draw_scaled_bitmap(m_BMP, 0, 0, al_get_bitmap_width(m_BMP), al_get_bitmap_height(m_BMP), m_x, m_y, 110, 50, 0);
+    }
 
 private:
-
+    unsigned int m_x, m_y;
+    ALLEGRO_BITMAP* m_BMP;
 };
 
 class Row
@@ -171,6 +185,8 @@ int main(int argc, char **argv)
     };
     Row solution(750, SCREEN_H-38, false);
     Input input(65, 280);
+    Button enter(85, 320, key_enter);
+    Button backsc(210, 320, key_backspace);
 
     // Game Loop
     bool executing = true;
@@ -209,6 +225,8 @@ int main(int argc, char **argv)
             for (unsigned int i = 0; i < 10; i++) Grid[i].Render();
             solution.Render();
             input.Render();
+            enter.Render();
+            backsc.Render();
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
@@ -223,7 +241,8 @@ int main(int argc, char **argv)
     return 0;
 }
 
-bool init() {
+bool init()
+ {
     if(!al_init())
     {
         fprintf(stderr, "Failed to initialize allegro!\n");
@@ -257,6 +276,18 @@ bool init() {
         al_destroy_display(display);
         return false;
     }
+    key_backspace = al_load_bitmap("res\\backspace.png");
+    if (!key_backspace) {
+        fprintf(stderr, "Failed load backspace image!\n");
+        al_destroy_display(display);
+        return false;
+    }
+    key_enter = al_load_bitmap("res\\enter.png");
+    if (!key_enter) {
+        fprintf(stderr, "Failed load enter image!\n");
+        al_destroy_display(display);
+        return false;
+    }
 
     century_gothic48B = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHICB.TTF", 48, ALLEGRO_ALIGN_CENTRE);
     century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
@@ -268,4 +299,3 @@ bool init() {
     al_start_timer(timer);
     return true;
 }
-
