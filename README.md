@@ -8,4 +8,4 @@ peers plagiarizing my code, I will make this repo private for at least the durat
 
 # Highlights / Showcase
 ### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical)
-![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v2.jpg "MasterMind")
+![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v3.jpg "MasterMind")
