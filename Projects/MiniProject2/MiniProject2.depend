@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1445182827 source:d:\users\thomas\documents\development\c++\srhs\projects\miniproject2\main.cpp
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+

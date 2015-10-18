@@ -53,7 +53,7 @@ int main()
     // Apply the buffer to the front.
     al_flip_display();
     // Wait for 3 secs.
-    al_rest(3.0);
+    al_rest(10.0);
     // Destroying the display we created, to avoid memory leaking.
     al_destroy_display(display);
 

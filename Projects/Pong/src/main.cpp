@@ -2,6 +2,7 @@
 // South River High School
 // C++ w/ Gaming : 1A
 
+#include <sstream>
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -11,10 +12,12 @@
 
 int main()
 {
+    const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
     ALLEGRO_DISPLAY *display = NULL;
-    ALLEGRO_FONT* century_gothic24;
+    ALLEGRO_FONT* century_gothic40;
     ALLEGRO_EVENT_QUEUE* queue;
     ALLEGRO_TIMER* timer;
+    unsigned int score1 = 0, score2 = 0;
 
     if(!al_init())
     {
@@ -26,7 +29,8 @@ int main()
         printf("al_init_primitives_addon Failed!\n");
         return -1;
     }
-    display = al_create_display(640, 480);
+    display = al_create_display(SCREEN_W, SCREEN_H);
+
     if(!display)
     {
         printf("al_create_display Failed!\n");
@@ -40,17 +44,13 @@ int main()
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
-    century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
+    century_gothic40  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 40, ALLEGRO_ALIGN_CENTRE);
 
-    al_flip_display();
-
+    bool render;
     bool executing = true;
-    int x = 0, y = 0;
-
     while (executing)
     {
         ALLEGRO_EVENT event;
-        bool render;
         al_wait_for_event(queue, &event);
 
         switch(event.type)
@@ -63,10 +63,6 @@ int main()
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
-            x++;
-            y++;
-            if (x > 640) x = 0;
-            if (y > 480) y = 0;
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
             break;
@@ -78,27 +74,17 @@ int main()
             al_set_target_bitmap(al_get_backbuffer(display));
             ////////////////////////////////////////////////////////////////////
 
-            // Draw Triangle
-            al_draw_filled_triangle(10, 10, 200, 200, 350, 230, al_map_rgb(255,0,0));
-            // Draw text to the buffer
-            al_draw_text(century_gothic24, al_map_rgb(255,255,255), 550, 440, ALLEGRO_ALIGN_CENTRE, "Hello World!");
-            // Draw a line to the buffer
-            al_draw_line(400,400,500,34,al_map_rgb(255,255,255), 5);
-            // Draw a circle
-            al_draw_circle(300,300, 50, al_map_rgb(255,255,0), 5);
-            // Draw Eclipse
-            al_draw_filled_ellipse(500, 300, 40, 56, al_map_rgb(255,0,255));
-            // Draw a rectangle
-            al_draw_rectangle(100,200,200,300,al_map_rgb(0,255,0), 6);
-            // Draw a polygon pt1
-            al_draw_filled_rectangle(0,480,50,400,al_map_rgb(25,185,35));
-            // Draw a polygon pt2
-            al_draw_filled_rectangle(0,480,200,450,al_map_rgb(25,185,35));
+            std::stringstream ss;
+            ss << " " << score1;
+            const char* sscore1 = ss.str().c_str();
+            ss.str( std::string() );
+            ss.clear();
+            ss << " " << score2;
+            const char* sscore2 = ss.str().c_str();
+            // Scores
+            al_draw_text(century_gothic40, al_map_rgb(255,255,255), 250,          100, ALLEGRO_ALIGN_CENTRE, sscore1);
+            al_draw_text(century_gothic40, al_map_rgb(255,255,255), SCREEN_W-250, 100, ALLEGRO_ALIGN_CENTRE, sscore2);
 
-
-            // Moving Circle
-            al_draw_circle(x,400, 50, al_map_rgb(55,25,45), 3);
-            al_draw_filled_rectangle(100, 100+y, 150, 150+y,al_map_rgb(65,85,90));
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
