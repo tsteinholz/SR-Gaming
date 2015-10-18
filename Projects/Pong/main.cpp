@@ -99,6 +99,9 @@ int main()
                 case ALLEGRO_KEY_S:
                     player_y_vel = 5;
                     break;
+                case ALLEGRO_KEY_ENTER:
+
+                    break;
             }
             gamemode = Game;
             break;
