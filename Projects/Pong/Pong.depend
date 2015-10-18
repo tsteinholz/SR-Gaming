@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1445188317 source:d:\users\thomas\documents\development\c++\srhs\projects\pong\src\main.cpp
+	<sstream>
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+
+1445190105 source:d:\users\thomas\documents\development\c++\srhs\projects\pong\main.cpp
+	<sstream>
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+

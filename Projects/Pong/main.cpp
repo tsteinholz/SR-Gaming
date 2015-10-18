@@ -10,14 +10,33 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
+typedef enum
+{
+    Menu,
+    Game,
+    Conclusion,
+} Gamemode;
+
+ALLEGRO_BITMAP* Load(const char* file)
+{
+    ALLEGRO_BITMAP* out = al_load_bitmap(file);
+    if (!out) fprintf(stderr, "Failed to load %s graphic!\n", file);
+    return out;
+}
+
 int main()
 {
-    const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
+    const unsigned int SCREEN_W = 1280, SCREEN_H = 768;
     ALLEGRO_DISPLAY *display = NULL;
     ALLEGRO_FONT* century_gothic40;
     ALLEGRO_EVENT_QUEUE* queue;
     ALLEGRO_TIMER* timer;
-    unsigned int score1 = 0, score2 = 0;
+
+    ALLEGRO_BITMAP* MenuBackground;
+    ALLEGRO_BITMAP* ArenaBackground;
+    ALLEGRO_BITMAP* Ball;
+
+    Gamemode gamemode = Menu;
 
     if(!al_init())
     {
@@ -39,12 +58,17 @@ int main()
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_keyboard();
+    al_init_image_addon();
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
     century_gothic40  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 40, ALLEGRO_ALIGN_CENTRE);
+
+    MenuBackground = Load("res\\menu.png");
+    ArenaBackground = Load("res\\arena.png");
+    Ball = Load("res\\ball.png");
 
     bool render;
     bool executing = true;
@@ -60,9 +84,14 @@ int main()
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
             if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
+            gamemode = Game;
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
+            if (gamemode == Game)
+            {
+
+            }
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
             break;
@@ -74,17 +103,19 @@ int main()
             al_set_target_bitmap(al_get_backbuffer(display));
             ////////////////////////////////////////////////////////////////////
 
-            std::stringstream ss;
-            ss << " " << score1;
-            const char* sscore1 = ss.str().c_str();
-            ss.str( std::string() );
-            ss.clear();
-            ss << " " << score2;
-            const char* sscore2 = ss.str().c_str();
-            // Scores
-            al_draw_text(century_gothic40, al_map_rgb(255,255,255), 250,          100, ALLEGRO_ALIGN_CENTRE, sscore1);
-            al_draw_text(century_gothic40, al_map_rgb(255,255,255), SCREEN_W-250, 100, ALLEGRO_ALIGN_CENTRE, sscore2);
+            switch(gamemode)
+            {
+                case Menu:
+                        al_draw_bitmap(MenuBackground, 0, 0, 0);
+                    break;
+                case Game:
+                        al_draw_bitmap(ArenaBackground, 0, 0, 0);
+                        al_draw_bitmap(Ball, 0, 0, 0);
+                    break;
+                case Conclusion:
 
+                    break;
+            }
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
