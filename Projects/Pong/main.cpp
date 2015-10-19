@@ -27,7 +27,7 @@ ALLEGRO_BITMAP* Load(const char* file)
 
 int main()
 {
-    const unsigned int SCREEN_W = 1280, SCREEN_H = 768;
+    const int SCREEN_W = 1280, SCREEN_H = 768;
     ALLEGRO_DISPLAY *display = NULL;
     ALLEGRO_FONT* century_gothic40;
     ALLEGRO_EVENT_QUEUE* queue;
@@ -71,7 +71,10 @@ int main()
     ArenaBackground = Load("res\\arena.png");
     Ball = Load("res\\ball.png");
 
-    int player_y = 0, ai_y = 0, player_y_vel = 0, ai_y_vel = 0;
+    int player_y = 0, player_y_vel = 0,
+        ai_y_vel = 0, ai_y = 0,
+        ball_x = (SCREEN_W/2)-12, ball_x_vel = -5,
+        ball_y = (SCREEN_H/2)-15, ball_y_vel = 5;
 
     bool render;
     bool executing = true;
@@ -88,20 +91,20 @@ int main()
         case ALLEGRO_EVENT_KEY_DOWN:
             switch(event.keyboard.keycode)
             {
-                case ALLEGRO_KEY_ESCAPE:
-                    executing = false;
-                    break;
-                case ALLEGRO_KEY_UP:
-                case ALLEGRO_KEY_W:
-                    player_y_vel = -5;
-                    break;
-                case ALLEGRO_KEY_DOWN:
-                case ALLEGRO_KEY_S:
-                    player_y_vel = 5;
-                    break;
-                case ALLEGRO_KEY_ENTER:
+            case ALLEGRO_KEY_ESCAPE:
+                executing = false;
+                break;
+            case ALLEGRO_KEY_UP:
+            case ALLEGRO_KEY_W:
+                player_y_vel = -5;
+                break;
+            case ALLEGRO_KEY_DOWN:
+            case ALLEGRO_KEY_S:
+                player_y_vel = 5;
+                break;
+            case ALLEGRO_KEY_ENTER:
 
-                    break;
+                break;
             }
             gamemode = Game;
             break;
@@ -109,10 +112,13 @@ int main()
             render = true;
             if (gamemode == Game)
             {
-                if (((((SCREEN_H/2)-50)+player_y) <= 4)&&(player_y_vel<0)) player_y_vel = 0;
-                if (((((SCREEN_H/2)+50)+player_y) >= SCREEN_H+5)&&(player_y_vel>0)) player_y_vel = 0;
+                if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
+                if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
+                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
                 player_y += player_y_vel;
                 ai_y += ai_y_vel;
+                ball_x += ball_x_vel;
+                ball_y += ball_y_vel;
             }
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
@@ -133,13 +139,13 @@ int main()
                 break;
             case Game:
                 al_draw_bitmap(ArenaBackground, 0, 0, 0);
-                al_draw_filled_rectangle(75,((SCREEN_H/2)-50)+player_y,90,((SCREEN_H/2)+50)+player_y,al_map_rgb(255,255,255));              //player
+                al_draw_filled_rectangle(75,((SCREEN_H/2)-50)+player_y,90,((SCREEN_H/2)+50)+player_y,al_map_rgb(255,255,255));              //Player
                 al_draw_filled_rectangle(SCREEN_W-75,((SCREEN_H/2)-50)+ai_y,SCREEN_W-90,((SCREEN_H/2)+50)+ai_y,al_map_rgb(255,255,255));    //AI
                 al_draw_scaled_bitmap(
                     Ball,
                     0, 0,
                     al_get_bitmap_width(Ball), al_get_bitmap_height(Ball),
-                    (SCREEN_W/2)-12, (SCREEN_H/2)-15, //x, y
+                    ball_x, ball_y,
                     15, 15,
                     0);
                 break;
