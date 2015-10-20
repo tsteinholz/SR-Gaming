@@ -135,6 +135,7 @@ int main()
                     ball_x_vel = (rand() % 2) ? 5 : -5;
                     ball_y_vel = 0;
                 }
+                //todo fix x depth
                 if ((((ball_y<=(((SCREEN_H/2)+50)+player_y))&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&((ball_x>=SCREEN_W-110))))
                 {
                     ball_x_vel = -ball_x_vel;
