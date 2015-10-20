@@ -81,10 +81,11 @@ int main()
     ArenaBackground = Load("res\\arena.png");
     Ball = Load("res\\ball.png");
 
-    int player_y = 0, player_y_vel = 0,
+    float player_y = 0, player_y_vel = 0,
         ai_y_vel = 0, ai_y = 0,
         ball_x = (SCREEN_W/2)-12, ball_x_vel = (rand() % 2) ? 5 : -5,
-        ball_y = (SCREEN_H/2)-15, ball_y_vel = 5;
+        ball_y = (SCREEN_H/2)-15, ball_y_vel = 5,
+        multiplier = 1;
 
     bool render;
     bool executing = true;
@@ -126,14 +127,12 @@ int main()
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
-            printf("BALL x:%i, y:%i", ball_x, ball_y);
-            //printf();
-            //printf();
+            printf("%f\n", ball_x_vel);
             if (gamemode == Game)
             {
                 if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
                 if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
-                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel*2;
+                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
 
                 if (ball_x >= SCREEN_W)
                 {
@@ -143,8 +142,9 @@ int main()
                     ball_x_vel = (rand() % 2) ? 5 : -5;
                     ball_y_vel = 0;
                     ai_y = 0;
+                    player_y = 0;
                     std::stringstream ss;
-                    ss << "PLAYER : " << ai_score;
+                    ss << "PLAYER : " << player_score;
                     player_text = ss.str();
                     ss.str("");
                     ss.clear();
@@ -157,20 +157,34 @@ int main()
                     ball_x_vel = (rand() % 2) ? 5 : -5;
                     ball_y_vel = 0;
                     ai_y = 0;
+                    player_y = 0;
                     std::stringstream ss;
                     ss << "BOT : " << ai_score;
                     ai_text = ss.str();
                     ss.str("");
                     ss.clear();
                 }
-                //todo fix x depth
-                if ((((ball_y<=(((SCREEN_H/2)+50)+player_y)&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)&&(ball_x>=75)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&((ball_x>=SCREEN_W-110))&&(true))))
+                if (((ball_y<=(((SCREEN_H/2)+50)+player_y)&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)&&(ball_x>=75)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&(((ball_x>=SCREEN_W-110))&&(ball_x<=SCREEN_W-75))))
                 {
-                    ball_x_vel = -ball_x_vel;
+                    ball_x_vel = -ball_x_vel * multiplier;
+                    multiplier += 0.001f;
                     ball_y_vel = (rand() % 10) - 5;
                 }
-                ai_y_vel = ball_y_vel;
-                player_y_vel = ball_y_vel;
+                if (ball_x_vel > 0)
+                {
+                    if (((ai_y < 340) || (ai_y_vel <= 0)) && ((ai_y > -340) || (ai_y_vel >= 0)))
+                    {
+                        if (ai_y < (ball_y-340)) ai_y_vel = abs(ball_y_vel);
+                        else ai_y_vel = -abs(ball_y_vel);
+                    }
+                    else ai_y_vel = 0;
+                }
+                else
+                {
+                    if (ai_y >= 0) ai_y_vel = -1;
+                    else if (ai_y <= 0) ai_y_vel = 1;
+                    else ai_y_vel = 0;
+                }
 
                 player_y += player_y_vel;
                 ai_y += ai_y_vel;
@@ -205,8 +219,8 @@ int main()
                     ball_x, ball_y,
                     15, 15,
                     0);
-                al_draw_text(century_gothic40, al_map_rgb(255,255,255), 100, 40, ALLEGRO_ALIGN_CENTRE, player_text.c_str());
-                al_draw_text(century_gothic40, al_map_rgb(255,255,255), SCREEN_W-100, 40, ALLEGRO_ALIGN_CENTRE, ai_text.c_str());
+                al_draw_text(century_gothic40, al_map_rgb(250,250,250), 100, 40, ALLEGRO_ALIGN_CENTRE, player_text.c_str());
+                al_draw_text(century_gothic40, al_map_rgb(250,250,250), SCREEN_W-100, 40, ALLEGRO_ALIGN_CENTRE, ai_text.c_str());
                 break;
             case Conclusion:
 
