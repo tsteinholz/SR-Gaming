@@ -44,6 +44,11 @@ int main()
         printf("al_init Failed!\n");
         return -1;
     }
+    if(!al_install_mouse())
+    {
+        fprintf(stderr, "failed to initialize the mouse!\n");
+        return -1;
+    }
     if(!al_init_primitives_addon())
     {
         printf("al_init_primitives_addon Failed!\n");
@@ -62,6 +67,8 @@ int main()
     al_init_image_addon();
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
+    al_register_event_source(queue, al_get_mouse_event_source());
+    al_register_event_source(queue, al_get_display_event_source(display));
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
@@ -73,7 +80,7 @@ int main()
 
     int player_y = 0, player_y_vel = 0,
         ai_y_vel = 0, ai_y = 0,
-        ball_x = (SCREEN_W/2)-12, ball_x_vel = -5,
+        ball_x = (SCREEN_W/2)-12, ball_x_vel = (rand() % 2) ? 5 : -5,
         ball_y = (SCREEN_H/2)-15, ball_y_vel = 5;
 
     bool render;
@@ -82,11 +89,14 @@ int main()
     {
         ALLEGRO_EVENT event;
         al_wait_for_event(queue, &event);
-        //player_y_vel = ai_y_vel = 0;
         switch(event.type)
         {
         case ALLEGRO_EVENT_DISPLAY_CLOSE:
             executing = false;
+            break;
+        case ALLEGRO_EVENT_MOUSE_AXES:
+        case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
+            //player_y = event.mouse.y;
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
             switch(event.keyboard.keycode)
@@ -96,17 +106,20 @@ int main()
                 break;
             case ALLEGRO_KEY_UP:
             case ALLEGRO_KEY_W:
-                player_y_vel = -5;
+                player_y_vel = -10;
                 break;
             case ALLEGRO_KEY_DOWN:
             case ALLEGRO_KEY_S:
-                player_y_vel = 5;
+                player_y_vel = 10;
                 break;
             case ALLEGRO_KEY_ENTER:
 
                 break;
             }
             gamemode = Game;
+            break;
+        case ALLEGRO_EVENT_KEY_UP:
+            player_y_vel = 0;
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
@@ -115,6 +128,18 @@ int main()
                 if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
                 if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
                 if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
+                if ((ball_x <= 0) || (ball_x >= SCREEN_W))
+                {
+                    ball_x = (SCREEN_W/2)-12;
+                    ball_y = (SCREEN_H/2)-15;
+                    ball_x_vel = (rand() % 2) ? 5 : -5;
+                    ball_y_vel = 0;
+                }
+                if ((((ball_y<=(((SCREEN_H/2)+50)+player_y))&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&((ball_x>=SCREEN_W-110))))
+                {
+                    ball_x_vel = -ball_x_vel;
+                    ball_y_vel = (rand() % 10) - 5;
+                }
                 player_y += player_y_vel;
                 ai_y += ai_y_vel;
                 ball_x += ball_x_vel;
