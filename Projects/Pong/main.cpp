@@ -39,6 +39,9 @@ int main()
 
     Gamemode gamemode = Menu;
 
+    std::string player_text = "PLAYER : 0", ai_text = "BOT : 0";
+    unsigned int player_score = 0, ai_score = 0;
+
     if(!al_init())
     {
         printf("al_init Failed!\n");
@@ -123,24 +126,52 @@ int main()
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
+            printf("BALL x:%i, y:%i", ball_x, ball_y);
+            //printf();
+            //printf();
             if (gamemode == Game)
             {
                 if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
                 if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
-                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
-                if ((ball_x <= 0) || (ball_x >= SCREEN_W))
+                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel*2;
+
+                if (ball_x >= SCREEN_W)
                 {
+                    player_score++;
                     ball_x = (SCREEN_W/2)-12;
                     ball_y = (SCREEN_H/2)-15;
                     ball_x_vel = (rand() % 2) ? 5 : -5;
                     ball_y_vel = 0;
+                    ai_y = 0;
+                    std::stringstream ss;
+                    ss << "PLAYER : " << ai_score;
+                    player_text = ss.str();
+                    ss.str("");
+                    ss.clear();
+                }
+                if (ball_x <= 0)
+                {
+                    ai_score++;
+                    ball_x = (SCREEN_W/2)-12;
+                    ball_y = (SCREEN_H/2)-15;
+                    ball_x_vel = (rand() % 2) ? 5 : -5;
+                    ball_y_vel = 0;
+                    ai_y = 0;
+                    std::stringstream ss;
+                    ss << "BOT : " << ai_score;
+                    ai_text = ss.str();
+                    ss.str("");
+                    ss.clear();
                 }
                 //todo fix x depth
-                if ((((ball_y<=(((SCREEN_H/2)+50)+player_y))&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&((ball_x>=SCREEN_W-110))))
+                if ((((ball_y<=(((SCREEN_H/2)+50)+player_y)&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)&&(ball_x>=75)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&((ball_x>=SCREEN_W-110))&&(true))))
                 {
                     ball_x_vel = -ball_x_vel;
                     ball_y_vel = (rand() % 10) - 5;
                 }
+                ai_y_vel = ball_y_vel;
+                player_y_vel = ball_y_vel;
+
                 player_y += player_y_vel;
                 ai_y += ai_y_vel;
                 ball_x += ball_x_vel;
@@ -174,6 +205,8 @@ int main()
                     ball_x, ball_y,
                     15, 15,
                     0);
+                al_draw_text(century_gothic40, al_map_rgb(255,255,255), 100, 40, ALLEGRO_ALIGN_CENTRE, player_text.c_str());
+                al_draw_text(century_gothic40, al_map_rgb(255,255,255), SCREEN_W-100, 40, ALLEGRO_ALIGN_CENTRE, ai_text.c_str());
                 break;
             case Conclusion:
 

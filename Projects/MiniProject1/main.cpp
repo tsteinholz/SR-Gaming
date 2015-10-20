@@ -46,7 +46,7 @@ int main()
     // Draw Eclipse
     al_draw_filled_ellipse(500, 300, 40, 56, al_map_rgb(255,0,255));
     // Draw a rectangle
-    al_draw_rectangle(100,200,200,300,al_map_rgb(0,255,0), 6);
+    al_draw_rectangle(100,200,200,300,al_map_rgb(0,255,0), 6);s
     // Draw a polygon
     al_draw_filled_rectangle(0,480,50,400,al_map_rgb(25,185,35));
     al_draw_filled_rectangle(0,480,200,450,al_map_rgb(25,185,35));
