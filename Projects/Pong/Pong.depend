@@ -8,8 +8,10 @@
 	<allegro5/allegro_font.h>
 	<allegro5/allegro_ttf.h>
 
-1445384609 source:d:\users\thomas\documents\development\c++\srhs\projects\pong\main.cpp
+1445389183 source:d:\users\thomas\documents\development\c++\srhs\projects\pong\main.cpp
 	<allegro5/allegro.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_primitives.h>
 	<allegro5/allegro_font.h>

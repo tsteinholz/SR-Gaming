@@ -3,6 +3,8 @@
 // C++ w/ Gaming : 1A
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
@@ -18,10 +20,32 @@ typedef enum
     Conclusion,
 } Gamemode;
 
-ALLEGRO_BITMAP* Load(const char* file)
+/*
+TODO :
+
+Fix AI...
+    - bounds on max and min
+    - not triggering movement when ball if above AI in negative coord space
+    - smoothness
+
+Get sound working (different instances or whatever)
+Start menu ( check paper for info )
+implement game (play to 10 points then end screen prompting stats, restart to main menu, and quit)
+figure out how to distribute Pong.exe (fix the compiler)
+*/
+
+
+ALLEGRO_BITMAP* LoadB(const char* file)
 {
     ALLEGRO_BITMAP* out = al_load_bitmap(file);
     if (!out) fprintf(stderr, "Failed to load %s graphic!\n", file);
+    return out;
+}
+
+ALLEGRO_SAMPLE* LoadS(const char* file)
+{
+    ALLEGRO_SAMPLE* out = al_load_sample(file);
+    if (!out) fprintf(stderr, "Failed to load %s audio!\n", file);
     return out;
 }
 
@@ -37,6 +61,10 @@ int main()
     ALLEGRO_BITMAP* ArenaBackground;
     ALLEGRO_BITMAP* Ball;
 
+    ALLEGRO_SAMPLE* BackgroundMusic;
+    ALLEGRO_SAMPLE* Boop;
+    ALLEGRO_SAMPLE* Score;
+
     Gamemode gamemode = Menu;
 
     std::string player_text = "PLAYER : 0", ai_text = "BOT : 0";
@@ -45,6 +73,23 @@ int main()
     if(!al_init())
     {
         printf("al_init Failed!\n");
+        return -1;
+    }
+    if(!al_install_audio())
+    {
+        fprintf(stderr, "failed to initialize audio!\n");
+        return -1;
+    }
+
+    if(!al_init_acodec_addon())
+    {
+        fprintf(stderr, "failed to initialize audio codecs!\n");
+        return -1;
+    }
+
+    if (!al_reserve_samples(1))
+    {
+        fprintf(stderr, "failed to reserve samples!\n");
         return -1;
     }
     if(!al_install_mouse())
@@ -77,15 +122,23 @@ int main()
     al_start_timer(timer);
     century_gothic40  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 40, ALLEGRO_ALIGN_CENTRE);
 
-    MenuBackground = Load("res\\menu.png");
-    ArenaBackground = Load("res\\arena.png");
-    Ball = Load("res\\ball.png");
+    MenuBackground = LoadB("res\\menu.png");
+    ArenaBackground = LoadB("res\\arena.png");
+    Ball = LoadB("res\\ball.png");
+
+    BackgroundMusic = LoadS("res\\rain.wav");
+    Boop = LoadS("res\\boop.ogg");
+    Score = LoadS("res\\score.wav");
+
+    //ALLEGRO_SAMPLE_INSTANCE BoopI = al_create_sample_instance(Boop);
+    //ALLEGRO_SAMPLE_INSTANCE ScoreI = al_create_sample_instance(Score);
+    al_play_sample(BackgroundMusic, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
 
     float player_y = 0, player_y_vel = 0,
-        ai_y_vel = 0, ai_y = 0,
-        ball_x = (SCREEN_W/2)-12, ball_x_vel = (rand() % 2) ? 5 : -5,
-        ball_y = (SCREEN_H/2)-15, ball_y_vel = 5,
-        multiplier = 1;
+          ai_y_vel = 0, ai_y = 0,
+          ball_x = (SCREEN_W/2)-12, ball_x_vel = (rand() % 2) ? 5 : -5,
+          ball_y = (SCREEN_H/2)-15, ball_y_vel = 0,
+          multiplier = 1;
 
     bool render;
     bool executing = true;
@@ -126,57 +179,63 @@ int main()
             player_y_vel = 0;
             break;
         case ALLEGRO_EVENT_TIMER:
+
+            //printf("ball y %f\tpaddle y %f\n", ball_y-340, ai_y);
+
             render = true;
-            printf("%f\n", ball_x_vel);
             if (gamemode == Game)
             {
-                if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
-                if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
-                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
-
+                // Scoring
+                bool scored = false;
                 if (ball_x >= SCREEN_W)
                 {
                     player_score++;
-                    ball_x = (SCREEN_W/2)-12;
-                    ball_y = (SCREEN_H/2)-15;
-                    ball_x_vel = (rand() % 2) ? 5 : -5;
-                    ball_y_vel = 0;
-                    ai_y = 0;
-                    player_y = 0;
+                    scored = true;
                     std::stringstream ss;
                     ss << "PLAYER : " << player_score;
                     player_text = ss.str();
-                    ss.str("");
-                    ss.clear();
                 }
                 if (ball_x <= 0)
                 {
                     ai_score++;
+                    scored = true;
+                    std::stringstream ss;
+                    ss << "BOT : " << ai_score;
+                    ai_text = ss.str();
+                }
+                if (scored)
+                {
+                    //al_play_sample(Score, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
+                    //al_play_sample_instance(ScoreI);
                     ball_x = (SCREEN_W/2)-12;
                     ball_y = (SCREEN_H/2)-15;
                     ball_x_vel = (rand() % 2) ? 5 : -5;
                     ball_y_vel = 0;
                     ai_y = 0;
                     player_y = 0;
-                    std::stringstream ss;
-                    ss << "BOT : " << ai_score;
-                    ai_text = ss.str();
-                    ss.str("");
-                    ss.clear();
                 }
+                // Collision
+                if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
+                if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
+                if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
                 if (((ball_y<=(((SCREEN_H/2)+50)+player_y)&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)&&(ball_x>=75)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&(((ball_x>=SCREEN_W-110))&&(ball_x<=SCREEN_W-75))))
                 {
+                    //al_play_sample(Boop, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
+                    //al_play_sample_instance(BoopI);
                     ball_x_vel = -ball_x_vel * multiplier;
-                    multiplier += 0.001f;
+                    multiplier += 0.005f;
                     ball_y_vel = (rand() % 10) - 5;
                 }
+                // AI
                 if (ball_x_vel > 0)
                 {
-                    if (((ai_y < 340) || (ai_y_vel <= 0)) && ((ai_y > -340) || (ai_y_vel >= 0)))
+                    if ((ai_y < 340) && (ai_y > -340))
                     {
                         if (ai_y < (ball_y-340)) ai_y_vel = abs(ball_y_vel);
                         else ai_y_vel = -abs(ball_y_vel);
                     }
+                    else if (ai_y >  340) ai_y_vel = -abs(ball_y_vel);
+                    else if (ai_y < -340) ai_y_vel = abs(ball_y_vel);
                     else ai_y_vel = 0;
                 }
                 else
@@ -185,7 +244,7 @@ int main()
                     else if (ai_y <= 0) ai_y_vel = 1;
                     else ai_y_vel = 0;
                 }
-
+                // Movement
                 player_y += player_y_vel;
                 ai_y += ai_y_vel;
                 ball_x += ball_x_vel;
@@ -210,6 +269,9 @@ int main()
                 break;
             case Game:
                 al_draw_bitmap(ArenaBackground, 0, 0, 0);
+                //al_draw_bitmap(Center, (SCREEN_W/2)-10, 0, 0);
+                al_draw_line((SCREEN_W/2)-3,0,(SCREEN_W/2)-3,SCREEN_H,al_map_rgb(255,255,255), 2);
+                al_draw_circle((SCREEN_W/2)-5,(SCREEN_H/2)-5, 150, al_map_rgb(255,255,255), 2);
                 al_draw_filled_rectangle(75,((SCREEN_H/2)-50)+player_y,90,((SCREEN_H/2)+50)+player_y,al_map_rgb(255,255,255));              //Player
                 al_draw_filled_rectangle(SCREEN_W-75,((SCREEN_H/2)-50)+ai_y,SCREEN_W-90,((SCREEN_H/2)+50)+ai_y,al_map_rgb(255,255,255));    //AI
                 al_draw_scaled_bitmap(
@@ -219,7 +281,7 @@ int main()
                     ball_x, ball_y,
                     15, 15,
                     0);
-                al_draw_text(century_gothic40, al_map_rgb(250,250,250), 100, 40, ALLEGRO_ALIGN_CENTRE, player_text.c_str());
+                al_draw_text(century_gothic40, al_map_rgb(250,250,250), 140, 40, ALLEGRO_ALIGN_CENTRE, player_text.c_str());
                 al_draw_text(century_gothic40, al_map_rgb(250,250,250), SCREEN_W-100, 40, ALLEGRO_ALIGN_CENTRE, ai_text.c_str());
                 break;
             case Conclusion:
@@ -233,6 +295,15 @@ int main()
         render = false;
     }
 
+    al_destroy_bitmap(MenuBackground);
+    al_destroy_bitmap(ArenaBackground);
+    al_destroy_bitmap(Ball);
+    al_destroy_sample(BackgroundMusic);
+    al_destroy_sample(Boop);
+    al_destroy_sample(Score);
     al_destroy_display(display);
     return 0;
 }
+
+// Should have used objects
+// Should have used a constant coordinate system
