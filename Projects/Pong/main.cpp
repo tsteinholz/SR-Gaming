@@ -209,10 +209,11 @@ int main()
                     //al_play_sample_instance(ScoreI);
                     ball_x = (SCREEN_W/2)-12;
                     ball_y = (SCREEN_H/2)-15;
-                    ball_x_vel = (rand() % 2) ? 5 : -5;
+                    ball_x_vel = (rand() % 2) ? 5.75 : -5.75;
                     ball_y_vel = 0;
                     ai_y = 0;
                     player_y = 0;
+                    multiplier = 1;
                 }
                 // Collision
                 if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
@@ -223,7 +224,7 @@ int main()
                     //al_play_sample(Boop, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
                     //al_play_sample_instance(BoopI);
                     ball_x_vel = -ball_x_vel * multiplier;
-                    multiplier += 0.005f;
+                    multiplier += 0.05f;
                     ball_y_vel = (rand() % 10) - 5;
                 }
                 // AI
