@@ -4,7 +4,7 @@ control and is a good way for me to manage all of my projects in one place. All 
 has been done completley by Thomas A. Steinholz, assets are not done completly by me but doesn't change my code.
 
 # Libraries
-* [Allegro 5](https://www.allegro.cc/manual/5/)
+* [Allegro 5.0.10](https://www.allegro.cc/manual/5/)
 
 # Highlights / Showcase
 ### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical)
