@@ -24,14 +24,16 @@ typedef enum
 TODO :
 
 Fix AI...
-    - bounds on max and min
-    - not triggering movement when ball if above AI in negative coord space
-    - smoothness
+    [x] bounds on max and min
+    [] not triggering movement when ball if above AI in negative coord space
+    [] smoothness
 
-Get sound working (different instances or whatever)
-Start menu ( check paper for info )
-implement game (play to 10 points then end screen prompting stats, restart to main menu, and quit)
-figure out how to distribute Pong.exe (fix the compiler)
+[] Get sound working (different instances or whatever)
+[] Start menu ( check paper for info )
+[] working with buttons
+[] fix escape -> conclusion page
+[] implement game (play to 10 points then end screen prompting stats, restart to main menu, and quit)
+[] figure out how to distribute Pong.exe (fix the compiler)
 */
 
 
@@ -132,7 +134,7 @@ int main()
 
     //ALLEGRO_SAMPLE_INSTANCE BoopI = al_create_sample_instance(Boop);
     //ALLEGRO_SAMPLE_INSTANCE ScoreI = al_create_sample_instance(Score);
-    al_play_sample(BackgroundMusic, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+    //al_play_sample(BackgroundMusic, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
 
     float player_y = 0, player_y_vel = 0,
           ai_y_vel = 0, ai_y = 0,
@@ -159,6 +161,7 @@ int main()
             switch(event.keyboard.keycode)
             {
             case ALLEGRO_KEY_ESCAPE:
+                if (gamemode == Game) gamemode = Conclusion;
                 executing = false;
                 break;
             case ALLEGRO_KEY_UP:
@@ -170,7 +173,7 @@ int main()
                 player_y_vel = 10;
                 break;
             case ALLEGRO_KEY_ENTER:
-
+                //gamemode = Conclusion;//executing = false;
                 break;
             }
             gamemode = Game;
@@ -179,9 +182,6 @@ int main()
             player_y_vel = 0;
             break;
         case ALLEGRO_EVENT_TIMER:
-
-            //printf("ball y %f\tpaddle y %f\n", ball_y-340, ai_y);
-
             render = true;
             if (gamemode == Game)
             {
@@ -205,7 +205,7 @@ int main()
                 }
                 if (scored)
                 {
-                    //al_play_sample(Score, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
+                    al_play_sample(Score, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
                     //al_play_sample_instance(ScoreI);
                     ball_x = (SCREEN_W/2)-12;
                     ball_y = (SCREEN_H/2)-15;
@@ -224,7 +224,7 @@ int main()
                     //al_play_sample(Boop, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
                     //al_play_sample_instance(BoopI);
                     ball_x_vel = -ball_x_vel * multiplier;
-                    multiplier += 0.05f;
+                    multiplier += 0.005f;
                     ball_y_vel = (rand() % 10) - 5;
                 }
                 // AI
@@ -232,11 +232,12 @@ int main()
                 {
                     if ((ai_y < 340) && (ai_y > -340))
                     {
-                        if (ai_y < (ball_y-340)) ai_y_vel = abs(ball_y_vel);
+                        if ((SCREEN_H/2)+ai_y < ball_y) ai_y_vel = abs(ball_y_vel);
+                        else if ((SCREEN_H/2)+ai_y == ball_y) ai_y_vel = 0;
                         else ai_y_vel = -abs(ball_y_vel);
                     }
-                    else if (ai_y >  340) ai_y_vel = -abs(ball_y_vel);
-                    else if (ai_y < -340) ai_y_vel = abs(ball_y_vel);
+                    else if (ai_y >  340) ai_y_vel = -5;
+                    else if (ai_y < -340) ai_y_vel = 5;
                     else ai_y_vel = 0;
                 }
                 else
@@ -250,10 +251,20 @@ int main()
                 ai_y += ai_y_vel;
                 ball_x += ball_x_vel;
                 ball_y += ball_y_vel;
+                if (player_score >= 10 || ai_score >= 10) gamemode = Conclusion;
             }
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-            gamemode = Game;
+            switch (gamemode)
+            {
+            case Menu:
+                gamemode = Game;
+                break;
+            case Game:
+                break;
+            case Conclusion:
+                break;
+            }
             break;
         }
 
@@ -267,10 +278,10 @@ int main()
             {
             case Menu:
                 al_draw_bitmap(MenuBackground, 0, 0, 0);
+                al_draw_text(century_gothic40, al_map_rgb(250,250,250), SCREEN_W/2, 40, ALLEGRO_ALIGN_CENTRE, "Ultimate Pong");
                 break;
             case Game:
                 al_draw_bitmap(ArenaBackground, 0, 0, 0);
-                //al_draw_bitmap(Center, (SCREEN_W/2)-10, 0, 0);
                 al_draw_line((SCREEN_W/2)-3,0,(SCREEN_W/2)-3,SCREEN_H,al_map_rgb(255,255,255), 2);
                 al_draw_circle((SCREEN_W/2)-5,(SCREEN_H/2)-5, 150, al_map_rgb(255,255,255), 2);
                 al_draw_filled_rectangle(75,((SCREEN_H/2)-50)+player_y,90,((SCREEN_H/2)+50)+player_y,al_map_rgb(255,255,255));              //Player
@@ -286,7 +297,7 @@ int main()
                 al_draw_text(century_gothic40, al_map_rgb(250,250,250), SCREEN_W-100, 40, ALLEGRO_ALIGN_CENTRE, ai_text.c_str());
                 break;
             case Conclusion:
-
+                al_draw_bitmap(MenuBackground, 0, 0, 0);
                 break;
             }
 
@@ -307,4 +318,4 @@ int main()
 }
 
 // Should have used objects
-// Should have used a constant coordinate system
+// Should have used a constant coordinate system (messed up AI badly)

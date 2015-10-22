@@ -19,8 +19,10 @@
 	<sstream>
 	<stdio.h>
 
-1445343517 source:h:\c++\cpp-srhs\projects\pong\main.cpp
+1445515814 source:h:\c++\cpp-srhs\projects\pong\main.cpp
 	<allegro5/allegro.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_primitives.h>
 	<allegro5/allegro_font.h>
