@@ -55,9 +55,11 @@ int main()
 {
     const int SCREEN_W = 1280, SCREEN_H = 768;
     ALLEGRO_DISPLAY *display = NULL;
-    ALLEGRO_FONT* century_gothic40;
     ALLEGRO_EVENT_QUEUE* queue;
     ALLEGRO_TIMER* timer;
+
+    ALLEGRO_FONT* century_gothic40;
+    ALLEGRO_FONT* century_gothic24;
 
     ALLEGRO_BITMAP* MenuBackground;
     ALLEGRO_BITMAP* ArenaBackground;
@@ -123,6 +125,8 @@ int main()
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
     century_gothic40  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 40, ALLEGRO_ALIGN_CENTRE);
+    century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
+
 
     MenuBackground = LoadB("res\\menu.png");
     ArenaBackground = LoadB("res\\arena.png");
@@ -279,6 +283,8 @@ int main()
             case Menu:
                 al_draw_bitmap(MenuBackground, 0, 0, 0);
                 al_draw_text(century_gothic40, al_map_rgb(250,250,250), SCREEN_W/2, 40, ALLEGRO_ALIGN_CENTRE, "Ultimate Pong");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 200, SCREEN_H - 50, ALLEGRO_ALIGN_CENTRE, "Game by Thomas Steinholz");
+
                 break;
             case Game:
                 al_draw_bitmap(ArenaBackground, 0, 0, 0);
