@@ -30,10 +30,10 @@ Fix AI...
 
 [] Get sound working (different instances or whatever)
 [] Start menu ( check paper for info )
-[] working with buttons
+[x] working with buttons
 [] fix escape -> conclusion page
-[] implement game (play to 10 points then end screen prompting stats, restart to main menu, and quit)
-[] figure out how to distribute Pong.exe (fix the compiler)
+[x] implement game (play to 10 points then end screen prompting stats, restart to main menu, and quit)
+[x] figure out how to distribute Pong.exe (fix the compiler)
 */
 
 
@@ -280,7 +280,7 @@ int main()
                 if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
                 if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
                 if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
-                if (((ball_y<=(((SCREEN_H/2)+50)+player_y)&&(ball_y>=(((SCREEN_H/2)-50)+player_y)))&&((ball_x<=90)&&(ball_x>=75)))||(((ball_y<=(((SCREEN_H/2)+50)+ai_y))&&(ball_y>=(((SCREEN_H/2)-50)+ai_y)))&&(((ball_x>=SCREEN_W-110))&&(ball_x<=SCREEN_W-75))))
+                if (((ball_y <= (((SCREEN_H / 2) + 50) + player_y) && (ball_y >= (((SCREEN_H / 2) - 50) + player_y))) && ((ball_x <= 90) && (ball_x >= 75))) || (((ball_y <= (((SCREEN_H / 2) + 50) + ai_y)) && (ball_y >= (((SCREEN_H / 2) - 50) + ai_y))) && (((ball_x >= SCREEN_W - 110)) && (ball_x <= SCREEN_W - 75))))                
                 {
                     //al_play_sample(Boop, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
                     //al_play_sample_instance(BoopI);

@@ -1,10 +1,10 @@
-﻿Build started 10/21/2015 17:14:08.
+﻿Build started 10/23/2015 15:44:19.
      1>Project "D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Pong.vcxproj" on node 2 (Build target(s)).
      1>Link:
          D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Debug\Pong.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\Users\Thomas\Documents\Development\C++\SRHS\Libraries\allegro-5.0.10-msvc-11.0\lib" "allegro-5.0.10-monolith-md-debug.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Debug\Pong.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Debug\Pong.lib" /MACHINE:X86 Debug\main.obj
-         Pong.vcxproj -> D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Debug\Pong.exe
-     1>Done Building Project "D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Pong.vcxproj" (Build target(s)).
+     1>LINK : fatal error LNK1168: cannot open D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Debug\Pong.exe for writing
+     1>Done Building Project "D:\Users\Thomas\Documents\Development\C++\SRHS\Projects\Pong\Pong.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.61
+Time Elapsed 00:00:00.06

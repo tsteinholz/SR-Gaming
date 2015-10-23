@@ -1,3 +1,6 @@
+*.log
+*.opensdf
+
 # Compiled Object files
 *.suo
 *.slo
