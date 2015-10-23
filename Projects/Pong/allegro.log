@@ -580,3 +580,44 @@ d3d      D          d3d_bmp.cpp:467  _al_d3d_sync_bitmap              [ 248.4176
 d3d      D          d3d_bmp.cpp:473  _al_d3d_sync_bitmap              [ 248.41762] _al_d3d_sync_bitmap (video) ref count == 2
 d3d      D          d3d_bmp.cpp:467  _al_d3d_sync_bitmap              [ 248.41867] _al_d3d_sync_bitmap (system) ref count == 1
 d3d      D          d3d_bmp.cpp:473  _al_d3d_sync_bitmap              [ 248.41870] _al_d3d_sync_bitmap (video) ref count == 2
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.62338] removed dtor for object 046A2890
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.62858] removed dtor for object 046A2990
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.63311] removed dtor for object 046AD950
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.63335] removed dtor for object 046941D0
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.63879] removed dtor for object 04694410
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.63901] removed dtor for object 046945C0
+d3d      I         d3d_disp.cpp:921  d3d_destroy_display              [ 386.63931] destroying display 01158FD0 (current 00000000)
+bitmap   D             bitmap.c:548  _al_convert_to_memory_bitmap     [ 386.63933] converting display bitmap 046A51E0 to memory bitmap
+d3d      D          d3d_bmp.cpp:467  _al_d3d_sync_bitmap              [ 386.63949] _al_d3d_sync_bitmap (system) ref count == 1
+d3d      D          d3d_bmp.cpp:473  _al_d3d_sync_bitmap              [ 386.63950] _al_d3d_sync_bitmap (video) ref count == 2
+d3d      W          d3d_bmp.cpp:743  d3d_destroy_bitmap               [ 386.64049] d3d_destroy_bitmap: Release video texture failed.
+bitmap   D             bitmap.c:548  _al_convert_to_memory_bitmap     [ 386.64051] converting display bitmap 0995DCF0 to memory bitmap
+d3d      D          d3d_bmp.cpp:467  _al_d3d_sync_bitmap              [ 386.64060] _al_d3d_sync_bitmap (system) ref count == 1
+d3d      D          d3d_bmp.cpp:473  _al_d3d_sync_bitmap              [ 386.64061] _al_d3d_sync_bitmap (video) ref count == 2
+d3d      W          d3d_bmp.cpp:743  d3d_destroy_bitmap               [ 386.64110] d3d_destroy_bitmap: Release video texture failed.
+d3d      D         d3d_disp.cpp:905  d3d_destroy_display_internals    [ 386.64113] waiting for display 01158FD0's thread to end
+d3d      W         d3d_disp.cpp:617  d3d_destroy_device               [ 386.64837] d3d_destroy_device: ref count not 0
+d3d      I         d3d_disp.cpp:1527 d3d_display_thread_proc          [ 386.65694] d3d display thread exits
+dtor     D               dtor.c:114  _al_run_destructors              [ 386.65787] calling dtor for object 0467D1B0, func 0FA61B3B
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.65791] removed dtor for object 0467D1B0
+dtor     D               dtor.c:114  _al_run_destructors              [ 386.65808] calling dtor for object 0467D290, func 0FA61B3B
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.65809] removed dtor for object 0467D290
+dtor     D               dtor.c:114  _al_run_destructors              [ 386.65821] calling dtor for object 010F4088, func 0FA624D2
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.66205] removed dtor for object 010F4088
+dtor     D               dtor.c:114  _al_run_destructors              [ 386.66207] calling dtor for object 04682260, func 0FA627A7
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.66208] removed dtor for object 04682260
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.66316] removed dtor for object 011041A8
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.66318] removed dtor for object 01103C98
+audio-dsound D           dsound.cpp:526  _dsound_stop_voice               [ 386.66319] Stopping voice
+audio-dsound D           dsound.cpp:542  _dsound_stop_voice               [ 386.66320] Joining thread
+audio-dsound D           dsound.cpp:548  _dsound_stop_voice               [ 386.66451] Joined thread
+audio-dsound D           dsound.cpp:550  _dsound_stop_voice               [ 386.66453] Destroying thread
+audio-dsound D           dsound.cpp:552  _dsound_stop_voice               [ 386.66454] Thread destroyed
+audio-dsound D           dsound.cpp:555  _dsound_stop_voice               [ 386.66454] Releasing buffer
+audio-dsound I           dsound.cpp:559  _dsound_stop_voice               [ 386.66455] Voice stopped
+dtor     D               dtor.c:214  _al_unregister_destructor        [ 386.66458] removed dtor for object 00BB5B70
+audio-dsound D           dsound.cpp:375  _dsound_deallocate_voice         [ 386.66459] Deallocating voice
+audio-dsound D           dsound.cpp:380  _dsound_deallocate_voice         [ 386.66459] Deallocated voice
+audio-dsound D           dsound.cpp:289  _dsound_close                    [ 386.66461] Releasing device
+audio-dsound D           dsound.cpp:291  _dsound_close                    [ 386.67039] Released device
+audio-dsound I           dsound.cpp:294  _dsound_close                    [ 386.67042] DirectSound closed

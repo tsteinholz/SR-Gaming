@@ -1,5 +1,7 @@
 *.log
 *.opensdf
+Debug
+Release
 
 # Compiled Object files
 *.suo
