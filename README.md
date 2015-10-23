@@ -1,7 +1,7 @@
-# South River High : C++ w/ Gaming
+# South River High : Gaming w/ C++
 This is my repository for all of my C++ code for the SRHS course "C++ with Gaming". This code is used for personal version 
 control and is a good way for me to manage all of my projects in one place. All the code you see here
-has been done completley by Thomas A. Steinholz, assets are not done completly by me but doesn't change my code.
+has been done completley by Thomas A. Steinholz, assets are not done completly by me but doesn't change my code. Below I will post a screenshot of the games I make, nothing fancy. Just showing off some of the gameplay and the aesthetics of my games.
 
 # Libraries
 * [Allegro 5.0.10](https://www.allegro.cc/manual/5/)
