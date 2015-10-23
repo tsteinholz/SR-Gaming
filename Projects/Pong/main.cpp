@@ -24,9 +24,9 @@ typedef enum
 TODO :
 
 Fix AI...
-    [x] bounds on max and min
+    [] bounds on max and min
     [] not triggering movement when ball if above AI in negative coord space
-    [] smoothness
+    [x] smoothness
 
 [] Get sound working (different instances or whatever)
 [] Start menu ( check paper for info )
@@ -54,10 +54,11 @@ ALLEGRO_SAMPLE* LoadS(const char* file)
 int main()
 {
     const int SCREEN_W = 1280, SCREEN_H = 768;
+    
     ALLEGRO_DISPLAY *display = NULL;
+    
     ALLEGRO_EVENT_QUEUE* queue;
-    ALLEGRO_TIMER* timer;
-
+    
     ALLEGRO_FONT* century_gothic40;
     ALLEGRO_FONT* century_gothic24;
 
@@ -68,6 +69,8 @@ int main()
     ALLEGRO_SAMPLE* BackgroundMusic;
     ALLEGRO_SAMPLE* Boop;
     ALLEGRO_SAMPLE* Score;
+
+    ALLEGRO_TIMER* timer;
 
     Gamemode gamemode = Menu;
 
@@ -81,24 +84,24 @@ int main()
     }
     if(!al_install_audio())
     {
-        fprintf(stderr, "failed to initialize audio!\n");
+        fprintf(stderr, "Failed to initialize audio!\n");
         return -1;
     }
 
     if(!al_init_acodec_addon())
     {
-        fprintf(stderr, "failed to initialize audio codecs!\n");
+        fprintf(stderr, "Failed to initialize audio codecs!\n");
         return -1;
     }
 
     if (!al_reserve_samples(1))
     {
-        fprintf(stderr, "failed to reserve samples!\n");
+        fprintf(stderr, "Failed to reserve samples!\n");
         return -1;
     }
     if(!al_install_mouse())
     {
-        fprintf(stderr, "failed to initialize the mouse!\n");
+        fprintf(stderr, "Failed to initialize the mouse!\n");
         return -1;
     }
     if(!al_init_primitives_addon())
@@ -113,21 +116,27 @@ int main()
         printf("al_create_display Failed!\n");
         return -1;
     }
+    
+    srand(time(NULL));
+    
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_keyboard();
     al_init_image_addon();
+    
     queue = al_create_event_queue();
+    timer = al_create_timer(1.0 / 60);
+
     al_register_event_source(queue, al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_mouse_event_source());
     al_register_event_source(queue, al_get_display_event_source(display));
-    timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
+
     al_start_timer(timer);
+    
     century_gothic40  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 40, ALLEGRO_ALIGN_CENTRE);
     century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
-
-
+    
     MenuBackground = LoadB("res\\menu.png");
     ArenaBackground = LoadB("res\\arena.png");
     Ball = LoadB("res\\ball.png");
@@ -146,14 +155,43 @@ int main()
           ball_y = (SCREEN_H/2)-15, ball_y_vel = 0,
           multiplier = 1;
 
-    bool render;
-    bool executing = true;
+    bool render , scored, executing = true;
     while (executing)
     {
         ALLEGRO_EVENT event;
         al_wait_for_event(queue, &event);
         switch(event.type)
         {
+        case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+            switch (gamemode)
+            {
+            case Menu:
+                gamemode = Game;
+                break;
+            case Game:
+                break;
+            case Conclusion:
+                if ((event.mouse.x >= (SCREEN_W/2)-150) && (event.mouse.x <= (SCREEN_W/2)+150))
+                {
+                    if ((event.mouse.y >= 305) && (event.mouse.y <= 380))
+                    {
+                            player_score = ai_score = player_y = player_y_vel = ai_y_vel = ai_y = ball_y_vel = 0;
+                            ball_x_vel = (rand() % 2) ? 5 : -5;
+                            ball_x = (SCREEN_W / 2) - 12;
+                            ball_y = (SCREEN_H / 2) - 15; 
+                            multiplier = 1;
+                            player_text = "PLAYER : 0";
+                            ai_text = "BOT : 0";
+                            gamemode = Menu;
+                    }
+                    else if ((event.mouse.y >= 405) && (event.mouse.y <= 480))
+                    {
+                        executing = false;
+                    }
+                }
+                break;
+            }
+            break;
         case ALLEGRO_EVENT_DISPLAY_CLOSE:
             executing = false;
             break;
@@ -165,8 +203,20 @@ int main()
             switch(event.keyboard.keycode)
             {
             case ALLEGRO_KEY_ESCAPE:
-                if (gamemode == Game) gamemode = Conclusion;
-                executing = false;
+                gamemode = Conclusion;
+
+                switch (gamemode)
+                {
+                    case Menu:
+                        executing = false;
+                    break;
+                    case Game:
+                        executing = false;
+                        break;
+                    case Conclusion:
+                        executing = false;
+                    break;
+                }               
                 break;
             case ALLEGRO_KEY_UP:
             case ALLEGRO_KEY_W:
@@ -177,7 +227,7 @@ int main()
                 player_y_vel = 10;
                 break;
             case ALLEGRO_KEY_ENTER:
-                //gamemode = Conclusion;//executing = false;
+                executing = false;
                 break;
             }
             gamemode = Game;
@@ -187,8 +237,15 @@ int main()
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
-            if (gamemode == Game)
+            switch(gamemode)
             {
+                case Menu:
+
+                break;
+                case Conclusion:
+                    
+                break;
+                case Game:
                 // Scoring
                 bool scored = false;
                 if (ball_x >= SCREEN_W)
@@ -256,17 +313,6 @@ int main()
                 ball_x += ball_x_vel;
                 ball_y += ball_y_vel;
                 if (player_score >= 10 || ai_score >= 10) gamemode = Conclusion;
-            }
-            break;
-        case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-            switch (gamemode)
-            {
-            case Menu:
-                gamemode = Game;
-                break;
-            case Game:
-                break;
-            case Conclusion:
                 break;
             }
             break;
@@ -304,6 +350,13 @@ int main()
                 break;
             case Conclusion:
                 al_draw_bitmap(MenuBackground, 0, 0, 0);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 40, ALLEGRO_ALIGN_CENTRE, "Game Over!");
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 80, ALLEGRO_ALIGN_CENTRE, ai_score < player_score ? "You Win!" : "You Lose!");
+                al_draw_textf(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 120, ALLEGRO_ALIGN_CENTRE, "%d : %d", player_score, ai_score);
+                al_draw_rectangle((SCREEN_W/2)-150, 305, (SCREEN_W/2)+150, 380, al_map_rgb(255, 255, 255), 3);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 320, ALLEGRO_ALIGN_CENTRE, "Restart");
+                al_draw_rectangle((SCREEN_W / 2) - 150, 405, (SCREEN_W / 2) + 150, 480, al_map_rgb(255, 255, 255), 3);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 420, ALLEGRO_ALIGN_CENTRE, "Quit");
                 break;
             }
 
@@ -320,8 +373,6 @@ int main()
     al_destroy_sample(Boop);
     al_destroy_sample(Score);
     al_destroy_display(display);
+
     return 0;
 }
-
-// Should have used objects
-// Should have used a constant coordinate system (messed up AI badly)
