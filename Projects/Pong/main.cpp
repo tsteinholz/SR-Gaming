@@ -16,6 +16,7 @@
 typedef enum
 {
     Menu,
+    Description,
     Game,
     Conclusion,
 } Gamemode;
@@ -29,7 +30,7 @@ Fix AI...
     [x] smoothness
 
 [] Get sound working (different instances or whatever)
-[] Start menu ( check paper for info )
+[x] Start menu ( check paper for info )
 [x] working with buttons
 [] fix escape -> conclusion page
 [x] implement game (play to 10 points then end screen prompting stats, restart to main menu, and quit)
@@ -166,9 +167,24 @@ int main()
             switch (gamemode)
             {
             case Menu:
-                gamemode = Game;
+                if ((event.mouse.x >= (SCREEN_W / 2) - 150) && (event.mouse.x <= (SCREEN_W / 2) + 150))
+                {
+                    if ((event.mouse.y >= 205) && (event.mouse.y <= 280))
+                    {
+                        gamemode = Game;
+                    }
+                    else if ((event.mouse.y >= 305) && (event.mouse.y <= 380))
+                    {
+                        gamemode = Description;
+                    }
+                    else if ((event.mouse.y >= 405) && (event.mouse.y <= 480))
+                    {
+                        executing = false;
+                    }
+                }
                 break;
-            case Game:
+            case Description:
+                
                 break;
             case Conclusion:
                 if ((event.mouse.x >= (SCREEN_W/2)-150) && (event.mouse.x <= (SCREEN_W/2)+150))
@@ -195,27 +211,15 @@ int main()
         case ALLEGRO_EVENT_DISPLAY_CLOSE:
             executing = false;
             break;
-        case ALLEGRO_EVENT_MOUSE_AXES:
-        case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
-            //player_y = event.mouse.y;
-            break;
         case ALLEGRO_EVENT_KEY_DOWN:
             switch(event.keyboard.keycode)
             {
             case ALLEGRO_KEY_ESCAPE:
-                gamemode = Conclusion;
-
                 switch (gamemode)
                 {
-                    case Menu:
-                        executing = false;
-                    break;
                     case Game:
                         executing = false;
                         break;
-                    case Conclusion:
-                        executing = false;
-                    break;
                 }               
                 break;
             case ALLEGRO_KEY_UP:
@@ -239,12 +243,6 @@ int main()
             render = true;
             switch(gamemode)
             {
-                case Menu:
-
-                break;
-                case Conclusion:
-                    
-                break;
                 case Game:
                 // Scoring
                 bool scored = false;
@@ -289,22 +287,22 @@ int main()
                     ball_y_vel = (rand() % 10) - 5;
                 }
                 // AI
-                if (ball_x_vel > 0)
+                if (ball_x_vel > 0)                                                 // Ball comming towards AI
                 {
-                    if ((ai_y < 340) && (ai_y > -340))
+                    if ((ai_y <= 340) && (ai_y >= -340))                              // AI is in game bounds
                     {
-                        if ((SCREEN_H/2)+ai_y < ball_y) ai_y_vel = abs(ball_y_vel);
-                        else if ((SCREEN_H/2)+ai_y == ball_y) ai_y_vel = 0;
-                        else ai_y_vel = -abs(ball_y_vel);
+                        if ((SCREEN_H/2)+ai_y < ball_y) ai_y_vel = abs(ball_y_vel) < 3 ? abs(ball_y_vel) : 5; 
+                        else if ((SCREEN_H/2)+ai_y == ball_y) ai_y_vel = 0;         
+                        else ai_y_vel = abs(ball_y_vel) < 3 ? -abs(ball_y_vel) : -5;                           
                     }
-                    else if (ai_y >  340) ai_y_vel = -5;
-                    else if (ai_y < -340) ai_y_vel = 5;
+                    else if (ai_y >  340) ai_y_vel = -3;
+                    else if (ai_y < -340) ai_y_vel = 3;
                     else ai_y_vel = 0;
                 }
-                else
+                else                                                                 // Go towards center
                 {
-                    if (ai_y >= 0) ai_y_vel = -1;
-                    else if (ai_y <= 0) ai_y_vel = 1;
+                    if (ai_y > 10) ai_y_vel = -1;
+                    else if (ai_y < 10) ai_y_vel = 1;
                     else ai_y_vel = 0;
                 }
                 // Movement
@@ -329,8 +327,18 @@ int main()
             case Menu:
                 al_draw_bitmap(MenuBackground, 0, 0, 0);
                 al_draw_text(century_gothic40, al_map_rgb(250,250,250), SCREEN_W/2, 40, ALLEGRO_ALIGN_CENTRE, "Ultimate Pong");
+                al_draw_rectangle((SCREEN_W / 2) - 150, 205, (SCREEN_W / 2) + 150, 280, al_map_rgb(255, 255, 255), 3);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 220, ALLEGRO_ALIGN_CENTRE, "Play");
+                al_draw_rectangle((SCREEN_W / 2) - 150, 305, (SCREEN_W / 2) + 150, 380, al_map_rgb(255, 255, 255), 3);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 320, ALLEGRO_ALIGN_CENTRE, "About");
+                al_draw_rectangle((SCREEN_W / 2) - 150, 405, (SCREEN_W / 2) + 150, 480, al_map_rgb(255, 255, 255), 3);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 420, ALLEGRO_ALIGN_CENTRE, "Quit");
                 al_draw_text(century_gothic24, al_map_rgb(250,250,250), 200, SCREEN_H - 50, ALLEGRO_ALIGN_CENTRE, "Game by Thomas Steinholz");
 
+                break;
+            case Description:
+                al_draw_bitmap(MenuBackground, 0, 0, 0);
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 40, ALLEGRO_ALIGN_CENTRE, "Ultimate Pong");
                 break;
             case Game:
                 al_draw_bitmap(ArenaBackground, 0, 0, 0);
