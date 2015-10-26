@@ -25,7 +25,7 @@ typedef enum
 TODO :
 
 Fix AI...
-    [] bounds on max and min
+    [x] bounds on max and min
     [] not triggering movement when ball if above AI in negative coord space
     [x] smoothness
 
@@ -55,11 +55,11 @@ ALLEGRO_SAMPLE* LoadS(const char* file)
 int main()
 {
     const int SCREEN_W = 1280, SCREEN_H = 768;
-    
+
     ALLEGRO_DISPLAY *display = NULL;
-    
+
     ALLEGRO_EVENT_QUEUE* queue;
-    
+
     ALLEGRO_FONT* century_gothic40;
     ALLEGRO_FONT* century_gothic24;
 
@@ -70,6 +70,7 @@ int main()
     ALLEGRO_SAMPLE* BackgroundMusic;
     ALLEGRO_SAMPLE* Boop;
     ALLEGRO_SAMPLE* Score;
+    ALLEGRO_SAMPLE* Intro;
 
     ALLEGRO_TIMER* timer;
 
@@ -117,14 +118,14 @@ int main()
         printf("al_create_display Failed!\n");
         return -1;
     }
-    
+
     srand(time(NULL));
-    
+
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_keyboard();
     al_init_image_addon();
-    
+
     queue = al_create_event_queue();
     timer = al_create_timer(1.0 / 60);
 
@@ -134,10 +135,10 @@ int main()
     al_register_event_source(queue, al_get_timer_event_source(timer));
 
     al_start_timer(timer);
-    
+
     century_gothic40  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 40, ALLEGRO_ALIGN_CENTRE);
     century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
-    
+
     MenuBackground = LoadB("res\\menu.png");
     ArenaBackground = LoadB("res\\arena.png");
     Ball = LoadB("res\\ball.png");
@@ -145,6 +146,26 @@ int main()
     BackgroundMusic = LoadS("res\\rain.wav");
     Boop = LoadS("res\\boop.ogg");
     Score = LoadS("res\\score.wav");
+    Intro = LoadS("res\\intro.ogg");
+
+    ALLEGRO_VOICE *audioDevice = al_create_voice(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    ALLEGRO_MIXER *mixerMaster = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    ALLEGRO_MIXER *mixerMusic = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    ALLEGRO_MIXER *mixerSounds = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+
+    if (audioDevice == NULL || mixerMaster == NULL || mixerMusic == NULL || mixerSounds == NULL)
+    {
+        printf("Failed to start audio devices");
+    }
+
+    al_attach_sample_instance_to_mixer(Boop, mixerSounds);
+    al_attach_sample_instance_to_mixer(BackgroundMusic, mixerMusic);
+    al_attach_sample_instance_to_mixer(Score, mixerSounds);
+    al_attach_sample_instance_to_mixer(Intro, mixerSounds);
+
+    al_attach_mixer_to_mixer(mixerMusic, mixerMaster);
+    al_attach_mixer_to_mixer(mixerSounds, mixerMaster);
+    al_attach_mixer_to_voice(mixerMaster, audioDevice);
 
     //ALLEGRO_SAMPLE_INSTANCE BoopI = al_create_sample_instance(Boop);
     //ALLEGRO_SAMPLE_INSTANCE ScoreI = al_create_sample_instance(Score);
@@ -157,6 +178,7 @@ int main()
           multiplier = 1;
 
     bool render , scored, executing = true;
+    al_play_sample(Intro, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
     while (executing)
     {
         ALLEGRO_EVENT event;
@@ -184,21 +206,21 @@ int main()
                 }
                 break;
             case Description:
-                
+
                 break;
             case Conclusion:
                 if ((event.mouse.x >= (SCREEN_W/2)-150) && (event.mouse.x <= (SCREEN_W/2)+150))
                 {
                     if ((event.mouse.y >= 305) && (event.mouse.y <= 380))
                     {
-                            player_score = ai_score = player_y = player_y_vel = ai_y_vel = ai_y = ball_y_vel = 0;
-                            ball_x_vel = (rand() % 2) ? 5 : -5;
-                            ball_x = (SCREEN_W / 2) - 12;
-                            ball_y = (SCREEN_H / 2) - 15; 
-                            multiplier = 1;
-                            player_text = "PLAYER : 0";
-                            ai_text = "BOT : 0";
-                            gamemode = Menu;
+                        player_score = ai_score = player_y = player_y_vel = ai_y_vel = ai_y = ball_y_vel = 0;
+                        ball_x_vel = (rand() % 2) ? 5 : -5;
+                        ball_x = (SCREEN_W / 2) - 12;
+                        ball_y = (SCREEN_H / 2) - 15;
+                        multiplier = 1;
+                        player_text = "PLAYER : 0";
+                        ai_text = "BOT : 0";
+                        gamemode = Menu;
                     }
                     else if ((event.mouse.y >= 405) && (event.mouse.y <= 480))
                     {
@@ -217,10 +239,10 @@ int main()
             case ALLEGRO_KEY_ESCAPE:
                 switch (gamemode)
                 {
-                    case Game:
-                        executing = false;
-                        break;
-                }               
+                case Game:
+                    executing = false;
+                    break;
+                }
                 break;
             case ALLEGRO_KEY_UP:
             case ALLEGRO_KEY_W:
@@ -243,7 +265,7 @@ int main()
             render = true;
             switch(gamemode)
             {
-                case Game:
+            case Game:
                 // Scoring
                 bool scored = false;
                 if (ball_x >= SCREEN_W)
@@ -278,7 +300,7 @@ int main()
                 if (((((SCREEN_H/2)-50)+player_y)<=0)&&(player_y_vel<0)) player_y_vel = 0;
                 if (((((SCREEN_H/2)+50)+player_y)>=SCREEN_H)&&(player_y_vel>0)) player_y_vel = 0;
                 if ((ball_y <= 0) || (ball_y >= SCREEN_H)) ball_y_vel = -ball_y_vel;
-                if (((ball_y <= (((SCREEN_H / 2) + 50) + player_y) && (ball_y >= (((SCREEN_H / 2) - 50) + player_y))) && ((ball_x <= 90) && (ball_x >= 75))) || (((ball_y <= (((SCREEN_H / 2) + 50) + ai_y)) && (ball_y >= (((SCREEN_H / 2) - 50) + ai_y))) && (((ball_x >= SCREEN_W - 110)) && (ball_x <= SCREEN_W - 75))))                
+                if (((ball_y <= (((SCREEN_H / 2) + 50) + player_y) && (ball_y >= (((SCREEN_H / 2) - 50) + player_y))) && ((ball_x <= 90) && (ball_x >= 75))) || (((ball_y <= (((SCREEN_H / 2) + 50) + ai_y)) && (ball_y >= (((SCREEN_H / 2) - 50) + ai_y))) && (((ball_x >= SCREEN_W - 110)) && (ball_x <= SCREEN_W - 75))))
                 {
                     //al_play_sample(Boop, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
                     //al_play_sample_instance(BoopI);
@@ -291,9 +313,9 @@ int main()
                 {
                     if ((ai_y <= 340) && (ai_y >= -340))                              // AI is in game bounds
                     {
-                        if ((SCREEN_H/2)+ai_y < ball_y) ai_y_vel = abs(ball_y_vel) < 3 ? abs(ball_y_vel) : 5; 
-                        else if ((SCREEN_H/2)+ai_y == ball_y) ai_y_vel = 0;         
-                        else ai_y_vel = abs(ball_y_vel) < 3 ? -abs(ball_y_vel) : -5;                           
+                        if ((SCREEN_H/2)+ai_y < ball_y) ai_y_vel = abs(ball_y_vel) < 3 ? abs(ball_y_vel) : 5;
+                        else if ((SCREEN_H/2)+ai_y == ball_y) ai_y_vel = 0;
+                        else ai_y_vel = abs(ball_y_vel) < 3 ? -abs(ball_y_vel) : -5;
                     }
                     else if (ai_y >  340) ai_y_vel = -3;
                     else if (ai_y < -340) ai_y_vel = 3;
@@ -339,6 +361,41 @@ int main()
             case Description:
                 al_draw_bitmap(MenuBackground, 0, 0, 0);
                 al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 40, ALLEGRO_ALIGN_CENTRE, "Ultimate Pong");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 100, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 120, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 140, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 160, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 180, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 200, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 220, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 260, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 280, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 300, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 320, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 340, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 360, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 380, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 400, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 420, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 440, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 460, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 480, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 500, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 520, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 540, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 560, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 580, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
                 break;
             case Game:
                 al_draw_bitmap(ArenaBackground, 0, 0, 0);
