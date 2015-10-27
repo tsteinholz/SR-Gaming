@@ -11,6 +11,7 @@ has been done completley by Thomas A. Steinholz, assets are not done completly b
 
 ## Libraries
 * [Allegro 5.0.10](https://www.allegro.cc/manual/5/)
+* [JSON-C](http://json-c.github.io/json-c/)
 
 ## Highlights / Showcase
 ### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical) | [[Download]]()
