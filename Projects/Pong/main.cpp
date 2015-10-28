@@ -29,7 +29,7 @@ Fix AI...
     [] not triggering movement when ball if above AI in negative coord space
     [x] smoothness
 
-[] Get sound working (different instances or whatever)
+[~] Get sound working (different instances or whatever)
 [x] Start menu ( check paper for info )
 [x] working with buttons
 [] fix escape -> conclusion page
@@ -158,6 +158,7 @@ int main()
         printf("Failed to start audio devices");
     }
 
+/*  Attempt of Audio
     al_attach_sample_instance_to_mixer(Boop, mixerSounds);
     al_attach_sample_instance_to_mixer(BackgroundMusic, mixerMusic);
     al_attach_sample_instance_to_mixer(Score, mixerSounds);
@@ -169,7 +170,7 @@ int main()
 
     //ALLEGRO_SAMPLE_INSTANCE BoopI = al_create_sample_instance(Boop);
     //ALLEGRO_SAMPLE_INSTANCE ScoreI = al_create_sample_instance(Score);
-    //al_play_sample(BackgroundMusic, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+    //al_play_sample(BackgroundMusic, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);*/
 
     float player_y = 0, player_y_vel = 0,
           ai_y_vel = 0, ai_y = 0,
@@ -360,41 +361,18 @@ int main()
                 break;
             case Description:
                 al_draw_bitmap(MenuBackground, 0, 0, 0);
-                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 40, ALLEGRO_ALIGN_CENTRE, "Ultimate Pong");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 100, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 120, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 140, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 160, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 180, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 200, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 220, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 260, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 280, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 300, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 320, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 340, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 360, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 380, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 400, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 420, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 440, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 460, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 480, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 500, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 520, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 540, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 560, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 580, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                al_draw_text(century_gothic40, al_map_rgb(250, 250, 250), SCREEN_W / 2, 40, ALLEGRO_ALIGN_CENTRE, "About Ultimate Pong");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 240, ALLEGRO_ALIGN_LEFT, "This is the game of Ultimate Pong! The game consists of 2 paddles knocking a ball back and");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 260, ALLEGRO_ALIGN_LEFT, "forth until one misses it and it goes into the goal. The point of the game is to score 10 ");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 280, ALLEGRO_ALIGN_LEFT, "points. You can score a point by getting the ball in the other player's goal (right behind");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 300, ALLEGRO_ALIGN_LEFT, "the enemy paddle). You control the game by using either the UP and DOWN arrow or the W and");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 320, ALLEGRO_ALIGN_LEFT, "S key. As you can guess, the up arrow brings your player up while the down arrow brings   ");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 340, ALLEGRO_ALIGN_LEFT, "your player down. The W key functions the same as the UP arrow as the S key functions the");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 360, ALLEGRO_ALIGN_LEFT, "same as the DOWN key. The game ends once either the player of AI has reached a point value");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 380, ALLEGRO_ALIGN_LEFT, "of 10. You play as the left paddle and the AI plays as the right paddle. You can see the  ");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 400, ALLEGRO_ALIGN_LEFT, "corresponding scores above the side you play as if you get lost or confused. To get       ");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 100, 420, ALLEGRO_ALIGN_LEFT, "started, hit the ESC button. DISCLAIMER : IF YOU GET HURT, ITS NOT PONGS FAULT SO DONT SUE");
+                al_draw_text(century_gothic24, al_map_rgb(250,250,250), 200, SCREEN_H - 50, ALLEGRO_ALIGN_CENTRE, "PRESS sESC TO PLAY");
 
                 break;
             case Game:
