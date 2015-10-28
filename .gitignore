@@ -1,7 +1,10 @@
 *.log
 *.opensdf
-Debug
-Release
+Debug/
+Release/
+x64/
+Win32/
+.idea/
 
 # Compiled Object files
 *.suo
@@ -33,7 +36,6 @@ Release
 *.out
 *.app
 
-x64/
-Win32/
-.idea/
+# Specific Files
 Thumbs.db
+allegro.log
