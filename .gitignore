@@ -39,3 +39,4 @@ Win32/
 # Specific Files
 Thumbs.db
 allegro.log
+.gitconfig
