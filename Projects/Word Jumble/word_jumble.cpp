@@ -11,14 +11,19 @@ using namespace std;
 int main()
 {
     enum fields {WORD, HINT, NUM_FIELDS};
-    const int NUM_WORDS = 5;
+    const int NUM_WORDS = 10;
     const string WORDS[NUM_WORDS][NUM_FIELDS] =
     {
         {"wall", "Do you feel you're banging your head against something?"},
         {"glasses", "These might help you see the answer."},
         {"labored", "Going slowly, is it?"},
         {"persistent", "Keep at it."},
-        {"jumble", "It's what the game is all about."}
+        {"jumble", "It's what the game is all about."},
+        {"thomas", "The person who programmed this."},
+        {"computer", "The thing running this program."},
+        {"cplusplus", "The programing language we are using."},
+        {"southriver", "The school we go to."},
+        {"scott", "A crazy little boy."}
     };
 
   	srand(time(0));
