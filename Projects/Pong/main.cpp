@@ -67,10 +67,10 @@ int main()
     ALLEGRO_BITMAP* ArenaBackground;
     ALLEGRO_BITMAP* Ball;
 
-    ALLEGRO_SAMPLE* BackgroundMusic;
-    ALLEGRO_SAMPLE* Boop;
-    ALLEGRO_SAMPLE* Score;
-    ALLEGRO_SAMPLE* Intro;
+    //ALLEGRO_SAMPLE* BackgroundMusic;
+    //ALLEGRO_SAMPLE* Boop;
+    //ALLEGRO_SAMPLE* Score;
+    //ALLEGRO_SAMPLE* Intro;
 
     ALLEGRO_TIMER* timer;
 
@@ -84,23 +84,23 @@ int main()
         printf("al_init Failed!\n");
         return -1;
     }
-    if(!al_install_audio())
-    {
-        fprintf(stderr, "Failed to initialize audio!\n");
-        return -1;
-    }
+    //if(!al_install_audio())
+    //{
+        //fprintf(stderr, "Failed to initialize audio!\n");
+        //return -1;
+    //}
 
-    if(!al_init_acodec_addon())
-    {
-        fprintf(stderr, "Failed to initialize audio codecs!\n");
-        return -1;
-    }
+    //if(!al_init_acodec_addon())
+    //{
+        //fprintf(stderr, "Failed to initialize audio codecs!\n");
+        //return -1;
+    //}
 
-    if (!al_reserve_samples(1))
-    {
-        fprintf(stderr, "Failed to reserve samples!\n");
-        return -1;
-    }
+    //if (!al_reserve_samples(1))
+    //{
+        //fprintf(stderr, "Failed to reserve samples!\n");
+        //return -1;
+    //}
     if(!al_install_mouse())
     {
         fprintf(stderr, "Failed to initialize the mouse!\n");
@@ -143,20 +143,20 @@ int main()
     ArenaBackground = LoadB("res\\arena.png");
     Ball = LoadB("res\\ball.png");
 
-    BackgroundMusic = LoadS("res\\rain.wav");
-    Boop = LoadS("res\\boop.ogg");
-    Score = LoadS("res\\score.wav");
-    Intro = LoadS("res\\intro.ogg");
+    //BackgroundMusic = LoadS("res\\rain.wav");
+    //Boop = LoadS("res\\boop.ogg");
+    //Score = LoadS("res\\score.wav");
+    //Intro = LoadS("res\\intro.ogg");
 
-    ALLEGRO_VOICE *audioDevice = al_create_voice(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
-    ALLEGRO_MIXER *mixerMaster = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
-    ALLEGRO_MIXER *mixerMusic = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
-    ALLEGRO_MIXER *mixerSounds = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    //ALLEGRO_VOICE *audioDevice = al_create_voice(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    //ALLEGRO_MIXER *mixerMaster = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    //ALLEGRO_MIXER *mixerMusic = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
+    //ALLEGRO_MIXER *mixerSounds = al_create_mixer(44100,  ALLEGRO_AUDIO_DEPTH_FLOAT32 , ALLEGRO_CHANNEL_CONF_2);
 
-    if (audioDevice == NULL || mixerMaster == NULL || mixerMusic == NULL || mixerSounds == NULL)
-    {
-        printf("Failed to start audio devices");
-    }
+    //if (audioDevice == NULL || mixerMaster == NULL || mixerMusic == NULL || mixerSounds == NULL)
+    //{
+        //printf("Failed to start audio devices");
+    //}
 
 /*  Attempt of Audio
     al_attach_sample_instance_to_mixer(Boop, mixerSounds);
@@ -179,7 +179,7 @@ int main()
           multiplier = 1;
 
     bool render , scored, executing = true;
-    al_play_sample(Intro, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
+    //al_play_sample(Intro, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
     while (executing)
     {
         ALLEGRO_EVENT event;
@@ -287,7 +287,7 @@ int main()
                 }
                 if (scored)
                 {
-                    al_play_sample(Score, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
+                    //al_play_sample(Score, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
                     //al_play_sample_instance(ScoreI);
                     ball_x = (SCREEN_W/2)-12;
                     ball_y = (SCREEN_H/2)-15;
@@ -412,9 +412,9 @@ int main()
     al_destroy_bitmap(MenuBackground);
     al_destroy_bitmap(ArenaBackground);
     al_destroy_bitmap(Ball);
-    al_destroy_sample(BackgroundMusic);
-    al_destroy_sample(Boop);
-    al_destroy_sample(Score);
+    //al_destroy_sample(BackgroundMusic);
+    //al_destroy_sample(Boop);
+    //al_destroy_sample(Score);
     al_destroy_display(display);
 
     return 0;
