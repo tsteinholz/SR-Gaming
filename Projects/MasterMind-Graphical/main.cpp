@@ -5,7 +5,10 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
+
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
@@ -256,13 +259,11 @@ public:
         : m_x(x), m_y(y), m_BMP(image)
     {
 
-
     }
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-
-
+printf("test");
     }
 
     void Render()
@@ -406,6 +407,28 @@ bool init()
         return false;
     }
     al_init_image_addon();
+    if(!al_install_audio())
+    {
+        fprintf(stderr, "Failed to initialize audio!\n");
+        return -1;
+    }
+
+    if(!al_init_acodec_addon())
+    {
+        fprintf(stderr, "Failed to initialize audio codecs!\n");
+        return -1;
+    }
+
+    if (!al_reserve_samples(1))
+    {
+        fprintf(stderr, "Failed to reserve samples!\n");
+        return -1;
+    }
+    if(!al_install_mouse())
+    {
+        fprintf(stderr, "Failed to initialize the mouse!\n");
+        return -1;
+    }
     if(!al_init_primitives_addon())
     {
         fprintf(stderr, "Failed to initialize primitives!\n");
