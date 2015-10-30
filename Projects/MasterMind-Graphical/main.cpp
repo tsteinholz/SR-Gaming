@@ -263,7 +263,7 @@ public:
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-printf("test");
+
     }
 
     void Render()
@@ -346,7 +346,6 @@ int main(int argc, char **argv)
     Button backsc(210, 320, key_backspace);
 
     MasterMind master_mind(Grid, solution, enter, backsc, input);
-
     // Game Loop
     bool executing = true;
     while (executing)
@@ -366,9 +365,12 @@ int main(int argc, char **argv)
             render = true;
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-            input.Update(event.mouse);
-            enter.Update(event.mouse);
-            backsc.Update(event.mouse);
+            if (event.type != ALLEGRO_EVENT_MOUSE_BUTTON_UP)
+            {
+                input.Update(event.mouse);
+                enter.Update(event.mouse);
+                backsc.Update(event.mouse);
+            }
             break;
         }
 
@@ -473,6 +475,7 @@ bool init()
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
+    al_register_event_source(queue, al_get_mouse_event_source());
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);

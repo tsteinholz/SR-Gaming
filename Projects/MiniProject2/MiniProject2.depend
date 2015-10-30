@@ -7,3 +7,11 @@
 	<allegro5/allegro_font.h>
 	<allegro5/allegro_ttf.h>
 
+1446205183 source:h:\c++\cpp-srhs\projects\miniproject2\main.cpp
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+

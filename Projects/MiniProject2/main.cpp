@@ -44,7 +44,7 @@ int main()
 
     al_flip_display();
 
-    bool executing = true;
+    bool executing = true, up = true;
     int x = 0, y = 0;
 
     while (executing)
@@ -64,9 +64,10 @@ int main()
         case ALLEGRO_EVENT_TIMER:
             render = true;
             x++;
-            y++;
             if (x > 640) x = 0;
-            if (y > 480) y = 0;
+            if (y + 50 >= 480) up = false;
+            if (y - 50 <= 0) up = true;
+            y += up ? 1 : -1;
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
             break;
@@ -98,7 +99,7 @@ int main()
 
             // Moving Circle
             al_draw_circle(x,400, 50, al_map_rgb(55,25,45), 3);
-            al_draw_filled_rectangle(100, 100+y, 150, 150+y,al_map_rgb(65,85,90));
+            al_draw_filled_rectangle(100, y-50, 150, y+50,al_map_rgb(65,85,90));
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
