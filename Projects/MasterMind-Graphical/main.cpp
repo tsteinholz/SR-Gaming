@@ -125,9 +125,6 @@ bool Feedback(Code* code, Code* guess)
             }
         }
     }
-
-    std::cout << "Results : " << result << std::endl;
-
     return (bool) !result.compare("oooo");
 }
 
@@ -146,30 +143,39 @@ public:
     } COLOR;
 
     Peg()
-    { SetColor(NOTHING); }
+    {
+        SetColor(NOTHING);
+    }
 
     inline void SetColor(COLOR color)
     {
-        switch(color)
+        m_PegColor = color;
+        switch (color)
         {
-        case RED:    m_Color = al_map_rgb(255,  51,  51); break;
-        case BLUE:   m_Color = al_map_rgb( 51,  51, 255); break;
+        case RED:    m_Color = al_map_rgb(255, 51, 51);   break;
+        case BLUE:   m_Color = al_map_rgb(51, 51, 255);   break;
         case YELLOW: m_Color = al_map_rgb(255, 255, 102); break;
-        case GREEN:  m_Color = al_map_rgb( 51, 255, 153); break;
+        case GREEN:  m_Color = al_map_rgb(51, 255, 153);  break;
         case WHITE:  m_Color = al_map_rgb(224, 224, 224); break;
-        case ORANGE: m_Color = al_map_rgb(255, 153,  51); break;
+        case ORANGE: m_Color = al_map_rgb(255, 153, 51);  break;
         case NOTHING:
-        default:     m_Color = al_map_rgb( 96,  96,  96); break;
+        default:     m_Color = al_map_rgb(96, 96, 96);    break;
         }
     }
 
     inline void Render(unsigned int x, unsigned int y, unsigned int r)
     {
-        al_draw_circle(x, y, r+1.5f, al_map_rgb(0,0,0), 2.5f);
+        al_draw_circle(x, y, r + 1.5f, al_map_rgb(0, 0, 0), 2.5f);
         al_draw_filled_circle(x, y, r, m_Color);
     }
 
+    inline COLOR GetColor()
+    {
+        return m_PegColor;
+    }
+
 private:
+    COLOR m_PegColor;
     ALLEGRO_COLOR m_Color;
 };
 
@@ -234,9 +240,17 @@ public:
         m_Pegs[5].SetColor(Peg::ORANGE);
     }
 
-    void Update(ALLEGRO_MOUSE_EVENT mouse)
+    Peg::COLOR Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-
+        if ((mouse.y <= m_y + 27) && (mouse.y >= m_y - 27))
+        {
+            for (unsigned int i = 0; i < 6; i++)
+            {
+                if ((mouse.x <= m_Coords[i] + 27) && (mouse.x >= m_Coords[i] - 27)) 
+                    return m_Pegs[i].GetColor();
+            }
+        }
+        return Peg::NOTHING;
     }
 
     void Render()
@@ -285,13 +299,32 @@ private:
 class MasterMind
 {
 public:
-
     MasterMind(vector<Row> grid, Row solution, Button enter, Button backsp, Input input)
-        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) { }
+        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) { m_State = COLLECTING; }
 
-    void Update()
+    void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-
+        switch (m_Input.Update(mouse))
+        {
+        case Peg::RED:
+            printf("red\n");
+            break;
+        case Peg::BLUE:
+            printf("blue\n");
+            break;
+        case Peg::YELLOW:
+            printf("yellow\n");
+            break;
+        case Peg::GREEN:
+            printf("green\n");
+            break;
+        case Peg::WHITE:
+            printf("white\n");
+            break;
+        case Peg::ORANGE:
+            printf("orange\n");
+            break;
+        }
     }
 
     void Render()
@@ -308,16 +341,19 @@ public:
         m_Backspapce.Render();
     }
 
-    bool Turn()
-    {
-        return false;
-    }
-
 private:
+    typedef enum
+    {
+        COLLECTING,
+        EVALUATING,
+        FINSIHED,
+    } STATE;
+
     vector<Row> m_Grid;
     Row m_Solution;
     Button m_Enter, m_Backspapce;
     Input m_Input;
+    STATE m_State;
 };
 
 int main(int argc, char **argv)
@@ -347,16 +383,16 @@ int main(int argc, char **argv)
 
     MasterMind master_mind(Grid, solution, enter, backsc, input);
     // Game Loop
-    bool executing = true;
+    bool executing = true, render = false;
     while (executing)
     {
         ALLEGRO_EVENT event;
-        bool render;
         al_wait_for_event(queue, &event);
 
         switch(event.type)
         {
         case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            executing = false;
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
             if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
@@ -365,12 +401,7 @@ int main(int argc, char **argv)
             render = true;
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-            if (event.type != ALLEGRO_EVENT_MOUSE_BUTTON_UP)
-            {
-                input.Update(event.mouse);
-                enter.Update(event.mouse);
-                backsc.Update(event.mouse);
-            }
+            master_mind.Update(event.mouse);
             break;
         }
 
@@ -378,11 +409,7 @@ int main(int argc, char **argv)
         {
             al_clear_to_color(al_map_rgb(0,0,0));
             al_set_target_bitmap(al_get_backbuffer(display));
-            ////////////////////////////////////////////////////////////////////
-
             master_mind.Render();
-
-            ////////////////////////////////////////////////////////////////////
             al_flip_display();
         }
         render = false;
