@@ -246,7 +246,7 @@ public:
         {
             for (unsigned int i = 0; i < 6; i++)
             {
-                if ((mouse.x <= m_Coords[i] + 27) && (mouse.x >= m_Coords[i] - 27)) 
+                if ((mouse.x <= m_Coords[i] + 27) && (mouse.x >= m_Coords[i] - 27))
                     return m_Pegs[i].GetColor();
             }
         }
@@ -271,13 +271,11 @@ class Button
 public:
     Button(unsigned int x, unsigned int y, ALLEGRO_BITMAP* image)
         : m_x(x), m_y(y), m_BMP(image)
+    { }
+
+    bool Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-
-    }
-
-    void Update(ALLEGRO_MOUSE_EVENT mouse)
-    {
-
+        return ((mouse.y <= m_y + 27) && (mouse.y >= m_y - 27) && (mouse.x <= m_x + 110) && (mouse.x >= m_x));
     }
 
     void Render()
@@ -324,6 +322,14 @@ public:
         case Peg::ORANGE:
             printf("orange\n");
             break;
+        }
+        if (m_Enter.Update(mouse))
+        {
+            printf("enter\n");
+        }
+        if (m_Backspapce.Update(mouse))
+        {
+            printf("backspace\n");
         }
     }
 
