@@ -25,7 +25,7 @@ ALLEGRO_DISPLAY* display = NULL;
 ALLEGRO_FONT* century_gothic48B;
 ALLEGRO_FONT* century_gothic24;
 ALLEGRO_TIMER* timer;
-const unsigned int SCREEN_W = 1080, SCREEN_H = 824;
+const int SCREEN_W = 1080, SCREEN_H = 824;
 
 using namespace std;
 
@@ -42,6 +42,8 @@ public:
         GREEN = 0x117050,
         WHITE = 0xFFFFFF,
         ORANGE = 0xC65104,
+        GREY = 0xBBBBBB,
+        BLACK = 0x000000,
         NOTHING = 0x554E44,
     } COLOR;
 
@@ -55,14 +57,16 @@ public:
         m_PegColor = color;
         switch (color)
         {
-        case RED:    m_Color = al_map_rgb(255, 51, 51);   break;
-        case BLUE:   m_Color = al_map_rgb(51, 51, 255);   break;
-        case YELLOW: m_Color = al_map_rgb(255, 255, 102); break;
-        case GREEN:  m_Color = al_map_rgb(51, 255, 153);  break;
-        case WHITE:  m_Color = al_map_rgb(224, 224, 224); break;
-        case ORANGE: m_Color = al_map_rgb(255, 153, 51);  break;
+        case RED:    m_Color = al_map_rgb(255, 51,  51);   break;
+        case BLUE:   m_Color = al_map_rgb(51,  51,  255);  break;
+        case YELLOW: m_Color = al_map_rgb(255, 255, 102);  break;
+        case GREEN:  m_Color = al_map_rgb(51,  255, 153);  break;
+        case WHITE:  m_Color = al_map_rgb(224, 224, 224);  break;
+        case ORANGE: m_Color = al_map_rgb(255, 153, 51);   break;
+        case GREY:   m_Color = al_map_rgb(175, 175, 175);  break;
+        case BLACK:  m_Color = al_map_rgb(15 , 15 , 15 );  break;
         case NOTHING:
-        default:     m_Color = al_map_rgb(96, 96, 96);    break;
+        default:     m_Color = al_map_rgb(96,  96,  96);   break;
         }
     }
 
@@ -281,11 +285,11 @@ public:
 
     Peg::COLOR Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-        if ((mouse.y <= m_y + 27) && (mouse.y >= m_y - 27))
+        if ((mouse.y <= (int) m_y + 27) && (mouse.y >= (int) m_y - 27))
         {
             for (unsigned int i = 0; i < 6; i++)
             {
-                if ((mouse.x <= m_Coords[i] + 27) && (mouse.x >= m_Coords[i] - 27))
+                if ((mouse.x <= (int) m_Coords[i] + 27) && (mouse.x >= (int) m_Coords[i] - 27))
                     return m_Pegs[i].GetColor();
             }
         }
@@ -314,7 +318,7 @@ public:
 
     bool Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-        return ((mouse.y <= m_y + 27) && (mouse.y >= m_y - 27) && (mouse.x <= m_x + 110) && (mouse.x >= m_x));
+        return ((mouse.y <= (int) m_y + 27) && (mouse.y >= (int) m_y - 27) && (mouse.x <= (int) m_x + 110) && (mouse.x >= (int) m_x));
     }
 
     void Render()
@@ -343,6 +347,7 @@ public:
             m_CurrentPosY = 0;
             playing = true;
             m_Solution.SetRandomPegs();
+            won = false;
         }
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
@@ -355,8 +360,55 @@ public:
             if (m_Enter.Update(mouse))
             {
                 if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4) { playing = false; }
-                if (m_CurrentPosX >= 4) { m_CurrentPosX = 0; m_CurrentPosY++; }
-                Row input();
+                if (m_CurrentPosX >= 4) 
+                {
+                    bool checked;
+                    std::string result = "";
+                    for (int i = 0; i < 4; i++)
+                    {
+                        for (int j = i; j < 4; j++)
+                        {
+                            checked = false;
+                            if (m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j))
+                            {
+                                if (i == j)
+                                {
+                                    result += "o";
+                                    checked = true;
+                                }
+                            }
+                            else
+                            {
+                                for (int k = i + 1; k < 4; k++)
+                                {
+                                    if ((m_Grid.at(m_CurrentPosY).GetPeg(k) == m_Solution.GetPeg(j)) && (m_Grid.at(m_CurrentPosY).GetPeg(k) != m_Solution.GetPeg(k) && (k > j) && !checked))
+                                    {
+                                        result += "~";
+                                        checked = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    printf(result.c_str());
+                    int count = 0;
+                    for (auto& x : result)
+                    {
+                        switch (result.at(count))
+                        {
+                        case 'o':
+                            m_Grid.at(m_CurrentPosY).SetResult(count, Peg::WHITE);
+                            break;
+                        case '~':
+                            m_Grid.at(m_CurrentPosY).SetResult(count, Peg::BLACK);
+                            break;
+                        }
+                        count++;
+                    }
+                    m_CurrentPosY++;
+                    m_CurrentPosX = 0;
+                    if (!result.compare("oooo")) { playing = false; won = true; }
+                }
                 printf("enter\n");//debug
             }
             if (m_Backspapce.Update(mouse))
@@ -402,7 +454,7 @@ private:
     Input m_Input;
 
     int m_CurrentPosX, m_CurrentPosY;
-    bool playing;
+    bool playing, won;
 };
 
 int main(int argc, char **argv)
