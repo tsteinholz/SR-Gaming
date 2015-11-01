@@ -30,115 +30,17 @@ using namespace std;
 
 bool init();
 
-struct Code
-{
-    enum Peg
-    {
-        RED, BLUE, YELLOW,
-        GREEN, WHITE, ORANGE,
-        NOTHING,
-    };
-
-    Code()
-    {
-        Peg temp[4];
-        for(int i = 0; i < 4; i++)
-        {
-            switch(rand() % 6)
-            {
-                case 0:  temp[i] = RED;    break;
-                case 1:  temp[i] = BLUE;   break;
-                case 2:  temp[i] = YELLOW; break;
-                case 3:  temp[i] = GREEN;  break;
-                case 4:  temp[i] = WHITE;  break;
-                case 5:  temp[i] = ORANGE; break;
-                default: temp[i] = NOTHING;
-            }
-        }
-        A = temp[0]; B = temp[1];
-        C = temp[2]; D = temp[3];
-    }
-
-    Code(Peg x)
-        : A(x), B(x), C(x), D(x) {}
-
-    Code(Peg a, Peg b, Peg c, Peg d)
-        : A(a), B(b), C(c), D(d) {}
-
-    Code(const Code& copy)
-        : A(copy.A), B(copy.B), C(copy.C), D(copy.D) {}
-
-    Peg A, B, C, D;
-
-    inline bool Verify()
-    {
-        return A != NOTHING &&
-               B != NOTHING &&
-               C != NOTHING &&
-               D != NOTHING;
-    }
-
-    bool operator==(const Code& other) const
-    {
-        return ((A == other.A) && (B == other.B) && (C == other.C) && (D == other.D));
-    }
-
-    bool operator!=(const Code &other) const {
-        return !(*this == other);
-    }
-};
-
-Code* Turn()
-{
-    return NULL;
-}
-
-bool Feedback(Code* code, Code* guess)
-{
-    std::string result = "";
-    bool checked;
-    Code::Peg codePeg[4] = {code->A, code->B, code->C, code->D}, guessPeg[4]= {guess->A, guess->B, guess->C, guess->D};
-
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = i; j < 4; j++)
-        {
-            checked = false;
-            if (codePeg[i] == guessPeg[j])
-            {
-                if (i == j)
-                {
-                    result += "o";
-                    checked = true;
-                }
-            }
-            else
-            {
-                for (int k = i+1; k < 4; k++)
-                {
-                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]) && (k > j) && !checked)
-                    {
-                        result += "~";
-                        checked = true;
-                    }
-                }
-            }
-        }
-    }
-    return (bool) !result.compare("oooo");
-}
-
 struct Peg
 {
 public:
     typedef enum
     {
-        RED     = 0xCF2104,
-        BLUE    = 0x3F00FF,
-        YELLOW  = 0xBAFF1E,
-        GREEN   = 0x117050,
-        WHITE   = 0xFFFFFF,
-        ORANGE  = 0xC65104,
+        RED = 0xCF2104,
+        BLUE = 0x3F00FF,
+        YELLOW = 0xBAFF1E,
+        GREEN = 0x117050,
+        WHITE = 0xFFFFFF,
+        ORANGE = 0xC65104,
         NOTHING = 0x554E44,
     } COLOR;
 
@@ -174,10 +76,110 @@ public:
         return m_PegColor;
     }
 
+    bool operator==(const Peg &other) const
+    {
+        return (m_PegColor == other.m_PegColor);
+    }
+
+    bool operator!=(const Peg &other) const {
+        return !(*this == other);
+    }
+
 private:
     COLOR m_PegColor;
     ALLEGRO_COLOR m_Color;
 };
+
+struct Code
+{
+    Code()
+    {
+        Peg temp[4];
+        for(int i = 0; i < 4; i++)
+        {
+            switch(rand() % 6)
+            {
+                case 0:  temp[i].SetColor(Peg::RED);     break;
+                case 1:  temp[i].SetColor(Peg::BLUE);    break;
+                case 2:  temp[i].SetColor(Peg::YELLOW);  break;
+                case 3:  temp[i].SetColor(Peg::GREEN);   break;
+                case 4:  temp[i].SetColor(Peg::WHITE);   break;
+                case 5:  temp[i].SetColor(Peg::ORANGE);  break;
+                default: temp[i].SetColor(Peg::NOTHING); break;
+            }
+        }
+        A = temp[0]; B = temp[1];
+        C = temp[2]; D = temp[3];
+    }
+
+    Code(Peg x)
+        : A(x), B(x), C(x), D(x) {}
+
+    Code(Peg a, Peg b, Peg c, Peg d)
+        : A(a), B(b), C(c), D(d) {}
+
+    Code(const Code& copy)
+        : A(copy.A), B(copy.B), C(copy.C), D(copy.D) {}
+
+    Peg A, B, C, D;
+
+    inline bool Verify()
+    {
+        return A.GetColor() != Peg::NOTHING &&
+               B.GetColor() != Peg::NOTHING &&
+               C.GetColor() != Peg::NOTHING &&
+               D.GetColor() != Peg::NOTHING;
+    }
+
+    bool operator==(const Code& other) const
+    {
+        return ((A == other.A) && (B == other.B) && (C == other.C) && (D == other.D));
+    }
+
+    bool operator!=(const Code &other) const {
+        return !(*this == other);
+    }
+};
+
+Code* Turn()
+{
+    return NULL;
+}
+
+bool Feedback(Code* code, Code* guess)
+{
+    std::string result = "";
+    bool checked;
+    Peg codePeg[4] = {code->A, code->B, code->C, code->D}, guessPeg[4]= {guess->A, guess->B, guess->C, guess->D};
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i; j < 4; j++)
+        {
+            checked = false;
+            if (codePeg[i] == guessPeg[j])
+            {
+                if (i == j)
+                {
+                    result += "o";
+                    checked = true;
+                }
+            }
+            else
+            {
+                for (int k = i+1; k < 4; k++)
+                {
+                    if ((codePeg[k] == guessPeg[j]) && (codePeg[k] != guessPeg[k]) && (k > j) && !checked)
+                    {
+                        result += "~";
+                        checked = true;
+                    }
+                }
+            }
+        }
+    }
+    return (bool) !result.compare("oooo");
+}
 
 class Row
 {
@@ -211,6 +213,26 @@ public:
                 m_ResultPegs[i].Render(m_PegCoords[i], m_y, 5);
             }
         }
+    }
+
+    inline Peg GetPeg(int index)
+    {
+        return m_Pegs[index];
+    }
+
+    inline Peg GetResult(int index)
+    {
+        return m_ResultPegs[index];
+    }
+
+    inline void SetPeg(int index, Peg::COLOR color)
+    {
+        m_Pegs[index].SetColor(color);
+    }
+
+    inline void SetResult(int index, Peg::COLOR color)
+    {
+        m_ResultPegs[index].SetColor(color);
     }
 
 protected:
@@ -298,39 +320,47 @@ class MasterMind
 {
 public:
     MasterMind(vector<Row> grid, Row solution, Button enter, Button backsp, Input input)
-        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) { m_State = COLLECTING; }
+        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) 
+        { 
+            m_CurrentPosX = 0;
+            m_CurrentPosY = 0;
+            playing = true;
+        }
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-        switch (m_Input.Update(mouse))
+        if (playing)
         {
-        case Peg::RED:
-            printf("red\n");
-            break;
-        case Peg::BLUE:
-            printf("blue\n");
-            break;
-        case Peg::YELLOW:
-            printf("yellow\n");
-            break;
-        case Peg::GREEN:
-            printf("green\n");
-            break;
-        case Peg::WHITE:
-            printf("white\n");
-            break;
-        case Peg::ORANGE:
-            printf("orange\n");
-            break;
+            Peg::COLOR temp = m_Input.Update(mouse);
+            if (temp != Peg::NOTHING && m_CurrentPosX < 4) m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX++, temp);
+        
+            if (m_CurrentPosY >= 10) { playing = false; }
+        
+            if (m_Enter.Update(mouse))
+            {
+                if (m_CurrentPosX >= 4) { m_CurrentPosX = 0; m_CurrentPosY++; }
+                Code input();
+                printf("enter\n");//debug
+            }
+            if (m_Backspapce.Update(mouse))
+            {
+                if (m_CurrentPosX > 0)
+                {
+                    m_CurrentPosX--;
+                    m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX, Peg::NOTHING);
+                }
+                printf("backspace\n");//debug
+            }
         }
-        if (m_Enter.Update(mouse))
+        else
         {
-            printf("enter\n");
+
         }
-        if (m_Backspapce.Update(mouse))
-        {
-            printf("backspace\n");
-        }
+    }
+
+    void Tick()
+    {
+
     }
 
     void Render()
@@ -348,18 +378,13 @@ public:
     }
 
 private:
-    typedef enum
-    {
-        COLLECTING,
-        EVALUATING,
-        FINSIHED,
-    } STATE;
-
     vector<Row> m_Grid;
     Row m_Solution;
     Button m_Enter, m_Backspapce;
     Input m_Input;
-    STATE m_State;
+
+    int m_CurrentPosX, m_CurrentPosY;
+    bool playing;
 };
 
 int main(int argc, char **argv)
