@@ -3,6 +3,7 @@
 // C++ w/ Gaming : 1A
 
 #include <iostream>
+#include <ctime>
 #include <stdio.h>
 #include <vector>
 
@@ -235,6 +236,22 @@ public:
         m_ResultPegs[index].SetColor(color);
     }
 
+    inline void SetRandomPegs()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            switch (rand() % 6)
+            {
+            case 0:  m_Pegs[i].SetColor(Peg::RED);     break;
+            case 1:  m_Pegs[i].SetColor(Peg::BLUE);    break;
+            case 2:  m_Pegs[i].SetColor(Peg::YELLOW);  break;
+            case 3:  m_Pegs[i].SetColor(Peg::GREEN);   break;
+            case 4:  m_Pegs[i].SetColor(Peg::WHITE);   break;
+            case 5:  m_Pegs[i].SetColor(Peg::ORANGE);  break;
+            }
+        }
+    }
+
 protected:
     Peg m_Pegs[4], m_ResultPegs[4];
     unsigned int m_x, m_y, m_Coords[4], m_PegCoords[8];
@@ -320,11 +337,12 @@ class MasterMind
 {
 public:
     MasterMind(vector<Row> grid, Row solution, Button enter, Button backsp, Input input)
-        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) 
+        : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) , m_Blank(750, SCREEN_H - 38, false)
         { 
             m_CurrentPosX = 0;
             m_CurrentPosY = 0;
             playing = true;
+            m_Solution.SetRandomPegs();
         }
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
@@ -333,13 +351,12 @@ public:
         {
             Peg::COLOR temp = m_Input.Update(mouse);
             if (temp != Peg::NOTHING && m_CurrentPosX < 4) m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX++, temp);
-        
-            if (m_CurrentPosY >= 10) { playing = false; }
-        
+                
             if (m_Enter.Update(mouse))
             {
+                if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4) { playing = false; }
                 if (m_CurrentPosX >= 4) { m_CurrentPosX = 0; m_CurrentPosY++; }
-                Code input();
+                Row input();
                 printf("enter\n");//debug
             }
             if (m_Backspapce.Update(mouse))
@@ -354,7 +371,7 @@ public:
         }
         else
         {
-
+            
         }
     }
 
@@ -371,7 +388,8 @@ public:
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
         for (auto& x : m_Grid) x.Render();
-        m_Solution.Render();
+        if (playing) m_Blank.Render();
+        else m_Solution.Render();
         m_Input.Render();
         m_Enter.Render();
         m_Backspapce.Render();
@@ -379,7 +397,7 @@ public:
 
 private:
     vector<Row> m_Grid;
-    Row m_Solution;
+    Row m_Solution, m_Blank;
     Button m_Enter, m_Backspapce;
     Input m_Input;
 
@@ -458,6 +476,7 @@ int main(int argc, char **argv)
 
 bool init()
 {
+    srand(time(NULL));
     if(!al_init())
     {
         fprintf(stderr, "Failed to initialize allegro!\n");
