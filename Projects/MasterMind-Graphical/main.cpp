@@ -449,6 +449,9 @@ int main(int argc, char **argv)
 
     // De-initialization
     al_destroy_bitmap(background);
+    al_destroy_bitmap(border);
+    al_destroy_bitmap(key_enter);
+    al_destroy_bitmap(key_backspace);
     al_destroy_display(display);
     return 0;
 }
