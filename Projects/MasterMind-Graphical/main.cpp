@@ -47,7 +47,7 @@ public:
         NOTHING = 0x554E44,
     } COLOR;
 
-    Peg()
+    Peg() : UsedForHint(false), UsedForMatch(false)
     {
         SetColor(NOTHING);
     }
@@ -89,6 +89,15 @@ public:
     bool operator!=(const Peg &other) const {
         return !(*this == other);
     }
+
+    inline void ResetCheck()
+    {
+        UsedForHint = false;
+        UsedForMatch = false;
+    }
+
+    bool UsedForHint;
+    bool UsedForMatch;
 
 private:
     COLOR m_PegColor;
@@ -256,6 +265,14 @@ public:
         }
     }
 
+    inline void ResetCheck()
+    {
+        for (auto& x : m_Pegs)
+        {
+            x.ResetCheck();
+        }
+    }
+
 protected:
     Peg m_Pegs[4], m_ResultPegs[4];
     unsigned int m_x, m_y, m_Coords[4], m_PegCoords[8];
@@ -342,7 +359,7 @@ class MasterMind
 public:
     MasterMind(vector<Row> grid, Row solution, Button enter, Button backsp, Input input)
         : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) , m_Blank(750, SCREEN_H - 38, false)
-        { 
+        {
             m_CurrentPosX = 0;
             m_CurrentPosY = 0;
             playing = true;
@@ -356,12 +373,34 @@ public:
         {
             Peg::COLOR temp = m_Input.Update(mouse);
             if (temp != Peg::NOTHING && m_CurrentPosX < 4) m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX++, temp);
-                
+
             if (m_Enter.Update(mouse))
             {
                 if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4) { playing = false; }
-                if (m_CurrentPosX >= 4) 
+                if (m_CurrentPosX >= 4)
                 {
+                    for (int i = 0; i < 4; i ++) //go through each user inputed value
+                    {
+                        if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(i)) && !m_Solution.GetPeg(i).UsedForMatch)
+                        {
+                            m_Solution.SetResult(i, Peg::WHITE);
+                            m_Solution.GetPeg(i).UsedForMatch = true;
+                        }
+                        else
+                        {
+                            for (int j = 1; j < 4; j++)
+                            {
+                                if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j)) && !m_Solution.GetPeg(j).UsedForHint)
+                                {
+                                    m_Solution.GetPeg(j).UsedForHint = true;
+                                    m_Solution.SetResult(i, Peg::BLACK);
+                                }
+                            }
+                        }
+                    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
                     bool checked;
                     std::string result = "";
                     for (int i = 0; i < 4; i++)
@@ -407,7 +446,7 @@ public:
                     }
                     m_CurrentPosY++;
                     m_CurrentPosX = 0;
-                    if (!result.compare("oooo")) { playing = false; won = true; }
+                    if (!result.compare("oooo")) { playing = false; won = true; Render(); }
                 }
                 printf("enter\n");//debug
             }
@@ -423,13 +462,8 @@ public:
         }
         else
         {
-            
+
         }
-    }
-
-    void Tick()
-    {
-
     }
 
     void Render()
@@ -440,8 +474,8 @@ public:
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
         for (auto& x : m_Grid) x.Render();
-        if (playing) m_Blank.Render();
-        else m_Solution.Render();
+        //if (playing) m_Blank.Render();
+        /*else*/ m_Solution.Render();
         m_Input.Render();
         m_Enter.Render();
         m_Backspapce.Render();

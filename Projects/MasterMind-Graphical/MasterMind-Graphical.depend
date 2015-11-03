@@ -489,8 +489,9 @@
 1444789102 d:\users\thomas\documents\development\c++\srhs\projects\mastermind-graphical\include\peg.h
 	"Button.h"
 
-1446206848 source:h:\c++\cpp-srhs\projects\mastermind-graphical\main.cpp
+1446554204 source:h:\c++\cpp-srhs\projects\mastermind-graphical\main.cpp
 	<iostream>
+	<ctime>
 	<stdio.h>
 	<vector>
 	<allegro5/allegro.h>
@@ -527,7 +528,7 @@
 
 1444909249 source:h:\c++\cpp-srhs\projects\mastermind-graphical\src\row.cpp
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
 	"allegro5/base.h"
 	"allegro5/altime.h"
 	"allegro5/bitmap.h"
@@ -562,7 +563,7 @@
 	"allegro5/utf8.h"
 	"allegro5/alcompat.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\base.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\base.h
 	<errno.h>
 	<limits.h>
 	<limits.h>
@@ -576,7 +577,7 @@
 	<dmalloc.h>
 	"allegro5/internal/alconfig.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\internal\alconfig.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\internal\alconfig.h
 	"allegro5/platform/alplatf.h"
 	"allegro5/platform/alwatcom.h"
 	"allegro5/platform/almngw32.h"
@@ -588,9 +589,9 @@
 	"allegro5/platform/astdint.h"
 	"allegro5/platform/astdbool.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alplatf.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alplatf.h
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alwatcom.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alwatcom.h
 	<io.h>
 	<i86.h>
 	<conio.h>
@@ -598,176 +599,176 @@
 	<direct.h>
 	<malloc.h>
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\almngw32.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\almngw32.h
 	<io.h>
 	<fcntl.h>
 	<direct.h>
 	<malloc.h>
 	"allegro5/platform/alplatf.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\albcc32.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\albcc32.h
 	<io.h>
 	<fcntl.h>
 	<direct.h>
 	<malloc.h>
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\almsvc.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\almsvc.h
 	<io.h>
 	<fcntl.h>
 	<direct.h>
 	<malloc.h>
 	"allegro5/platform/alplatf.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\aliphonecfg.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\aliphonecfg.h
 	<fcntl.h>
 	<unistd.h>
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alosxcfg.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alosxcfg.h
 	"allegro5/platform/alplatf.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alucfg.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alucfg.h
 	<fcntl.h>
 	<unistd.h>
 	"alunix.h"
 	"allegro5/platform/alplatf.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alunix.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\alunix.h
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\astdint.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\astdint.h
 	<inttypes.h>
 	<stdint.h>
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\astdbool.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\platform\astdbool.h
 	<stdbool.h>
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\altime.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\altime.h
 	"allegro5/base.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap.h
 	"allegro5/color.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\color.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\color.h
 	"allegro5/base.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_draw.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_draw.h
 	"allegro5/bitmap.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_io.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_io.h
 	"allegro5/bitmap.h"
 	"allegro5/file.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\file.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\file.h
 	"allegro5/base.h"
 	"allegro5/path.h"
 	"allegro5/utf8.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\path.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\path.h
 	"allegro5/base.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\utf8.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\utf8.h
 	"allegro5/base.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_lock.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\bitmap_lock.h
 	"allegro5/bitmap.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\blender.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\blender.h
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\config.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\config.h
 	"allegro5/file.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\debug.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\debug.h
 	<assert.h>
 	"allegro5/base.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\display.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\display.h
 	"allegro5/bitmap.h"
 	"allegro5/color.h"
 	"allegro5/events.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\events.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\events.h
 	"allegro5/altime.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\drawing.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\drawing.h
 	"allegro5/color.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\error.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\error.h
 	"allegro5/base.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fixed.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fixed.h
 	"allegro5/base.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fmaths.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fmaths.h
 	"allegro5/base.h"
 	"allegro5/fixed.h"
 	"allegro5/inline/fmaths.inl"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\inline\fmaths.inl
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\inline\fmaths.inl
 	"allegro5/error.h"
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fshook.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fshook.h
 	"allegro5/base.h"
 	"allegro5/file.h"
 	"allegro5/path.h"
 	<sys/types.h>
 
-1444908839 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fullscreen_mode.h
+1444905239 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\fullscreen_mode.h
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\joystick.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\joystick.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\keyboard.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\keyboard.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 	"allegro5/keycodes.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\keycodes.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\keycodes.h
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\memory.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\memory.h
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\monitor.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\monitor.h
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\mouse.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\mouse.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\mouse_cursor.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\mouse_cursor.h
 	"allegro5/base.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\system.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\system.h
 	"allegro5/config.h"
 	"allegro5/path.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\threads.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\threads.h
 	"allegro5/altime.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\timer.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\timer.h
 	"allegro5/base.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\tls.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\tls.h
 	"allegro5/base.h"
 
-1444908840 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\transformations.h
+1444905240 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\transformations.h
 	"allegro5/display.h"
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\alcompat.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\alcompat.h
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_image.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_image.h
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_primitives.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_primitives.h
 	<allegro5/allegro.h>
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_font.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_font.h
 	"allegro5/allegro.h"
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_ttf.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_ttf.h
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_audio.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_audio.h
 	"allegro5/allegro.h"
 
-1444908838 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_acodec.h
+1444905238 h:\c++\cpp-srhs\libraries\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_acodec.h
 	"allegro5/allegro.h"
 	"allegro5/allegro_audio.h"
 
