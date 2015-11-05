@@ -36,14 +36,14 @@ struct Peg
 public:
     typedef enum
     {
-        RED = 0xCF2104,
-        BLUE = 0x3F00FF,
-        YELLOW = 0xBAFF1E,
-        GREEN = 0x117050,
-        WHITE = 0xFFFFFF,
-        ORANGE = 0xC65104,
-        GREY = 0xBBBBBB,
-        BLACK = 0x000000,
+        RED     = 0xCF2104,
+        BLUE    = 0x3F00FF,
+        YELLOW  = 0xBAFF1E,
+        GREEN   = 0x117050,
+        WHITE   = 0xFFFFFF,
+        ORANGE  = 0xC65104,
+        GREY    = 0xBBBBBB,
+        BLACK   = 0x000000,
         NOTHING = 0x554E44,
     } COLOR;
 
@@ -57,16 +57,34 @@ public:
         m_PegColor = color;
         switch (color)
         {
-        case RED:    m_Color = al_map_rgb(255, 51,  51);   break;
-        case BLUE:   m_Color = al_map_rgb(51,  51,  255);  break;
-        case YELLOW: m_Color = al_map_rgb(255, 255, 102);  break;
-        case GREEN:  m_Color = al_map_rgb(51,  255, 153);  break;
-        case WHITE:  m_Color = al_map_rgb(224, 224, 224);  break;
-        case ORANGE: m_Color = al_map_rgb(255, 153, 51);   break;
-        case GREY:   m_Color = al_map_rgb(175, 175, 175);  break;
-        case BLACK:  m_Color = al_map_rgb(15 , 15 , 15 );  break;
+        case RED:
+            m_Color = al_map_rgb(255, 51,  51);
+            break;
+        case BLUE:
+            m_Color = al_map_rgb(51,  51,  255);
+            break;
+        case YELLOW:
+            m_Color = al_map_rgb(255, 255, 102);
+            break;
+        case GREEN:
+            m_Color = al_map_rgb(51,  255, 153);
+            break;
+        case WHITE:
+            m_Color = al_map_rgb(224, 224, 224);
+            break;
+        case ORANGE:
+            m_Color = al_map_rgb(255, 153, 51);
+            break;
+        case GREY:
+            m_Color = al_map_rgb(175, 175, 175);
+            break;
+        case BLACK:
+            m_Color = al_map_rgb(15 , 15 , 15 );
+            break;
         case NOTHING:
-        default:     m_Color = al_map_rgb(96,  96,  96);   break;
+        default:
+            m_Color = al_map_rgb(96,  96,  96);
+            break;
         }
     }
 
@@ -86,7 +104,8 @@ public:
         return (m_PegColor == other.m_PegColor);
     }
 
-    bool operator!=(const Peg &other) const {
+    bool operator!=(const Peg &other) const
+    {
         return !(*this == other);
     }
 
@@ -96,12 +115,31 @@ public:
         UsedForMatch = false;
     }
 
-    bool UsedForHint;
-    bool UsedForMatch;
+    inline void SetUsedForHint(bool hint)
+    {
+        UsedForHint = hint;
+    }
+
+    inline bool GetUsedForHint()
+    {
+        return UsedForHint;
+    }
+
+    inline void SetUsedForMatch(bool match)
+    {
+        UsedForMatch = match;
+    }
+
+    inline bool GetUsedForMatch()
+    {
+        return UsedForMatch;
+    }
 
 private:
     COLOR m_PegColor;
     ALLEGRO_COLOR m_Color;
+    bool UsedForHint;
+    bool UsedForMatch;
 };
 
 struct Code
@@ -113,17 +151,33 @@ struct Code
         {
             switch(rand() % 6)
             {
-                case 0:  temp[i].SetColor(Peg::RED);     break;
-                case 1:  temp[i].SetColor(Peg::BLUE);    break;
-                case 2:  temp[i].SetColor(Peg::YELLOW);  break;
-                case 3:  temp[i].SetColor(Peg::GREEN);   break;
-                case 4:  temp[i].SetColor(Peg::WHITE);   break;
-                case 5:  temp[i].SetColor(Peg::ORANGE);  break;
-                default: temp[i].SetColor(Peg::NOTHING); break;
+            case 0:
+                temp[i].SetColor(Peg::RED);
+                break;
+            case 1:
+                temp[i].SetColor(Peg::BLUE);
+                break;
+            case 2:
+                temp[i].SetColor(Peg::YELLOW);
+                break;
+            case 3:
+                temp[i].SetColor(Peg::GREEN);
+                break;
+            case 4:
+                temp[i].SetColor(Peg::WHITE);
+                break;
+            case 5:
+                temp[i].SetColor(Peg::ORANGE);
+                break;
+            default:
+                temp[i].SetColor(Peg::NOTHING);
+                break;
             }
         }
-        A = temp[0]; B = temp[1];
-        C = temp[2]; D = temp[3];
+        A = temp[0];
+        B = temp[1];
+        C = temp[2];
+        D = temp[3];
     }
 
     Code(Peg x)
@@ -150,7 +204,8 @@ struct Code
         return ((A == other.A) && (B == other.B) && (C == other.C) && (D == other.D));
     }
 
-    bool operator!=(const Code &other) const {
+    bool operator!=(const Code &other) const
+    {
         return !(*this == other);
     }
 };
@@ -255,12 +310,24 @@ public:
         {
             switch (rand() % 6)
             {
-            case 0:  m_Pegs[i].SetColor(Peg::RED);     break;
-            case 1:  m_Pegs[i].SetColor(Peg::BLUE);    break;
-            case 2:  m_Pegs[i].SetColor(Peg::YELLOW);  break;
-            case 3:  m_Pegs[i].SetColor(Peg::GREEN);   break;
-            case 4:  m_Pegs[i].SetColor(Peg::WHITE);   break;
-            case 5:  m_Pegs[i].SetColor(Peg::ORANGE);  break;
+            case 0:
+                m_Pegs[i].SetColor(Peg::RED);
+                break;
+            case 1:
+                m_Pegs[i].SetColor(Peg::BLUE);
+                break;
+            case 2:
+                m_Pegs[i].SetColor(Peg::YELLOW);
+                break;
+            case 3:
+                m_Pegs[i].SetColor(Peg::GREEN);
+                break;
+            case 4:
+                m_Pegs[i].SetColor(Peg::WHITE);
+                break;
+            case 5:
+                m_Pegs[i].SetColor(Peg::ORANGE);
+                break;
             }
         }
     }
@@ -359,13 +426,13 @@ class MasterMind
 public:
     MasterMind(vector<Row> grid, Row solution, Button enter, Button backsp, Input input)
         : m_Grid(grid), m_Solution(solution), m_Enter(enter), m_Backspapce(backsp), m_Input(input) , m_Blank(750, SCREEN_H - 38, false)
-        {
-            m_CurrentPosX = 0;
-            m_CurrentPosY = 0;
-            playing = true;
-            m_Solution.SetRandomPegs();
-            won = false;
-        }
+    {
+        m_CurrentPosX = 0;
+        m_CurrentPosY = 0;
+        playing = true;
+        m_Solution.SetRandomPegs();
+        won = false;
+    }
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
@@ -376,77 +443,51 @@ public:
 
             if (m_Enter.Update(mouse))
             {
-                if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4) { playing = false; }
+                if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4)
+                {
+                    playing = false;
+                }
                 if (m_CurrentPosX >= 4)
                 {
-                    for (int i = 0; i < 4; i ++) //go through each user inputed value
+                    int results_place = 0;
+                    for (int i = 0; i < 4; i ++)
                     {
-                        if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(i)) && !m_Solution.GetPeg(i).UsedForMatch)
+                        if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(i)) && !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() && ! m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForHint())
                         {
-                            m_Solution.SetResult(i, Peg::WHITE);
-                            m_Solution.GetPeg(i).UsedForMatch = true;
+                            m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::WHITE);
+                            m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForMatch(true);
+                            printf("** match in %d\n", i);
                         }
                         else
                         {
+                            printf("no match in %d\n", i);
+                        }
+                    }
+                    printf("\n");
+                    for (int i = 0; i < 4; i ++)
+                    {
+                        if (!m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch())
+                        {
                             for (int j = 1; j < 4; j++)
                             {
-                                if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j)) && !m_Solution.GetPeg(j).UsedForHint)
+                                if (m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j) &&
+                                    !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForMatch() &&
+                                    !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForHint())
                                 {
-                                    m_Solution.GetPeg(j).UsedForHint = true;
-                                    m_Solution.SetResult(i, Peg::BLACK);
+                                    m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::BLACK);
+                                    m_Grid.at(m_CurrentPosY).GetPeg(j).SetUsedForHint(true);
+                                    m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForHint(true);
+                                    printf("** hint in %d with "), i;
+                                    printf("%d\n",j);
+                                    break;
                                 }
                             }
+                            printf("no hint in %d\n", i);
                         }
-                    }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-                    bool checked;
-                    std::string result = "";
-                    for (int i = 0; i < 4; i++)
-                    {
-                        for (int j = i; j < 4; j++)
-                        {
-                            checked = false;
-                            if (m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j))
-                            {
-                                if (i == j)
-                                {
-                                    result += "o";
-                                    checked = true;
-                                }
-                            }
-                            else
-                            {
-                                for (int k = i + 1; k < 4; k++)
-                                {
-                                    if ((m_Grid.at(m_CurrentPosY).GetPeg(k) == m_Solution.GetPeg(j)) && (m_Grid.at(m_CurrentPosY).GetPeg(k) != m_Solution.GetPeg(k) && (k > j) && !checked))
-                                    {
-                                        result += "~";
-                                        checked = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    printf(result.c_str());
-                    int count = 0;
-                    for (auto& x : result)
-                    {
-                        switch (result.at(count))
-                        {
-                        case 'o':
-                            m_Grid.at(m_CurrentPosY).SetResult(count, Peg::WHITE);
-                            break;
-                        case '~':
-                            m_Grid.at(m_CurrentPosY).SetResult(count, Peg::BLACK);
-                            break;
-                        }
-                        count++;
+                        else printf("not checking for hint in %d\n", i);
                     }
                     m_CurrentPosY++;
                     m_CurrentPosX = 0;
-                    if (!result.compare("oooo")) { playing = false; won = true; Render(); }
                 }
                 printf("enter\n");//debug
             }
@@ -460,35 +501,35 @@ public:
                 printf("backspace\n");//debug
             }
         }
-        else
-        {
-
-        }
-    }
-
-    void Render()
+    else
     {
-        al_draw_bitmap(background, 0, 0, 0);
-        al_draw_bitmap(border, 400, 30, 0);
-        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
-        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
-        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
-        for (auto& x : m_Grid) x.Render();
-        //if (playing) m_Blank.Render();
-        /*else*/ m_Solution.Render();
-        m_Input.Render();
-        m_Enter.Render();
-        m_Backspapce.Render();
+
     }
+}
+
+void Render()
+{
+    al_draw_bitmap(background, 0, 0, 0);
+    al_draw_bitmap(border, 400, 30, 0);
+    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
+    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
+    for (auto& x : m_Grid) x.Render();
+    //if (playing) m_Blank.Render();
+    /*else*/ m_Solution.Render();
+    m_Input.Render();
+    m_Enter.Render();
+    m_Backspapce.Render();
+}
 
 private:
-    vector<Row> m_Grid;
-    Row m_Solution, m_Blank;
-    Button m_Enter, m_Backspapce;
-    Input m_Input;
+vector<Row> m_Grid;
+Row m_Solution, m_Blank;
+Button m_Enter, m_Backspapce;
+Input m_Input;
 
-    int m_CurrentPosX, m_CurrentPosY;
-    bool playing, won;
+int m_CurrentPosX, m_CurrentPosY;
+bool playing, won;
 };
 
 int main(int argc, char **argv)
