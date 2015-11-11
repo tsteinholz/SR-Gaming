@@ -11,7 +11,7 @@ class Deck
         Deck();
         virtual ~Deck();
 
-        typedef std::vector<Cards> Cards;
+        //typedef std::vector<Cards> Cards;
 
     protected:
     private:

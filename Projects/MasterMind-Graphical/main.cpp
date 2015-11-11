@@ -436,100 +436,105 @@ public:
 
     void Update(ALLEGRO_MOUSE_EVENT mouse)
     {
-        if (playing)
+
+        Peg::COLOR temp = m_Input.Update(mouse);
+        if (temp != Peg::NOTHING && m_CurrentPosX < 4) m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX++, temp);
+
+        // Enter Button
+        if (m_Enter.Update(mouse))
         {
-            Peg::COLOR temp = m_Input.Update(mouse);
-            if (temp != Peg::NOTHING && m_CurrentPosX < 4) m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX++, temp);
-
-            if (m_Enter.Update(mouse))
+            if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4)
             {
-                if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4)
+                playing = false;
+            }
+            if (m_CurrentPosX >= 4)
+            {
+                int results_place = 0;
+                for (int i = 0; i < 4; i ++)
                 {
-                    playing = false;
-                }
-                if (m_CurrentPosX >= 4)
-                {
-                    int results_place = 0;
-                    for (int i = 0; i < 4; i ++)
+                    if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(i)) && !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() && ! m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForHint())
                     {
-                        if ((m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(i)) && !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() && ! m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForHint())
-                        {
-                            m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::WHITE);
-                            m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForMatch(true);
-                            printf("** match in %d\n", i);
-                        }
-                        else
-                        {
-                            printf("no match in %d\n", i);
-                        }
+                        m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::WHITE);
+                        m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForMatch(true);
+                        m_Solution.GetPeg(i).SetUsedForMatch(true);
+                        printf("** match in %d\n", i);
                     }
-                    printf("\n");
-                    for (int i = 0; i < 4; i ++)
+                    else
                     {
-                        if (!m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch())
+                        printf("no match in %d\n", i);
+                    }
+                }
+                printf("\n");
+                for (int i = 0; i < 4; i ++)
+                {
+                    if (!m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() &&
+                            !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForHint() &&
+                            !m_Solution.GetPeg(i).GetUsedForMatch() &&
+                            !m_Solution.GetPeg(i).GetUsedForHint()
+                       )
+                    {
+                        for (int j = 1; j < 4; j++)
                         {
-                            for (int j = 1; j < 4; j++)
-                            {
-                                if (m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j) &&
+                            if (m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j) &&
                                     !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForMatch() &&
-                                    !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForHint())
-                                {
-                                    m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::BLACK);
-                                    m_Grid.at(m_CurrentPosY).GetPeg(j).SetUsedForHint(true);
-                                    m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForHint(true);
-                                    printf("** hint in %d with "), i;
-                                    printf("%d\n",j);
-                                    break;
-                                }
+                                    !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForHint() &&
+                                    !m_Solution.GetPeg(j).GetUsedForMatch() &&
+                                    !m_Solution.GetPeg(j).GetUsedForHint())
+                            {
+                                m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::BLACK);
+                                m_Grid.at(m_CurrentPosY).GetPeg(j).SetUsedForHint(true);
+                                m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForHint(true);
+                                printf("** hint in %d with "), i;
+                                printf("%d\n",j);
+                                break;
                             }
-                            printf("no hint in %d\n", i);
                         }
-                        else printf("not checking for hint in %d\n", i);
+                        printf("no hint in %d\n", i);
                     }
-                    m_CurrentPosY++;
-                    m_CurrentPosX = 0;
+                    else printf("not checking for hint in %d\n", i);
                 }
-                printf("enter\n");//debug
+                m_CurrentPosY++;
+                m_CurrentPosX = 0;
             }
-            if (m_Backspapce.Update(mouse))
-            {
-                if (m_CurrentPosX > 0)
-                {
-                    m_CurrentPosX--;
-                    m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX, Peg::NOTHING);
-                }
-                printf("backspace\n");//debug
-            }
+            //printf("enter\n");//debug
         }
-    else
-    {
 
+        // Backspace Button
+        if (m_Backspapce.Update(mouse))
+        {
+            if (m_CurrentPosX > 0)
+            {
+                m_CurrentPosX--;
+                m_Grid.at(m_CurrentPosY).SetPeg(m_CurrentPosX, Peg::NOTHING);
+            }
+            //printf("backspace\n");//debug
+        }
     }
-}
 
-void Render()
-{
-    al_draw_bitmap(background, 0, 0, 0);
-    al_draw_bitmap(border, 400, 30, 0);
-    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
-    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
-    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
-    for (auto& x : m_Grid) x.Render();
-    //if (playing) m_Blank.Render();
-    /*else*/ m_Solution.Render();
-    m_Input.Render();
-    m_Enter.Render();
-    m_Backspapce.Render();
-}
+    void Render()
+    {
+        al_draw_bitmap(background, 0, 0, 0);
+        al_draw_bitmap(border, 400, 30, 0);
+        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
+        al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
+        for (auto& x : m_Grid) x.Render();
+        //if (playing) m_Blank.Render();
+        /*else*/ m_Solution.Render();
+        //TODO : add woi/loss text on game end
+        m_Input.Render();
+        m_Enter.Render();
+        m_Backspapce.Render();
+    }
 
 private:
-vector<Row> m_Grid;
-Row m_Solution, m_Blank;
-Button m_Enter, m_Backspapce;
-Input m_Input;
+    vector<Row> m_Grid;
+    Row m_Solution, m_Blank;
+    Button m_Enter, m_Backspapce;
+    Input m_Input;
 
-int m_CurrentPosX, m_CurrentPosY;
-bool playing, won;
+    int m_CurrentPosX, m_CurrentPosY;
+    bool playing, won;
 };
 
 int main(int argc, char **argv)

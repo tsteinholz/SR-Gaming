@@ -9,10 +9,23 @@
 1447073661 source:h:\c++\cpp-srhs\projects\blackjack\src\deck.cpp
 	"Deck.h"
 
-1447073661 h:\c++\cpp-srhs\projects\blackjack\include\deck.h
+1447244903 h:\c++\cpp-srhs\projects\blackjack\include\deck.h
+	<vector>
+	"Cards.h"
 
 1447073681 source:h:\c++\cpp-srhs\projects\blackjack\src\hand.cpp
 	"Hand.h"
 
 1447073681 h:\c++\cpp-srhs\projects\blackjack\include\hand.h
+
+1447075309 source:h:\c++\cpp-srhs\projects\blackjack\src\main.cpp
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	"Card.h"
 
