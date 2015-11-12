@@ -21,15 +21,15 @@ class Card
             TEN   = 10,
             JACK  = 11,
             QUEEN = 12,
-            KING  = 13
+            KING  = 13,
         } Value;
 
         typedef enum
         {
-            DIAMONDS,
-            SPADES,
-            CLUBS,
-            HEARTS
+            DIAMONDS = 0,
+            SPADES   = 1,
+            CLUBS    = 2,
+            HEARTS   = 3,
         } Suit;
 
         /**
