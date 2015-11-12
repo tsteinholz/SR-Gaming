@@ -445,6 +445,7 @@ public:
         {
             if (m_CurrentPosY >= 9 && m_CurrentPosX >= 4)
             {
+                won = false;
                 playing = false;
             }
             if (m_CurrentPosX >= 4)
@@ -494,6 +495,12 @@ public:
                     }
                     //else printf("not checking for hint in %d\n", i);
                 }
+                bool results[4] = { false } ;
+                for (int i = 0; i < 4; i++)
+                {
+                    results[i] = m_Grid.at(m_CurrentPosY).GetResult(i).GetColor() == Peg::WHITE;
+                }
+                if (results[0] && results[1] && results[2] && results[3]) won = true;
                 m_CurrentPosY++;
                 m_CurrentPosX = 0;
             }
@@ -520,9 +527,15 @@ public:
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
         for (auto& x : m_Grid) x.Render();
-        //if (playing) m_Blank.Render();
-        /*else*/ m_Solution.Render();
-        //TODO : add woi/loss text on game end
+        if (playing) m_Blank.Render();
+        else 
+        { 
+            m_Solution.Render();
+            if (won) al_draw_text(century_gothic48B, al_map_rgb(255, 255, 255), 200, SCREEN_H - 350, ALLEGRO_ALIGN_CENTRE, "You Win!");
+            else al_draw_text(century_gothic48B, al_map_rgb(255, 255, 255), 200, SCREEN_H - 350, ALLEGRO_ALIGN_CENTRE, "You Lose!");
+            al_draw_text(century_gothic48B, al_map_rgb(255, 255, 255), 200, SCREEN_H - 200, ALLEGRO_ALIGN_CENTRE, "ESC to exit");
+
+        }
         m_Input.Render();
         m_Enter.Render();
         m_Backspapce.Render();
