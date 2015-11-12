@@ -18,8 +18,7 @@ has been done completley by Thomas A. Steinholz, assets are not done completly b
 
 ## Highlights / Showcase
 
-### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical) | [[Download]]()
-![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v3.jpg "MasterMind")
+### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical) 
 
 ### [Ultimate Pong](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/Pong) | [[Download]](https://github.com/tsteinholz/SR-Gaming/raw/master/Projects/Pong/Downloads/Windows-x86/Pong.zip)
 
