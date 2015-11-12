@@ -457,14 +457,14 @@ public:
                         m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::WHITE);
                         m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForMatch(true);
                         m_Solution.GetPeg(i).SetUsedForMatch(true);
-                        printf("** match in %d\n", i);
+                        //printf("** match in %d\n", i);
                     }
                     else
                     {
-                        printf("no match in %d\n", i);
+                        //printf("no match in %d\n", i);
                     }
                 }
-                printf("\n");
+                //printf("\n");
                 for (int i = 0; i < 4; i ++)
                 {
                     if (!m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() &&
@@ -476,22 +476,23 @@ public:
                         for (int j = 1; j < 4; j++)
                         {
                             if (m_Grid.at(m_CurrentPosY).GetPeg(i) == m_Solution.GetPeg(j) &&
-                                    !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForMatch() &&
-                                    !m_Grid.at(m_CurrentPosY).GetPeg(j).GetUsedForHint() &&
+                                    i != j &&
+                                    !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() &&
+                                    !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForHint() &&
                                     !m_Solution.GetPeg(j).GetUsedForMatch() &&
-                                    !m_Solution.GetPeg(j).GetUsedForHint())
+                                    !m_Solution.GetPeg(j).GetUsedForHint()) 
                             {
                                 m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::BLACK);
-                                m_Grid.at(m_CurrentPosY).GetPeg(j).SetUsedForHint(true);
+                                m_Solution.GetPeg(j).SetUsedForHint(true);
                                 m_Grid.at(m_CurrentPosY).GetPeg(i).SetUsedForHint(true);
-                                printf("** hint in %d with "), i;
-                                printf("%d\n",j);
+                                //printf("** hint in %d with "), i;
+                                //printf("%d\n",j);
                                 break;
                             }
                         }
-                        printf("no hint in %d\n", i);
+                        //printf("no hint in %d\n", i);
                     }
-                    else printf("not checking for hint in %d\n", i);
+                    //else printf("not checking for hint in %d\n", i);
                 }
                 m_CurrentPosY++;
                 m_CurrentPosX = 0;
