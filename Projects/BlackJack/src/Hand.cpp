@@ -1,11 +1,9 @@
 #include "Hand.h"
 
-Hand::Hand()
-{
+Hand::Hand() {
     //ctor
 }
 
-Hand::~Hand()
-{
+Hand::~Hand() {
     //dtor
 }

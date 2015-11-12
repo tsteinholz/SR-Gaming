@@ -5,16 +5,16 @@
 
 #include "Card.h"
 
-class Deck
-{
-    public:
-        Deck();
-        virtual ~Deck();
+class Deck {
+public:
+    Deck();
 
-        typedef std::vector<Card> Cards;
+    virtual ~Deck();
 
-    protected:
-    private:
+    typedef std::vector<Card> Cards;
+
+protected:
+private:
 };
 
 #endif // BLACK_JACK_DECK_H

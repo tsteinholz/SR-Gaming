@@ -1,11 +1,9 @@
 #include "Deck.h"
 
-Deck::Deck()
-{
+Deck::Deck() {
     //ctor
 }
 
-Deck::~Deck()
-{
+Deck::~Deck() {
     //dtor
 }
