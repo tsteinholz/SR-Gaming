@@ -1,9 +1,6 @@
 #ifndef BLACK_JACK_CARD_H
 #define BLACK_JACK_CARD_H
 
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_image.h>
-
 class Card
 {
     public:

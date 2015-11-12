@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Cards.h"
+#include "Card.h"
 
 class Deck
 {
@@ -11,7 +11,7 @@ class Deck
         Deck();
         virtual ~Deck();
 
-        //typedef std::vector<Cards> Cards;
+        typedef std::vector<Card> Cards;
 
     protected:
     private:
