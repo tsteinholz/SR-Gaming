@@ -1,12 +1,15 @@
 #include "Card.h"
 
-std::unordered_map<const char *, sf::Texture> Card::_Textures = std::unordered_map<const char *, sf::Texture>();
+sf::Texture Card::_SpriteSheet = sf::Texture();
 
 Card::Card(Suit suit, Value val) : _Suit(suit), _Value(val), _Played(false) {
-    _ImagePath = _Suit + _Value + ".png";
+    //TODO : check if _SpriteSheet is null, if so, assign it the res/cards.png path
+    //if (_SpriteSheet.getSize() == {0,0}) _SpriteSheet.loadFromFile("res/cards.png"); //idk if this works
+    // TODO : load card from sprite sheet with given numbers based on enum and files
+    //_ImagePath = _Suit + _Value + ".png";
     sf::Texture texture;
-    if (!texture.loadFromFile(_ImagePath)) printf("Failed to load %s", _ImagePath.c_str());
-    _Textures.insert(std::pair<const char *, sf::Texture>(_ImagePath.c_str(), texture));
+    //if (!texture.loadFromFile(_ImagePath)) printf("Failed to load %s", _ImagePath.c_str());
+    //_Textures.insert(std::pair<const char *, sf::Texture>(_ImagePath.c_str(), texture));
 }
 
 Card::~Card() {
@@ -28,7 +31,7 @@ Card::Suit Card::IntToSuit(unsigned int suit) {
         case SPADES:   return SPADES;
         case CLUBS:    return CLUBS;
         case HEARTS:   return HEARTS;
-        default:       return SERROR;
+        default:       return S_ERROR;
 
     }
 }
@@ -49,7 +52,7 @@ Card::Value Card::IntToValue(unsigned int value) {
         case JACK:  return JACK;
         case QUEEN: return QUEEN;
         case KING:  return KING;
-        default:    return VERROR;
+        default:    return V_ERROR;
 
     }
 }

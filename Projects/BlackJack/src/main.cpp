@@ -3,13 +3,17 @@
 #include "Deck.h"
 #include "Hand.h"
 
-int main(int, char**) {
+int main(int, char **) {
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "Black Jack");
     sf::Texture t_background;
     t_background.loadFromFile("res/table.png");
     sf::Sprite background;
     background.setTexture(t_background);
+    background.scale({
+                             (float) window.getSize().x / background.getTexture()->getSize().x,
+                             (float) window.getSize().y / background.getTexture()->getSize().y
+                     });
 
     typedef enum {
         MainMenu,
@@ -42,6 +46,8 @@ int main(int, char**) {
                 break;
 
         }
+
+        window.display();
     }
 
     return 0;

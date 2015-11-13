@@ -23,21 +23,30 @@ public:
         JACK = 11,
         QUEEN = 12,
         KING = 13,
-        VERROR
+        V_ERROR
     } Value;
 
     typedef enum {
-        DIAMONDS = 0,
-        SPADES = 1,
-        CLUBS = 2,
-        HEARTS = 3,
-        SERROR
+        CLUBS = 0,
+        DIAMONDS = 1,
+        HEARTS = 2,
+        SPADES = 3,
+        S_ERROR
     } Suit;
 
-    //TODO : Change loading system to the new sprite sheet coords
     Card(Suit suit, Value val);
 
     virtual ~Card();
+
+    /**
+     * Updates the object start, called once per tick
+     */
+    void Update();
+
+    /**
+     * Renders the object, called once per draw tick
+     */
+    void Render();
 
     /**
     * @returns Value of the Card
@@ -60,8 +69,9 @@ public:
     static Value IntToValue(unsigned int value);
 
 protected:
-    static std::unordered_map<const char*, sf::Texture> _Textures;
-    std::string _ImagePath;
+    static sf::Texture _SpriteSheet;
+    sf::Vector2u _ImageCoordinates;
+    sf::Sprite _Card;
     Value _Value;
     Suit _Suit;
     bool _Played;
