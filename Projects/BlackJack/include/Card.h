@@ -23,6 +23,7 @@ public:
         JACK = 11,
         QUEEN = 12,
         KING = 13,
+        VERROR
     } Value;
 
     typedef enum {
@@ -30,8 +31,10 @@ public:
         SPADES = 1,
         CLUBS = 2,
         HEARTS = 3,
+        SERROR
     } Suit;
 
+    //TODO : Change loading system to the new sprite sheet coords
     Card(Suit suit, Value val);
 
     virtual ~Card();
@@ -46,11 +49,22 @@ public:
     */
     Suit GetSuit();
 
+    /**
+     * @returns Suit Value as an integer
+     */
+    static Suit IntToSuit(unsigned int suit);
+
+    /**
+     * @returns Value as an integer
+     */
+    static Value IntToValue(unsigned int value);
+
 protected:
     static std::unordered_map<const char*, sf::Texture> _Textures;
     std::string _ImagePath;
     Value _Value;
     Suit _Suit;
+    bool _Played;
 };
 
 #endif // BLACK_JACK_CARD_H

@@ -1,7 +1,23 @@
 #include <SFML/Window.hpp>
 
-int main() {
-    sf::Window window(sf::VideoMode(800, 600), "Black Jack");
+#include "Deck.h"
+#include "Hand.h"
+
+int main(int, char**) {
+
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Black Jack");
+    sf::Texture t_background;
+    t_background.loadFromFile("res/table.png");
+    sf::Sprite background;
+    background.setTexture(t_background);
+
+    typedef enum {
+        MainMenu,
+        Game,
+        FinalMenu
+    } GameState;
+
+    GameState gameState = GameState::Game;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -10,30 +26,21 @@ int main() {
                 case sf::Event::Closed:
                     window.close();
                     break;
-                case sf::Event::Resized:break;
-                case sf::Event::LostFocus:break;
-                case sf::Event::GainedFocus:break;
-                case sf::Event::TextEntered:break;
-                case sf::Event::KeyPressed:break;
-                case sf::Event::KeyReleased:break;
-                case sf::Event::MouseWheelMoved:break;
-                case sf::Event::MouseWheelScrolled:break;
-                case sf::Event::MouseButtonPressed:break;
-                case sf::Event::MouseButtonReleased:break;
-                case sf::Event::MouseMoved:break;
-                case sf::Event::MouseEntered:break;
-                case sf::Event::MouseLeft:break;
-                case sf::Event::JoystickButtonPressed:break;
-                case sf::Event::JoystickButtonReleased:break;
-                case sf::Event::JoystickMoved:break;
-                case sf::Event::JoystickConnected:break;
-                case sf::Event::JoystickDisconnected:break;
-                case sf::Event::TouchBegan:break;
-                case sf::Event::TouchMoved:break;
-                case sf::Event::TouchEnded:break;
-                case sf::Event::SensorChanged:break;
-                case sf::Event::Count:break;
             }
+        }
+
+        window.clear(sf::Color::Black);
+
+        switch (gameState) {
+
+            case GameState::MainMenu:
+                break;
+            case GameState::Game:
+                window.draw(background);
+                break;
+            case GameState::FinalMenu:
+                break;
+
         }
     }
 

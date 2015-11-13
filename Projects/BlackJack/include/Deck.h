@@ -1,6 +1,7 @@
 #ifndef BLACK_JACK_DECK_H
 #define BLACK_JACK_DECK_H
 
+#include <algorithm>
 #include <vector>
 
 #include "Card.h"
@@ -13,7 +14,10 @@ public:
 
     typedef std::vector<Card> Cards;
 
+    void Shuffle();
+
 protected:
+    Cards _Cards;
 private:
 };
 
