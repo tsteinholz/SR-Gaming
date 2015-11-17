@@ -1,13 +1,13 @@
 #include "Card.h"
 
-sf::Texture Card::_SpriteSheet = sf::Texture();
+//sf::Texture Card::_SpriteSheet = sf::Texture();
 
 Card::Card(Suit suit, Value val) : _Suit(suit), _Value(val), _Played(false) {
     //TODO : check if _SpriteSheet is null, if so, assign it the res/cards.png path
     //if (_SpriteSheet.getSize() == {0,0}) _SpriteSheet.loadFromFile("res/cards.png"); //idk if this works
     // TODO : load card from sprite sheet with given numbers based on enum and files
     //_ImagePath = _Suit + _Value + ".png";
-    sf::Texture texture;
+    //sf::Texture texture;
     //if (!texture.loadFromFile(_ImagePath)) printf("Failed to load %s", _ImagePath.c_str());
     //_Textures.insert(std::pair<const char *, sf::Texture>(_ImagePath.c_str(), texture));
 }

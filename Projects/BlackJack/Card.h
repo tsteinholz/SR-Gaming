@@ -1,8 +1,6 @@
 #ifndef BLACK_JACK_CARD_H
 #define BLACK_JACK_CARD_H
 
-#include <SFML/Graphics.hpp>
-
 #include <cstdio>
 #include <unordered_map>
 #include <string>
@@ -69,9 +67,9 @@ public:
     static Value IntToValue(unsigned int value);
 
 protected:
-    static sf::Texture _SpriteSheet;
-    sf::Vector2u _ImageCoordinates;
-    sf::Sprite _Card;
+//    static sf::Texture _SpriteSheet;
+//    sf::Vector2u _ImageCoordinates;
+//    sf::Sprite _Card;
     Value _Value;
     Suit _Suit;
     bool _Played;
