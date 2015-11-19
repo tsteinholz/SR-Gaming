@@ -11,7 +11,7 @@ Card::Card(Suit suit, Value val) : _Suit(suit), _Value(val), _Played(false) {
 }
 
 Card::~Card() {
-    //dtor
+
 }
 
 Card::Suit Card::GetSuit() {
