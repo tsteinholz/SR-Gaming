@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1447765762 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
+1447938255 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
 	"util.h"
 	"Deck.h"
 	"Hand.h"
@@ -243,15 +243,16 @@
 
 1444733894 h:\c++\cpp-srhs\projects\blackjack\code.h
 
-1447764204 source:h:\c++\cpp-srhs\projects\blackjack\card.cpp
+1447937778 source:h:\c++\cpp-srhs\projects\blackjack\card.cpp
 	"Card.h"
 
-1447764245 h:\c++\cpp-srhs\projects\blackjack\card.h
+1447940242 h:\c++\cpp-srhs\projects\blackjack\card.h
 	<cstdio>
 	<unordered_map>
 	<string>
+	"util.h"
 
-1447417306 source:h:\c++\cpp-srhs\projects\blackjack\deck.cpp
+1447935486 source:h:\c++\cpp-srhs\projects\blackjack\deck.cpp
 	"Deck.h"
 
 1447417306 h:\c++\cpp-srhs\projects\blackjack\deck.h
@@ -264,7 +265,7 @@
 
 1447073681 h:\c++\cpp-srhs\projects\blackjack\hand.h
 
-1447765828 h:\c++\cpp-srhs\projects\blackjack\util.h
+1447938265 h:\c++\cpp-srhs\projects\blackjack\util.h
 	<cstdio>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>

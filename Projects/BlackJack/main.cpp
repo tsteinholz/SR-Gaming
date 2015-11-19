@@ -5,6 +5,7 @@
 ALLEGRO_DISPLAY *display = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
 ALLEGRO_TIMER *timer;
+ALLEGRO_BITMAP* background;
 
 const unsigned int SCREEN_W = 800, SCREEN_H = 600;
 
@@ -19,7 +20,9 @@ GameState gameState = GameState::Game;
 
 int main(int argc, char **argv)
 {
-    if (!init(display, SCREEN_W, SCREEN_H)) return -1;
+    if (!Util::init(display, SCREEN_W, SCREEN_H)) return -1;
+
+    background = Util::LoadB("res/table.png");
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
@@ -50,10 +53,13 @@ int main(int argc, char **argv)
             {
 
             case GameState::MainMenu:
+                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
             case GameState::Game:
+                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
             case GameState::FinalMenu:
+                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
 
             }

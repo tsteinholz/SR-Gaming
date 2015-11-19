@@ -5,6 +5,9 @@
 #include <unordered_map>
 #include <string>
 
+#include "util.h"
+
+
 class Card {
 public:
     typedef enum {
@@ -67,12 +70,13 @@ public:
     static Value IntToValue(unsigned int value);
 
 protected:
-//    static sf::Texture _SpriteSheet;
-//    sf::Vector2u _ImageCoordinates;
-//    sf::Sprite _Card;
     Value _Value;
     Suit _Suit;
     bool _Played;
+    static ALLEGRO_BITMAP* _Deck;
+    static float _CardHeight;
+    static float _CardWidth;
+    ALLEGRO_BITMAP* _Card;
 };
 
 #endif // BLACK_JACK_CARD_H
