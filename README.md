@@ -16,7 +16,7 @@ has been done completley by Thomas A. Steinholz, assets are not done completly b
 * [Allegro 5.0.10](https://www.allegro.cc/manual/5/)
 * [JSON-C](http://json-c.github.io/json-c/)
 
-## Highlights / Showcase
+## Highlights / Showcase 
 
 ### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical) 
 ![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v3.jpg "MasterMind")
