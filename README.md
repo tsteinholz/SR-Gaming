@@ -4,7 +4,7 @@ This is my repository for all of my C++ code for the SRHS course "C++ with Gamin
 control and is a good way for me to manage all of my projects in one place. All the code you see here
 has been done completley by Thomas A. Steinholz, assets are not done completly by me but doesn't change my code. Below I will post a screenshot of the games I make, nothing fancy. Just showing off some of the gameplay and the aesthetics of my games. All the downloads are for Windows 32 bit computers, the programs I write should all be pretty portable with the exception of fonts called directly from the `C:\Windows\Fonts\` folder. So if you really care to see my program on your plaform you need to download the source, copy the font file to a the `res/` folder. Once this is done you need to find the directory in code where it is called then you can bring the new code to your plaform, write a Makefile (or something to compile C++) which links Allegro 5. Then it should be good to go on your plaform. If you wanna add your compiled version to this repository, just send a PR and I will most likly accept it.
 
-## Integrated Development Environments
+## Integrated Development Environments 
 
 * [Jebrains Clion](https://www.jetbrains.com/clion/)
 * [Visual Studio 2015](www.visualstudio.com/Free)
