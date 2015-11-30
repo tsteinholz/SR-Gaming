@@ -20,9 +20,51 @@ GameState gameState = GameState::Game;
 
 int main(int argc, char **argv)
 {
-    if (!Util::init(display, SCREEN_W, SCREEN_H)) return -1;
+    srand(time(NULL));
+    if(!al_init())
+    {
+        fprintf(stderr, "Failed to initialize allegro!\n");
+        return false;
+    }
+    display = al_create_display(SCREEN_W, SCREEN_H);
+    if(!display)
+    {
+        fprintf(stderr, "Failed to create display!\n");
+        return false;
+    }
+    al_init_image_addon();
+    if(!al_install_audio())
+    {
+        fprintf(stderr, "Failed to initialize audio!\n");
+        return -1;
+    }
 
-    background = Util::LoadB("res/table.png");
+    if(!al_init_acodec_addon())
+    {
+        fprintf(stderr, "Failed to initialize audio codecs!\n");
+        return -1;
+    }
+
+    if (!al_reserve_samples(1))
+    {
+        fprintf(stderr, "Failed to reserve samples!\n");
+        return -1;
+    }
+    if(!al_install_mouse())
+    {
+        fprintf(stderr, "Failed to initialize the mouse!\n");
+        return -1;
+    }
+    if(!al_init_primitives_addon())
+    {
+        fprintf(stderr, "Failed to initialize primitives!\n");
+        return false;
+    }
+    al_init_font_addon();
+    al_init_ttf_addon();
+    al_install_keyboard();
+    al_clear_to_color(al_map_rgb(0,0,0));
+    //background = Util::LoadB("res/table.png");
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
@@ -51,7 +93,6 @@ int main(int argc, char **argv)
         {
             switch (gameState)
             {
-
             case GameState::MainMenu:
                 al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
