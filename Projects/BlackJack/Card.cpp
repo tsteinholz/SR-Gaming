@@ -6,7 +6,7 @@ float Card::_CardHeight = al_get_bitmap_height(_Deck) / 5;
 
 Card::Card(Suit suit, Value val) : _Suit(suit), _Value(val), _Played(false) {
 
-    blit(_Deck, _Card, value * _CardWidth, suit * _CardHeight, 0, 0, _CardWidth, _CardHeight);
+    //blit(_Deck, _Card, value * _CardWidth, suit * _CardHeight, 0, 0, _CardWidth, _CardHeight);
 
 }
 
