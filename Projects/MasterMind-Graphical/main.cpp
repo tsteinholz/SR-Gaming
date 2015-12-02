@@ -481,7 +481,7 @@ public:
                                     !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForMatch() &&
                                     !m_Grid.at(m_CurrentPosY).GetPeg(i).GetUsedForHint() &&
                                     !m_Solution.GetPeg(j).GetUsedForMatch() &&
-                                    !m_Solution.GetPeg(j).GetUsedForHint()) 
+                                    !m_Solution.GetPeg(j).GetUsedForHint())
                             {
                                 m_Grid.at(m_CurrentPosY).SetResult(results_place++, Peg::BLACK);
                                 m_Solution.GetPeg(j).SetUsedForHint(true);
@@ -526,10 +526,14 @@ public:
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
+        //al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 60, 70, ALLEGRO_ALIGN_CENTRE, "Push the button to make a color");
+        //al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
+
         for (auto& x : m_Grid) x.Render();
+
         if (playing) m_Blank.Render();
-        else 
-        { 
+        else
+        {
             m_Solution.Render();
             if (won) al_draw_text(century_gothic48B, al_map_rgb(255, 255, 255), 200, SCREEN_H - 350, ALLEGRO_ALIGN_CENTRE, "You Win!");
             else al_draw_text(century_gothic48B, al_map_rgb(255, 255, 255), 200, SCREEN_H - 350, ALLEGRO_ALIGN_CENTRE, "You Lose!");
