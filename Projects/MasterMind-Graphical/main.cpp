@@ -500,7 +500,7 @@ public:
                 {
                     results[i] = m_Grid.at(m_CurrentPosY).GetResult(i).GetColor() == Peg::WHITE;
                 }
-                if (results[0] && results[1] && results[2] && results[3]) won = true;
+                if (results[0] && results[1] && results[2] && results[3]){ won = true; playing = false; }
                 m_CurrentPosY++;
                 m_CurrentPosX = 0;
             }
@@ -526,8 +526,10 @@ public:
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W-355, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 200, 200, ALLEGRO_ALIGN_CENTRE, "Choose a Color");
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
-        //al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 60, 70, ALLEGRO_ALIGN_CENTRE, "Push the button to make a color");
-        //al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
+        al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Correct Color & Location");
+        al_draw_filled_circle(160, SCREEN_H-70, 5, al_map_rgb(175, 175, 175));
+        al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-c110, ALLEGRO_ALIGN_CENTRE, "Correct Color");
+        al_draw_filled_circle(160, SCREEN_H-110, 5, al_map_rgb(0, 0, 0));
 
         for (auto& x : m_Grid) x.Render();
 

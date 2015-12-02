@@ -1,0 +1,126 @@
+# Platform-specific functions
+
+## Windows
+
+These functions are declared in the following header file:
+
+~~~~c
+ #include <allegro5/allegro_windows.h>
+~~~~
+
+### API: al_get_win_window_handle
+
+Returns the handle to the window that the passed display is using.
+
+### API: al_win_add_window_callback
+
+The specified callback function will intercept the window's message
+before Allegro processes it. If the callback function consumes the event,
+then it should return true. In that case, Allegro will not do anything
+with the event.
+
+Optionally, you may use `result` to customize what Allegro will return
+return in response to this event. By default, Allegro returns `TRUE`.
+
+The `userdata` pointer can be used to supply additional context to the
+callback function. 
+
+The callbacks are executed in the same order they were added.
+
+Returns true if the callback was added.
+
+Since: 5.1.2
+
+### API: al_win_remove_window_callback
+
+Removes the callback that was previously registered with 
+[al_win_add_window_callback]. The `userdata` pointer must be the same as
+what was used during the registration of the callback.
+
+Returns true if the callback was removed.
+
+Since: 5.1.2
+
+## Mac OS X
+
+These functions are declared in the following header file:
+
+~~~~c
+ #include <allegro5/allegro_osx.h>
+~~~~
+
+### API: al_osx_get_window
+
+Retrieves the NSWindow handle associated with the Allegro display.
+
+Since: 5.0.8, 5.1.3
+
+## iPhone
+
+These functions are declared in the following header file:
+
+~~~~c
+ #include <allegro5/allegro_iphone.h>
+~~~~
+
+### API: al_iphone_set_statusbar_orientation
+
+Sets the orientation of the status bar, which can be one of the following:
+
+-  ALLEGRO_IPHONE_STATUSBAR_ORIENTATION_PORTRAIT
+-  ALLEGRO_IPHONE_STATUSBAR_ORIENTATION_PORTRAIT_UPSIDE_DOWN
+-  ALLEGRO_IPHONE_STATUSBAR_ORIENTATION_LANDSCAPE_RIGHT
+-  ALLEGRO_IPHONE_STATUSBAR_ORIENTATION_LANDSCAPE_LEFT
+
+Since: 5.1.0
+
+### API: al_iphone_get_view
+
+Retrieves the UIView* (EAGLView*) associated with the Allegro display.
+
+Since: 5.1.0
+
+### API: al_iphone_get_window
+
+Retrieves the UIWindow* associated with the Allegro display.
+
+Since: 5.1.0
+
+## Android
+
+These functions are declared in the following header file:
+
+~~~~c
+ #include <allegro5/allegro_android.h>
+~~~~
+
+### API: al_android_set_apk_file_interface
+
+This function will set up a custom [ALLEGRO_FILE_INTERFACE] that makes all
+future calls of [al_fopen] read from the applicatons's APK file.
+
+> *Note:* Currently, access to the APK file after calling this function is read
+only.
+
+Since: 5.1.2
+
+### API: al_android_get_os_version
+
+Returns a pointer to a static buffer that contains the version string of the
+Android platform that the calling Allegro program is running on.
+
+Since: 5.1.2
+
+## X11
+
+These functions are declared in the following header file:
+
+~~~~c
+ #include <allegro5/allegro_x.h>
+~~~~
+
+### API: al_get_x_window_id
+
+Retrieves the XID associated with the Allegro display.
+
+Since: 5.1.12
