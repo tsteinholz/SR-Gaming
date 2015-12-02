@@ -8,8 +8,8 @@
 #include <allegro5/allegro_ttf.h>
 
 #include "util.h"
-//#include "Deck.h"
-//#include "Hand.h"
+#include "Deck.h"
+#include "Hand.h"
 
 ALLEGRO_DISPLAY *display = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
@@ -73,6 +73,8 @@ int main(int argc, char **argv)
 
     //century_gothic48B = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHICB.TTF", 48, ALLEGRO_ALIGN_CENTRE);
     //century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
+
+	Util::LoadB("res/cards.png");
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
