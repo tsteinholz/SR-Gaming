@@ -292,3 +292,41 @@
 1444226066 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_physfs.h
 	"allegro5/allegro.h"
 
+1448098910 source:d:\users\thomas\documents\development\c++\srhs\projects\blackjack\card.cpp
+	"Card.h"
+
+1448098869 d:\users\thomas\documents\development\c++\srhs\projects\blackjack\card.h
+	<cstdio>
+	<unordered_map>
+	<string>
+	"util.h"
+
+1448098869 d:\users\thomas\documents\development\c++\srhs\projects\blackjack\util.h
+	<cstdio>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_physfs.h>
+	<allegro5/allegro_ttf.h>
+
+1448098869 source:d:\users\thomas\documents\development\c++\srhs\projects\blackjack\deck.cpp
+	"Deck.h"
+
+1448098869 d:\users\thomas\documents\development\c++\srhs\projects\blackjack\deck.h
+	<algorithm>
+	<vector>
+	"Card.h"
+
+1448098869 source:d:\users\thomas\documents\development\c++\srhs\projects\blackjack\hand.cpp
+	"Hand.h"
+
+1448098869 d:\users\thomas\documents\development\c++\srhs\projects\blackjack\hand.h
+
+1448098869 source:d:\users\thomas\documents\development\c++\srhs\projects\blackjack\main.cpp
+	"util.h"
+	"Deck.h"
+	"Hand.h"
+

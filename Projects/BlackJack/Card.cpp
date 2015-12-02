@@ -1,6 +1,6 @@
 #include "Card.h"
 
-ALLEGRO_BITMAP* Card::_Deck = Util::LoadB("cards.png");
+ALLEGRO_BITMAP* Card::_Deck = Util::LoadB("res/cards.png");
 //float Card::_CardWidth = al_get_bitmap_width(_Deck) / 13;
 //float Card::_CardHeight = al_get_bitmap_height(_Deck) / 5;
 
