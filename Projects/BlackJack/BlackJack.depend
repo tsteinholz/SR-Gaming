@@ -1,8 +1,14 @@
 # depslib dependency file v1.0
-1448890292 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
+1449059503 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_physfs.h>
+	<allegro5/allegro_ttf.h>
 	"util.h"
-	"Deck.h"
-	"Hand.h"
 
 1444226065 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
 	"allegro5/base.h"
@@ -265,7 +271,7 @@
 
 1447073681 h:\c++\cpp-srhs\projects\blackjack\hand.h
 
-1448885828 h:\c++\cpp-srhs\projects\blackjack\util.h
+1449059132 h:\c++\cpp-srhs\projects\blackjack\util.h
 	<cstdio>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>

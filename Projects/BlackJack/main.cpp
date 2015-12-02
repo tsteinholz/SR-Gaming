@@ -1,6 +1,15 @@
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_physfs.h>
+#include <allegro5/allegro_ttf.h>
+
 #include "util.h"
-#include "Deck.h"
-#include "Hand.h"
+//#include "Deck.h"
+//#include "Hand.h"
 
 ALLEGRO_DISPLAY *display = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
@@ -24,13 +33,11 @@ int main(int argc, char **argv)
     if(!al_init())
     {
         fprintf(stderr, "Failed to initialize allegro!\n");
-        return false;
     }
     display = al_create_display(SCREEN_W, SCREEN_H);
     if(!display)
     {
         fprintf(stderr, "Failed to create display!\n");
-        return false;
     }
     al_init_image_addon();
     if(!al_install_audio())
@@ -58,16 +65,18 @@ int main(int argc, char **argv)
     if(!al_init_primitives_addon())
     {
         fprintf(stderr, "Failed to initialize primitives!\n");
-        return false;
     }
     al_init_font_addon();
     al_init_ttf_addon();
     al_install_keyboard();
     al_clear_to_color(al_map_rgb(0,0,0));
-    //background = Util::LoadB("res/table.png");
+
+    //century_gothic48B = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHICB.TTF", 48, ALLEGRO_ALIGN_CENTRE);
+    //century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
+    al_register_event_source(queue, al_get_mouse_event_source());
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
@@ -91,7 +100,7 @@ int main(int argc, char **argv)
 
         if (al_is_event_queue_empty(queue))
         {
-            switch (gameState)
+            /*switch (gameState)
             {
             case GameState::MainMenu:
                 al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
@@ -103,7 +112,7 @@ int main(int argc, char **argv)
                 al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
 
-            }
+            }*/
             al_flip_display();
         }
     }
