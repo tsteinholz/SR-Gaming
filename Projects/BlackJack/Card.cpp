@@ -1,13 +1,13 @@
 #include "Card.h"
 
 ALLEGRO_BITMAP* Card::_Deck = NULL;
-//float Card::_CardWidth = al_get_bitmap_width(_Deck) / 13;
-//float Card::_CardHeight = al_get_bitmap_height(_Deck) / 5;
+float Card::_CardWidth = 0;
+float Card::_CardHeight = 0;
 
 Card::Card(Suit suit, Value val) : _Suit(suit), _Value(val), _Played(false) {
 	Card::_Deck = Util::LoadB("res/cards.png");
-    //blit(_Deck, _Card, value * _CardWidth, suit * _CardHeight, 0, 0, _CardWidth, _CardHeight);
-
+	Card::_CardWidth = al_get_bitmap_width(_Deck) / 13;
+	Card::_CardHeight = al_get_bitmap_height(_Deck) / 5;
 }
 
 Card::~Card() {
@@ -53,4 +53,8 @@ Card::Value Card::IntToValue(unsigned int value) {
         default:    return V_ERROR;
 
     }
+}
+
+void Card::Render() {
+	al_draw_bitmap_region(_Deck, _Value * _CardWidth, _Suit * _CardHeight, _CardWidth, _CardHeight, _CardWidth, _CardHeight, 0);
 }

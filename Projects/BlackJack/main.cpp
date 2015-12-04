@@ -83,6 +83,9 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
+	Card test(Card::DIAMONDS, Card::TWO);
+	Card test2(Card::SPADES, Card::ACE);
+
     bool executing = true;
     while (executing)
     {
@@ -102,19 +105,23 @@ int main(int argc, char **argv)
 
         if (al_is_event_queue_empty(queue))
         {
-            /*switch (gameState)
+            switch (gameState)
             {
             case GameState::MainMenu:
+				test.Render();
+				test2.Render();
                 al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
             case GameState::Game:
-                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
+				test.Render();
+				test2.Render();
+                //al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
             case GameState::FinalMenu:
-                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
+                //al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
 
-            }*/
+            }
             al_flip_display();
         }
     }
