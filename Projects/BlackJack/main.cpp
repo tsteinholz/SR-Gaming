@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     //century_gothic48B = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHICB.TTF", 48, ALLEGRO_ALIGN_CENTRE);
     //century_gothic24  = al_load_ttf_font("C:\\Windows\\Fonts\\GOTHIC.TTF" , 24, ALLEGRO_ALIGN_CENTRE);
 
-	Util::LoadB("res/cards.png");
+	background = Util::LoadB("res/table.png");
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
@@ -83,8 +83,8 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-	Card test(Card::DIAMONDS, Card::TWO);
-	Card test2(Card::SPADES, Card::ACE);
+	Card test(Card::DIAMONDS, Card::TWO, 30, 234);
+	Card test2(Card::SPADES, Card::ACE, 83, 59);
 
     bool executing = true;
     while (executing)
@@ -108,17 +108,17 @@ int main(int argc, char **argv)
             switch (gameState)
             {
             case GameState::MainMenu:
+                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
 				test.Render();
 				test2.Render();
-                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
             case GameState::Game:
+				al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
 				test.Render();
 				test2.Render();
-                //al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
             case GameState::FinalMenu:
-                //al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
+                al_draw_scaled_bitmap(background, 0, 0, al_get_bitmap_width(background), al_get_bitmap_height(background), 0, 0 , SCREEN_W, SCREEN_H, 0);
                 break;
 
             }

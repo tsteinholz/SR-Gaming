@@ -37,7 +37,7 @@ public:
         S_ERROR
     } Suit;
 
-    Card(Suit suit, Value val);
+    Card(Suit suit, Value val, int x = 0, int y = 0);
 
     virtual ~Card();
 
@@ -79,6 +79,7 @@ protected:
     static float _CardHeight;
     static float _CardWidth;
     ALLEGRO_BITMAP* _Card;
+    int _Coords[2];
 };
 
 #endif // BLACK_JACK_CARD_H

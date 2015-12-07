@@ -4,10 +4,12 @@ ALLEGRO_BITMAP* Card::_Deck = NULL;
 float Card::_CardWidth = 0;
 float Card::_CardHeight = 0;
 
-Card::Card(Suit suit, Value val) : _Suit(suit), _Value(val), _Played(false) {
+Card::Card(Suit suit, Value val, int x, int y) : _Suit(suit), _Value(val), _Played(false) {
 	Card::_Deck = Util::LoadB("res/cards.png");
 	Card::_CardWidth = al_get_bitmap_width(_Deck) / 13;
 	Card::_CardHeight = al_get_bitmap_height(_Deck) / 5;
+	_Coords[0] = x ;//+ (_CardWidth / 2);
+	_Coords[1] = y;// - (_CardHeight / 2);
 }
 
 Card::~Card() {
@@ -51,10 +53,10 @@ Card::Value Card::IntToValue(unsigned int value) {
         case QUEEN: return QUEEN;
         case KING:  return KING;
         default:    return V_ERROR;
-
     }
 }
 
 void Card::Render() {
-	al_draw_bitmap_region(_Deck, _Value * _CardWidth, _Suit * _CardHeight, _CardWidth, _CardHeight, _CardWidth, _CardHeight, 0);
+	al_draw_bitmap_region(_Deck, _Value * _CardWidth, _Suit * _CardHeight, _CardWidth, _CardHeight, _Coords[0], _Coords[1], 0);
+	al_draw_rectangle(_Coords[0], _Coords[1], _Coords[0], _Coords[1], al_map_rgb(255,0,255), 3);
 }
