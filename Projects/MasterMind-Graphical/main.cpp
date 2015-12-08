@@ -528,7 +528,7 @@ public:
         al_draw_text(century_gothic48B, al_map_rgb(255,255,255), 600, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Solution :");
         al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Correct Color & Location");
         al_draw_filled_circle(160, SCREEN_H-70, 5, al_map_rgb(175, 175, 175));
-        al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-c110, ALLEGRO_ALIGN_CENTRE, "Correct Color");
+        al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-110, ALLEGRO_ALIGN_CENTRE, "Correct Color");
         al_draw_filled_circle(160, SCREEN_H-110, 5, al_map_rgb(0, 0, 0));
 
         for (auto& x : m_Grid) x.Render();
