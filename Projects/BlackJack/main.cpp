@@ -8,6 +8,7 @@
 #include <allegro5/allegro_ttf.h>
 
 #include "util.h"
+#include "Card.h"
 #include "Deck.h"
 #include "Hand.h"
 
@@ -74,7 +75,7 @@ int main(int argc, char **argv)
     al_init_ttf_addon();
     al_install_keyboard();
     al_clear_to_color(al_map_rgb(0,0,0));
-	
+
 	CoffeeTin[0] = al_load_ttf_font("res/CoffeeTin Initials.ttf", 12, ALLEGRO_ALIGN_CENTRE);
 	CoffeeTin[1] = al_load_ttf_font("res/CoffeeTin Initials.ttf", 18, ALLEGRO_ALIGN_CENTRE);
 	CoffeeTin[2] = al_load_ttf_font("res/CoffeeTin Initials.ttf", 24, ALLEGRO_ALIGN_CENTRE);
@@ -91,7 +92,8 @@ int main(int argc, char **argv)
 	CowboyMovie[5] = al_load_ttf_font("res/Cowboy Movie.ttf", 60, ALLEGRO_ALIGN_CENTRE);
 	CowboyMovie[6] = al_load_ttf_font("res/Cowboy Movie.ttf", 72, ALLEGRO_ALIGN_CENTRE);
 
-	background = Util::LoadB("res/table.png");
+	background = Util::LoadB("res/table.jpeg");
+
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
