@@ -165,8 +165,7 @@ int main(int argc, char **argv)
                 break;
 			case HowToBlackJack:
 				al_draw_text(CoffeeTin[6], al_map_rgb(255,255,255), 400, 25, ALLEGRO_ALIGN_CENTRE, "WHAT IS BLACK JACK");
-				//al_draw_text(CowboyMovie[3], al_map_rgb(255,255,255), 50, 50, ALLEGRO_ALIGN_CENTRE, "Blackjack is a popular American casino game, now found throughout the world. It is a banking game in which the aim of the player is to achieve a hand whose points total nearer to 21 than the banker\'s hand, but without exceeding 21.");
-				
+				al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), 400, 150, ALLEGRO_ALIGN_CENTRE, "BLACKJACK IS A POPULAR AMERICAN CASINO GAME, NOW FOUND THROUGHOUT THE WORLD.");// IT IS A BANKING GAME IN WHICH THE AIM OF THE PLAYER IS TO ACHIEVE A HAND WHOSE POINTS TOTAL NEARER TO 21 THAN THE BANKER\'S HAND, BUT WITHOUT EXCEEDING 21.");
 				break;
 			case Instructions:
 				al_draw_text(CoffeeTin[6], al_map_rgb(255,255,255), 400, 25, ALLEGRO_ALIGN_CENTRE, "INSTRUCTIONS");
