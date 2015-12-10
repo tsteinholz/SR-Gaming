@@ -1,14 +1,26 @@
 #ifndef BLACK_JACK_HAND_H
 #define BLACK_JACK_HAND_H
 
+#include "Deck.h"
 
 class Hand
 {
     public:
-        Hand();
+        Hand(Deck *deck);
         virtual ~Hand();
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // Purpose: Draw a card from a deck
+        //
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        void Draw();
+
+        void Count();
+
+        void Render(); 
+
     protected:
-    private:
+        Deck *_Deck;
 };
 
 #endif // BLACK_JACK_HAND_H

@@ -71,6 +71,8 @@ public:
      */
     static Value IntToValue(unsigned int value);
 
+    bool Used;
+
 protected:
     Value _Value;
     Suit _Suit;

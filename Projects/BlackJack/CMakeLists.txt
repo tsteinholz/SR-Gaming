@@ -3,7 +3,7 @@ project (BlackJack)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_executable (BlackJack main.cpp Hand.cpp Deck.cpp Card.cpp)
+add_executable (BlackJack main.cpp Hand.cpp Deck.cpp Card.cpp BlackJack.h BlackJack.cpp)
 
 include_directories (${PROJECT_SOURCE_DIR} /usr/include/allegro5)
 link_directories (/usr/lib)

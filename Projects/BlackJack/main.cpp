@@ -8,8 +8,7 @@
 #include <allegro5/allegro_ttf.h>
 
 #include "util.h"
-#include "Deck.h"
-#include "Hand.h"
+#include "BlackJack.h"
 
 ALLEGRO_DISPLAY *display = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
@@ -103,13 +102,8 @@ int main(int argc, char **argv)
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
-
-	Card test(Card::DIAMONDS, Card::TWO, 300, 234);
-	Card test2(Card::SPADES, Card::FOUR, 534, 59);
-
-    Deck deck();
-
-    al_play_sample(AprilShowers, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+    
+    al_play_sample(AprilShowers, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
     bool executing = true;
     while (executing)
@@ -214,8 +208,6 @@ int main(int argc, char **argv)
                     ALLEGRO_ALIGN_CENTRE, "FOR A LOSS.");
 				break;
             case Game:
-				test.Render();
-				test2.Render();
                 break;
             case FinalMenu:
                 break;
