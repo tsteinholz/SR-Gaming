@@ -17,6 +17,7 @@ ALLEGRO_TIMER *timer;
 ALLEGRO_BITMAP *background;
 ALLEGRO_FONT *CoffeeTin[7];
 ALLEGRO_FONT *CowboyMovie[7];
+ALLEGRO_SAMPLE *AprilShowers;
 
 const unsigned int SCREEN_W = 900, SCREEN_H = 600;
 
@@ -94,7 +95,7 @@ int main(int argc, char **argv)
 	CowboyMovie[6] = al_load_ttf_font("res/Cowboy Movie.ttf", 72, ALLEGRO_ALIGN_CENTRE);
 
 	background = Util::LoadB("res/table.jpeg");
-
+    AprilShowers = Util::LoadS("res/AprilShowers.ogg");
 
     queue = al_create_event_queue();
     al_register_event_source(queue, al_get_keyboard_event_source());
@@ -105,6 +106,10 @@ int main(int argc, char **argv)
 
 	Card test(Card::DIAMONDS, Card::TWO, 300, 234);
 	Card test2(Card::SPADES, Card::FOUR, 534, 59);
+
+    Deck deck();
+
+    al_play_sample(AprilShowers, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
 
     bool executing = true;
     while (executing)
@@ -173,39 +178,39 @@ int main(int argc, char **argv)
                     ALLEGRO_ALIGN_CENTRE, "WHAT IS BLACK JACK");
 				al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 150,
                     ALLEGRO_ALIGN_CENTRE, "BLACKJACK IS A POPULAR AMERICAN CASINO GAME, NOW FOUND THROUGHOUT THE WORLD.");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 190, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 190,
                     ALLEGRO_ALIGN_CENTRE, "IT IS A BANKING GAME IN WHICH THE AIM OF THE PLAYER IS TO ACHIEVE A HAND");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 230, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 230,
                     ALLEGRO_ALIGN_CENTRE, "WHOSE POINTS TOTAL NEARER TO 21 THAN THE BANKER\'S HAND, BUT WITHOUT EXCEEDING 21.");
-				al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 270, 
+				al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 270,
                     ALLEGRO_ALIGN_CENTRE, "ALTHOUGH MANY PLAYERS MAY PLAY IN A SINGLE ROUND OF BLACKJACK, IT'S FUNDAMENTALLY A");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 310, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 310,
                     ALLEGRO_ALIGN_CENTRE, "TWO-PLAYER GAME. IN BLACKJACK, PLAYERS DON'T PLAY AGAINST EACH OTHER; AND THEY DON'T");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 350, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 350,
                     ALLEGRO_ALIGN_CENTRE, "CO-OPERATE. THE ONLY COMPETITION IS THE DEALER.");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 390, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 390,
                     ALLEGRO_ALIGN_CENTRE, "THE AIM OF THE GAME IS TO ACCUMULATE A HIGHER POINT TOTAL THAN THE DEALER, BUT WITHOUT");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 430, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 430,
                     ALLEGRO_ALIGN_CENTRE, "GOING OVER 21. YOU COMPUTE YOUR SCORE BY ADDING THE VALUES OF YOUR INDIVIDUAL CARDS.");
                 break;
 			case Instructions:
-				al_draw_text(CoffeeTin[6], al_map_rgb(255,255,255), (SCREEN_W / 2), 25, 
+				al_draw_text(CoffeeTin[6], al_map_rgb(255,255,255), (SCREEN_W / 2), 25,
                     ALLEGRO_ALIGN_CENTRE, "INSTRUCTIONS");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 150, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 150,
                     ALLEGRO_ALIGN_CENTRE, "THERE IS GAMBLING IN THIS GAME, BUT IT IS NOT PUNISHABLE UNDER AACPS RULES DUE TO THE FACT THAT");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 190, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 190,
                     ALLEGRO_ALIGN_CENTRE, "THERE IS NOT PROPERTY OR MONEY BEING GAMBLED BUT ONLY IN GAME IMAGINARY CURRENCY THAT CANNOT");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 230, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 230,
                     ALLEGRO_ALIGN_CENTRE, "HARM ANYONE IN ANY WAY. YOU CAN PLAY THIS GAME UNLIMITEDLY, YOU PLAY EACH ROUND INDEPENDATLY");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 270, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 270,
                     ALLEGRO_ALIGN_CENTRE, "OF EACH OTHERTHE GAME STARTS BY DEALING YOU A CARD, YOU PUSH THE BUTTON \"HIT ME\" OR \"HOLD\"");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 310, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 310,
                     ALLEGRO_ALIGN_CENTRE, "YOU WILL CONTINUE TO HIT THESE BUTTONS UNTILL YOU BUST OR HOLD, ONCE YOU GET TO THAT POINT THE");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 350, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 350,
                     ALLEGRO_ALIGN_CENTRE, "CARDS OF THE DEALER WILL BE SHOWN TO YOU AND YOU WILL SEE WHO WON, YOU OR THE DEALER. YOU WILL");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 390, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 390,
                     ALLEGRO_ALIGN_CENTRE, "BE ABLE TO BET ON EACH ROUND, EVERY WIN IS 2X WHAT YOU PUT IN AND YOU GET 1/2 OF WHAT YOU PUT IN");
-                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 430, 
+                al_draw_text(CowboyMovie[2], al_map_rgb(255,255,255), (SCREEN_W / 2), 430,
                     ALLEGRO_ALIGN_CENTRE, "FOR A LOSS.");
 				break;
             case Game:
