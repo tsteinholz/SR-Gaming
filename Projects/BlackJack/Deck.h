@@ -1,9 +1,6 @@
 #ifndef BLACK_JACK_DECK_H
 #define BLACK_JACK_DECK_H
 
-#include <algorithm>
-#include <vector>
-
 #include "Card.h"
 
 class Deck {
@@ -12,12 +9,20 @@ public:
 
     virtual ~Deck();
 
-    typedef std::vector<Card> Cards;
-
+	//-----------------------------------------------------------------------------
+	// Purpose: Shuffles the deck
+    //-----------------------------------------------------------------------------
     void Shuffle();
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Draw a random card from the deck
+    //
+    // returns the drawn card
+    //-----------------------------------------------------------------------------
+    Card *Draw();
+
 protected:
-    Cards _Cards;
+    Card::Cards _Cards;
 private:
 };
 

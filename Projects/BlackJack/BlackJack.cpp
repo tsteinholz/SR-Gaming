@@ -1,11 +1,15 @@
 #include "BlackJack.h"
 
-BlackJack::BlackJack() : _PlayerHand(), _DealerHand(), _Deck() {
+BlackJack::BlackJack() : _Deck() {
+    _PlayerHand = new Hand(_Deck);
+    _DealerHand = new Hand(_Deck);
 
+    // todo : load bank
 }
 
 BlackJack::~BlackJack() {
-
+    delete _PlayerHand;
+    delete _DealerHand;
 }
 
 void BlackJack::Render() 
@@ -21,9 +25,5 @@ void BlackJack::Render()
         case FINISH:
             break;
     }
-
-}
-
-void BlackJack::Tick() {
 
 }

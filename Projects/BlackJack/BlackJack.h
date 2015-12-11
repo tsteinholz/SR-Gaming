@@ -9,8 +9,13 @@ class BlackJack {
 public:
     
     BlackJack();
+
     virtual ~BlackJack();
 
+    //-----------------------------------------------------------------------------
+    // Purpose: To keep track of the current state of the game and to execute
+    // everything else accordingly
+    //-----------------------------------------------------------------------------
     typedef enum {
         SETUP,
         INPUT,
@@ -18,9 +23,16 @@ public:
         FINISH
     } Mode;
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Renders BlackJack 
+    //-----------------------------------------------------------------------------
     void Render();
     
-    void Tick();
+    //-----------------------------------------------------------------------------
+    // Purpose: Called whenever user input (that we care about) is inputed so that
+    // the game itself can process it accordingly and efficiently
+    //-----------------------------------------------------------------------------
+    void Update();
 
 protected:
     Mode _CurrentMode;
@@ -29,4 +41,5 @@ protected:
     Deck *_Deck;
     unsigned int _Bank;
 };
+
 #endif // BLACK_JACK_H

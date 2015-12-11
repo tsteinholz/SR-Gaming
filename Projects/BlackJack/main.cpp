@@ -105,6 +105,9 @@ int main(int argc, char **argv)
     
     al_play_sample(AprilShowers, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
+    Deck deck();
+    
+
     bool executing = true;
     while (executing)
     {
@@ -208,6 +211,7 @@ int main(int argc, char **argv)
                     ALLEGRO_ALIGN_CENTRE, "FOR A LOSS.");
 				break;
             case Game:
+                
                 break;
             case FinalMenu:
                 break;

@@ -1,3 +1,5 @@
+# Probably only works on arch linux with the right packages ;)
+
 cmake_minimum_required (VERSION 3.0.0)
 project (BlackJack)
 
