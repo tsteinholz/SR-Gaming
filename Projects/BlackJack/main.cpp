@@ -1,12 +1,3 @@
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_image.h>
-#include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_acodec.h>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro_physfs.h>
-#include <allegro5/allegro_ttf.h>
-
 #include "BlackJack.h"
 
 ALLEGRO_DISPLAY *display = NULL;
@@ -104,7 +95,7 @@ int main(int argc, char **argv)
     
     al_play_sample(AprilShowers, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
-    BlackJack* game = new BlackJack();    
+    BlackJack* game = new BlackJack(CoffeeTin);    
 
     bool executing = true;
     while (executing)
@@ -151,6 +142,10 @@ int main(int argc, char **argv)
 				break;
 			}
 			break;
+        case ALLEGRO_EVENT_MOUSE_AXES:
+            game->Update(&event);
+            printf("test");
+            break;
         case ALLEGRO_EVENT_TIMER:
             break;
         }

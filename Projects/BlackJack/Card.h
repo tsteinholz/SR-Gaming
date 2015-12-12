@@ -46,6 +46,7 @@ public:
         DIAMONDS = 1,
         HEARTS   = 2,
         SPADES   = 3,
+        BACK     = 4,
         S_ERROR
     } Suit;
 
@@ -86,12 +87,13 @@ public:
     //-----------------------------------------------------------------------------
     // Purpose: A boolean value of if the card was used or not in the current deck
     //-----------------------------------------------------------------------------
-    bool Used;
+    bool Played;
 
-protected:
-    bool _Played;
-    int _Coords[2];
-    
+    //-----------------------------------------------------------------------------
+    // Purpose : The location that the card will be rendered
+    //-----------------------------------------------------------------------------
+    int Coords[2];
+protected: 
     Value _Value;
     Suit _Suit;
     

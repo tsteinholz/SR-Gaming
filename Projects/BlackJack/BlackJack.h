@@ -2,8 +2,13 @@
 #define BLACK_JACK_H
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
-
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_physfs.h>
+#include <allegro5/allegro_ttf.h>
 #include "Hand.h"
 #include "Deck.h"
 
@@ -11,7 +16,7 @@ class BlackJack {
 
 public:
     
-    BlackJack();
+    BlackJack(ALLEGRO_FONT **fonts);
 
     virtual ~BlackJack();
 
@@ -35,7 +40,7 @@ public:
     // Purpose: Called whenever user input (that we care about) is inputed so that
     // the game itself can process it accordingly and efficiently
     //-----------------------------------------------------------------------------
-    void Update();
+    void Update(ALLEGRO_EVENT *event);
 
     //-----------------------------------------------------------------------------
     // Purpose:
@@ -52,9 +57,11 @@ protected:
     Hand *_PlayerHand;
     Hand *_DealerHand;
     Deck *_Deck;
+    Card *_CardBack;
 
     ALLEGRO_BITMAP *_Button;
-
+    ALLEGRO_FONT *_Font[7]
+;
     unsigned int _Bank;
 };
 
