@@ -28,4 +28,5 @@ struct Util
         return out;
     }
 };
+
 #endif // UTIL_H_INCLUDED

@@ -7,7 +7,6 @@
 #include <allegro5/allegro_physfs.h>
 #include <allegro5/allegro_ttf.h>
 
-#include "util.h"
 #include "BlackJack.h"
 
 ALLEGRO_DISPLAY *display = NULL;
@@ -105,8 +104,7 @@ int main(int argc, char **argv)
     
     al_play_sample(AprilShowers, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
-    Deck deck();
-    
+    BlackJack* game = new BlackJack();    
 
     bool executing = true;
     while (executing)
@@ -211,7 +209,7 @@ int main(int argc, char **argv)
                     ALLEGRO_ALIGN_CENTRE, "FOR A LOSS.");
 				break;
             case Game:
-                
+                game->Render();
                 break;
             case FinalMenu:
                 break;
@@ -219,6 +217,8 @@ int main(int argc, char **argv)
             al_flip_display();
         }
     }
+    delete game;
     al_destroy_display(display);
+
     return 0;
 }

@@ -1,6 +1,9 @@
 #ifndef BLACK_JACK_H
 #define BLACK_JACK_H
 
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+
 #include "Hand.h"
 #include "Deck.h"
 
@@ -24,7 +27,7 @@ public:
     } Mode;
 
     //-----------------------------------------------------------------------------
-    // Purpose: Renders BlackJack 
+    // Purpose: Renders BlackJack
     //-----------------------------------------------------------------------------
     void Render();
     
@@ -34,11 +37,24 @@ public:
     //-----------------------------------------------------------------------------
     void Update();
 
+    //-----------------------------------------------------------------------------
+    // Purpose:
+    //-----------------------------------------------------------------------------
+    void Hit();
+
+    //-----------------------------------------------------------------------------
+    // Purpose:
+    //-----------------------------------------------------------------------------
+    void Hold();
+
 protected:
     Mode _CurrentMode;
     Hand *_PlayerHand;
     Hand *_DealerHand;
     Deck *_Deck;
+
+    ALLEGRO_BITMAP *_Button;
+
     unsigned int _Bank;
 };
 
