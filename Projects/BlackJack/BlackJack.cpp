@@ -1,6 +1,7 @@
 #include "BlackJack.h"
 
-BlackJack::BlackJack(ALLEGRO_FONT **fonts) : _Deck() {
+BlackJack::BlackJack(ALLEGRO_FONT **fonts) {
+    _Deck = new Deck();
     _PlayerHand = new Hand(_Deck);
     _DealerHand = new Hand(_Deck);
     _CardBack = new Card(Card::BACK, Card::ACE, 450, 75);
@@ -11,13 +12,15 @@ BlackJack::BlackJack(ALLEGRO_FONT **fonts) : _Deck() {
 
     // todo : load bank
     _Bank = 0;
-
-    _CurrentMode = INPUT;
+    _PlayerHand->Draw();
+    _CurrentMode = SETUP;
 }
 
 BlackJack::~BlackJack() {
+    delete _Deck;
     delete _PlayerHand;
     delete _DealerHand;
+    delete _CardBack;
 }
 
 void BlackJack::Render() 
@@ -38,17 +41,21 @@ void BlackJack::Render()
     
     al_draw_text(_Font[2], al_map_rgb(218,204,0), 400, 525, ALLEGRO_ALIGN_CENTRE, "BANK ACCOUNT : xxx");
 
+    _PlayerHand->Render();
+
 }
 
 void BlackJack::Update(ALLEGRO_EVENT *event) {
 
     switch (_CurrentMode) {
         case SETUP:
-
+            printf("count is %i\n", _PlayerHand->Count());
+            _CurrentMode = INPUT;
+            //printf("set card\n");
             break;
         case INPUT:
-
-            //if (event == ALLEGRO_EVENT_MOUSE_AXES) {
+            //printf("in input\n");
+            /*if (event == ALLEGRO_EVENT_MOUSE_AXES) {
                 if (event->mouse.y >= 50 && event->mouse.y <= 50 + 75) {
                     if (event->mouse.x >= 75 && event->mouse.y <= 75 + 125) {
                         al_draw_rectangle(75, 50, 75 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
@@ -56,8 +63,7 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
                         al_draw_rectangle(700, 50, 700 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
                     }
                 }
-            //}
-
+            *///}
             break;
         case COMPUTE:
 

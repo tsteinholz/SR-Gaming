@@ -1,15 +1,20 @@
 #include "Hand.h"
 
 Hand::Hand(Deck *deck) : _Deck(deck) {
-	
+
 }
 
 Hand::~Hand() {
     //dtor
 }
 
-void Hand::Draw() {
+void Hand::Render() {
+	for (Card* c : _Cards) 
+		c->Render();
+}
 
+void Hand::Draw() {
+	_Cards.push_back(_Deck->Draw());
 }
 
 int Hand::Count() {

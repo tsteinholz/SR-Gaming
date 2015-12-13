@@ -10,6 +10,7 @@ Deck::Deck()
         }
     }
     Shuffle();
+    printf("size of cars: %lu", _Cards.size());
 }
 
 Deck::~Deck()
@@ -26,5 +27,8 @@ void Deck::Shuffle()
 }
 
 Card *Deck::Draw() {
-//    _Cards.at();
+    //unsigned long rndindex = rand() % _Cards.size();
+    Card *x = _Cards.at(rand() % _Cards.size());
+    x->Played = true;
+    return x;
 }

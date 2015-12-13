@@ -95,13 +95,15 @@ int main(int argc, char **argv)
     
     al_play_sample(AprilShowers, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
-    BlackJack* game = new BlackJack(CoffeeTin);    
+    BlackJack* game = new BlackJack(CoffeeTin);
 
     bool executing = true;
     while (executing)
     {
         ALLEGRO_EVENT event;
         al_wait_for_event(queue, &event);
+
+        game->Update(&event);
 
         switch(event.type)
         {
@@ -143,8 +145,7 @@ int main(int argc, char **argv)
 			}
 			break;
         case ALLEGRO_EVENT_MOUSE_AXES:
-            game->Update(&event);
-            printf("test");
+            //printf("test");
             break;
         case ALLEGRO_EVENT_TIMER:
             break;

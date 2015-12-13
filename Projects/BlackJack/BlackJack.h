@@ -9,6 +9,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_physfs.h>
 #include <allegro5/allegro_ttf.h>
+
 #include "Hand.h"
 #include "Deck.h"
 
@@ -60,8 +61,7 @@ protected:
     Card *_CardBack;
 
     ALLEGRO_BITMAP *_Button;
-    ALLEGRO_FONT *_Font[7]
-;
+    ALLEGRO_FONT *_Font[7];
     unsigned int _Bank;
 };
 

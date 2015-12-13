@@ -58,5 +58,5 @@ Card::Value Card::IntToValue(unsigned int value) {
 
 void Card::Render() {
     al_draw_bitmap_region(_Deck, _Value * _CardWidth, _Suit * _CardHeight, _CardWidth, _CardHeight, Coords[0] - (_CardWidth / 2), Coords[1] - (_CardHeight / 2), 0);
-    //al_draw_rectangle(Coords[0], Coords[1], Coords[0], Coords[1], al_map_rgb(255,0,0), 3);
+    //al_draw_rectangle(Coords[0], Coords[1], Coords[0], Coords[1], al_map_rgb(255,0,0), 3);//debug
 }
