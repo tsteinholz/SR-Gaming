@@ -25,6 +25,8 @@ int Hand::Count() {
     for (Card *card : _Cards) {
         if (card->GetValue() == Card::ACE)
             aces++;
+        else if (card->GetValue() == Card::JACK || card->GetValue() == Card::QUEEN || card->GetValue() == Card::KING)
+            count += 10;
         else
             count += (card->GetValue() + 1);
     }

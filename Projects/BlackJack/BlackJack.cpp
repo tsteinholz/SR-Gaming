@@ -1,6 +1,6 @@
 #include "BlackJack.h"
 
-BlackJack::BlackJack(ALLEGRO_FONT **fonts) {
+BlackJack::BlackJack(ALLEGRO_FONT **fonts1,ALLEGRO_FONT **fonts2) {
     _Deck = new Deck();
     _PlayerHand = new Hand(_Deck);
     _DealerHand = new Hand(_Deck);
@@ -9,11 +9,13 @@ BlackJack::BlackJack(ALLEGRO_FONT **fonts) {
     _left_button_active = false;
     _right_button_active = false;
 
-    for (int i = 0; i < 7; i++)
-        _Font[i] = fonts[i];
+    for (int i = 0; i < 7; i++) {
+        _Font1[i] = fonts1[i];
+        _Font2[i] = fonts2[i];
+    }
 
     // todo : load bank
-    _Bank = 0;
+    _Bank = 2000;
     _CurrentMode = SETUP;
 }
 
@@ -36,13 +38,14 @@ void BlackJack::Render()
     _CardBack->Coords[1] = 75;
 
     al_draw_scaled_bitmap(_Button, 0, 0, al_get_bitmap_width(_Button), al_get_bitmap_height(_Button), 75, 50, 125, 75, 0);
-    al_draw_text(_Font[2], al_map_rgb(218,204,0), 135, 75, ALLEGRO_ALIGN_CENTRE, "H O L D");
+    al_draw_text(_Font1[2], al_map_rgb(218,204,0), 135, 75, ALLEGRO_ALIGN_CENTRE, "H O L D");
     if (_left_button_active) al_draw_rectangle(75, 50, 75 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
     al_draw_scaled_bitmap(_Button, 0, 0, al_get_bitmap_width(_Button), al_get_bitmap_height(_Button), 700, 50, 125, 75, 0);
-    al_draw_text(_Font[2], al_map_rgb(218,204,0), 760, 75, ALLEGRO_ALIGN_CENTRE, "H I T");
+    al_draw_text(_Font1[2], al_map_rgb(218,204,0), 760, 75, ALLEGRO_ALIGN_CENTRE, "H I T");
     if (_right_button_active) al_draw_rectangle(700, 50, 700 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
     
-    al_draw_text(_Font[2], al_map_rgb(218,204,0), 400, 525, ALLEGRO_ALIGN_CENTRE, "BANK ACCOUNT : xxx");
+    al_draw_textf(_Font2[2], al_map_rgb(218,204,0), 450, 525, ALLEGRO_ALIGN_CENTRE, "BANK ACCOUNT CONTAINS $%.2f", _Bank);
+    al_draw_textf(_Font2[2], al_map_rgb(218,204,0), 100, 500, ALLEGRO_ALIGN_CENTRE, "CARD TOTAL IS %i", _PlayerHand->Count());
 
     _PlayerHand->Render();
 
@@ -54,7 +57,6 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
         case SETUP:
             _PlayerHand->Draw();
             _PlayerHand->Draw();
-            printf("count:%i", _PlayerHand->Count());
             _CurrentMode = INPUT;
             break;
         case INPUT:
@@ -64,11 +66,11 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
                         _left_button_active = true;
                     } else if (event->mouse.x >= 700 && event->mouse.x <= 700 + 125) {
                         _right_button_active = true;
-                    } else {
+                    } else { //reset x dir
                         _left_button_active = false;
                         _right_button_active = false;
                     }
-                } else {
+                } else { // reset y dir
                     _left_button_active = false;
                     _right_button_active = false;
                 }
@@ -78,7 +80,7 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
                     _CurrentMode = COMPUTE;
                 } else if (_right_button_active) {
                     _PlayerHand->Draw();
-                    // todo : check if broke
+                    // todo : check if bust
                 }
             }
             break;

@@ -2,9 +2,9 @@
 
 Deck::Deck()
 {
-    for (unsigned int s = 1; s < 5; s++)
+    for (unsigned int s = 1; s < 4; s++)
     {
-        for (unsigned int v = 1; v < 14; v++)
+        for (unsigned int v = 0; v < 13; v++)
         {
             _Cards.push_back(new Card(Card::IntToSuit(s),Card::IntToValue(v)));
         }
@@ -27,9 +27,11 @@ void Deck::Shuffle()
 
 Card *Deck::Draw() {
     Card *x;
-    // TODO : check played var in do while
+    int timeout = 0;
     do {
         x = _Cards.at(rand() % _Cards.size());
+        timeout++;
+        if (timeout > 10) exit(-5);
     } while (x->Played);
     x->Played = true;
     return x;

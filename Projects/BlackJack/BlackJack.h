@@ -17,7 +17,7 @@ class BlackJack {
 
 public:
     
-    BlackJack(ALLEGRO_FONT **fonts);
+    BlackJack(ALLEGRO_FONT **fonts1, ALLEGRO_FONT **fonts2);
 
     virtual ~BlackJack();
 
@@ -61,8 +61,9 @@ protected:
     Card *_CardBack;
 
     ALLEGRO_BITMAP *_Button;
-    ALLEGRO_FONT *_Font[7];
-    unsigned int _Bank;
+    ALLEGRO_FONT *_Font1[7];
+    ALLEGRO_FONT *_Font2[7];
+    float _Bank;
     bool _left_button_active;
     bool _right_button_active;
 };
