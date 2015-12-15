@@ -19,11 +19,11 @@ typedef enum
     FinalMenu
 } GameState;
 
-GameState gameState = MainMenu;
+GameState gameState = Game;//TODO: MainMenu;
 
 int main(int argc, char **argv)
 {
-    srand(time(NULL));
+    srand((unsigned int) time(NULL));
     if(!al_init())
     {
         fprintf(stderr, "Failed to initialize allegro!\n");

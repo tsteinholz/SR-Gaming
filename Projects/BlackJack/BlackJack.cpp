@@ -13,6 +13,8 @@ BlackJack::BlackJack(ALLEGRO_FONT **fonts) {
     // todo : load bank
     _Bank = 0;
     _PlayerHand->Draw();
+    _PlayerHand->Draw();
+    printf("count:%i", _PlayerHand->Count());
     _CurrentMode = SETUP;
 }
 
@@ -49,9 +51,7 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
 
     switch (_CurrentMode) {
         case SETUP:
-            printf("count is %i\n", _PlayerHand->Count());
             _CurrentMode = INPUT;
-            //printf("set card\n");
             break;
         case INPUT:
             //printf("in input\n");
@@ -72,5 +72,4 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
         
             break;
     }
-
 }

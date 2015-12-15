@@ -15,9 +15,9 @@ class Card {
 public:
     
     //-----------------------------------------------------------------------------
-    // Purpose: Cooresponds to the numeric value of the card as well as the
-    // sequencial order that the cards appear in the image used to render the cards
-    // themselfs
+    // Purpose: Corresponds to the numeric value of the card as well as the
+    // sequential order that the cards appear in the image used to render the cards
+    // themselves
     //-----------------------------------------------------------------------------
     typedef enum {
         ACE   = 0,
@@ -93,15 +93,31 @@ public:
     // Purpose : The location that the card will be rendered
     //-----------------------------------------------------------------------------
     int Coords[2];
-protected: 
-    Value _Value;
-    Suit _Suit;
-    
-    ALLEGRO_BITMAP* _Card;
 
+    //-----------------------------------------------------------------------------
+    // TODO
+    //-----------------------------------------------------------------------------
+    static float CardHeight;
+
+    //-----------------------------------------------------------------------------
+    // TODO
+    //-----------------------------------------------------------------------------
+    static float CardWidth;
+
+protected:
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Store the value of the card which also corresponds with the
+    // location of the according card in the reference image.
+    //-----------------------------------------------------------------------------
+    Value _Value;
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Store the suit of the card which also corresponds with the
+    // location of the according card in the reference image.
+    //-----------------------------------------------------------------------------
+    Suit _Suit;
     static ALLEGRO_BITMAP* _Deck;
-    static float _CardHeight;
-    static float _CardWidth;
 };
 
 #endif // BLACK_JACK_CARD_H
