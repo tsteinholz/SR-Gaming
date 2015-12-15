@@ -19,7 +19,7 @@ typedef enum
     FinalMenu
 } GameState;
 
-GameState gameState = Game;//TODO: MainMenu;
+GameState gameState = MainMenu;
 
 int main(int argc, char **argv)
 {

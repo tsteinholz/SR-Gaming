@@ -5,7 +5,7 @@ float Card::CardWidth = 0;
 float Card::CardHeight = 0;
 
 Card::Card(Suit suit, Value val, int x, int y) : _Suit(suit), _Value(val), Played(false) {
-	Card::_Deck = Util::LoadB("res/cards.png");
+	if (!_Deck) Card::_Deck = Util::LoadB("res/cards.png");
 	Card::CardWidth = al_get_bitmap_width(_Deck) / 13;
 	Card::CardHeight = al_get_bitmap_height(_Deck) / 5;
 	Coords[0] = x;

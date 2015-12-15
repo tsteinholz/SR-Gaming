@@ -6,15 +6,14 @@ BlackJack::BlackJack(ALLEGRO_FONT **fonts) {
     _DealerHand = new Hand(_Deck);
     _CardBack = new Card(Card::BACK, Card::ACE, 450, 75);
     _Button = Util::LoadB("res/border.png");
+    _left_button_active = false;
+    _right_button_active = false;
 
     for (int i = 0; i < 7; i++)
         _Font[i] = fonts[i];
 
     // todo : load bank
     _Bank = 0;
-    _PlayerHand->Draw();
-    _PlayerHand->Draw();
-    printf("count:%i", _PlayerHand->Count());
     _CurrentMode = SETUP;
 }
 
@@ -38,8 +37,10 @@ void BlackJack::Render()
 
     al_draw_scaled_bitmap(_Button, 0, 0, al_get_bitmap_width(_Button), al_get_bitmap_height(_Button), 75, 50, 125, 75, 0);
     al_draw_text(_Font[2], al_map_rgb(218,204,0), 135, 75, ALLEGRO_ALIGN_CENTRE, "H O L D");
+    if (_left_button_active) al_draw_rectangle(75, 50, 75 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
     al_draw_scaled_bitmap(_Button, 0, 0, al_get_bitmap_width(_Button), al_get_bitmap_height(_Button), 700, 50, 125, 75, 0);
     al_draw_text(_Font[2], al_map_rgb(218,204,0), 760, 75, ALLEGRO_ALIGN_CENTRE, "H I T");
+    if (_right_button_active) al_draw_rectangle(700, 50, 700 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
     
     al_draw_text(_Font[2], al_map_rgb(218,204,0), 400, 525, ALLEGRO_ALIGN_CENTRE, "BANK ACCOUNT : xxx");
 
@@ -51,19 +52,35 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
 
     switch (_CurrentMode) {
         case SETUP:
+            _PlayerHand->Draw();
+            _PlayerHand->Draw();
+            printf("count:%i", _PlayerHand->Count());
             _CurrentMode = INPUT;
             break;
         case INPUT:
-            //printf("in input\n");
-            /*if (event == ALLEGRO_EVENT_MOUSE_AXES) {
+            if (event->type == ALLEGRO_EVENT_MOUSE_AXES) {
                 if (event->mouse.y >= 50 && event->mouse.y <= 50 + 75) {
-                    if (event->mouse.x >= 75 && event->mouse.y <= 75 + 125) {
-                        al_draw_rectangle(75, 50, 75 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
+                    if (event->mouse.x >= 75 && event->mouse.x <= 75 + 125) {
+                        _left_button_active = true;
                     } else if (event->mouse.x >= 700 && event->mouse.x <= 700 + 125) {
-                        al_draw_rectangle(700, 50, 700 + 125, 50 + 75, al_map_rgb(255,255,0), 3);
+                        _right_button_active = true;
+                    } else {
+                        _left_button_active = false;
+                        _right_button_active = false;
                     }
+                } else {
+                    _left_button_active = false;
+                    _right_button_active = false;
                 }
-            *///}
+            }
+            if (event->type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+                if (_left_button_active) {
+                    _CurrentMode = COMPUTE;
+                } else if (_right_button_active) {
+                    _PlayerHand->Draw();
+                    // todo : check if broke
+                }
+            }
             break;
         case COMPUTE:
 

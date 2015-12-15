@@ -63,6 +63,8 @@ protected:
     ALLEGRO_BITMAP *_Button;
     ALLEGRO_FONT *_Font[7];
     unsigned int _Bank;
+    bool _left_button_active;
+    bool _right_button_active;
 };
 
 #endif // BLACK_JACK_H
