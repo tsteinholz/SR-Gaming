@@ -1,4 +1,4 @@
-# South River High : Gaming w/ C++
+# South River High School : Gaming w/ C++
 
 This is my repository for all of my C++ code for the SRHS course "C++ with Gaming". This code is used for personal version 
 control and is a good way for me to manage all of my projects in one place. All the code you see here
