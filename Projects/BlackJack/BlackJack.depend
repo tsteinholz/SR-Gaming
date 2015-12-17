@@ -1,16 +1,6 @@
 # depslib dependency file v1.0
-1449508240 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
-	<allegro5/allegro.h>
-	<allegro5/allegro_image.h>
-	<allegro5/allegro_audio.h>
-	<allegro5/allegro_acodec.h>
-	<allegro5/allegro_primitives.h>
-	<allegro5/allegro_font.h>
-	<allegro5/allegro_physfs.h>
-	<allegro5/allegro_ttf.h>
-	"util.h"
-	"Deck.h"
-	"Hand.h"
+1450359039 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
+	"BlackJack.h"
 
 1444226065 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
 	"allegro5/base.h"
@@ -251,30 +241,31 @@
 
 1444733894 h:\c++\cpp-srhs\projects\blackjack\code.h
 
-1449508901 source:h:\c++\cpp-srhs\projects\blackjack\card.cpp
+1450359039 source:h:\c++\cpp-srhs\projects\blackjack\card.cpp
 	"Card.h"
 
-1449507837 h:\c++\cpp-srhs\projects\blackjack\card.h
+1450359039 h:\c++\cpp-srhs\projects\blackjack\card.h
+	<algorithm>
 	<cstdio>
 	<unordered_map>
 	<string>
+	<vector>
 	<allegro5/drawing.h>
 	"util.h"
 
-1447935486 source:h:\c++\cpp-srhs\projects\blackjack\deck.cpp
+1450359039 source:h:\c++\cpp-srhs\projects\blackjack\deck.cpp
 	"Deck.h"
 
-1447417306 h:\c++\cpp-srhs\projects\blackjack\deck.h
-	<algorithm>
-	<vector>
+1450359039 h:\c++\cpp-srhs\projects\blackjack\deck.h
 	"Card.h"
 
-1447348283 source:h:\c++\cpp-srhs\projects\blackjack\hand.cpp
+1450359039 source:h:\c++\cpp-srhs\projects\blackjack\hand.cpp
 	"Hand.h"
 
-1447073681 h:\c++\cpp-srhs\projects\blackjack\hand.h
+1450359039 h:\c++\cpp-srhs\projects\blackjack\hand.h
+	"Deck.h"
 
-1449059132 h:\c++\cpp-srhs\projects\blackjack\util.h
+1450359040 h:\c++\cpp-srhs\projects\blackjack\util.h
 	<cstdio>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
@@ -332,4 +323,19 @@
 	"util.h"
 	"Deck.h"
 	"Hand.h"
+
+1450359039 h:\c++\cpp-srhs\projects\blackjack\blackjack.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_physfs.h>
+	<allegro5/allegro_ttf.h>
+	"Hand.h"
+	"Deck.h"
+
+1450359039 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
+	"BlackJack.h"
 

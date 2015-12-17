@@ -5,7 +5,6 @@ Hand::Hand(Deck *deck) : _Deck(deck) { }
 Hand::~Hand() { }
 
 void Hand::Render() {
-    // TODO
     float offset = Card::CardWidth + 3, x = (900 / 2) - ((_Cards.size() * offset) / 2);
     for (unsigned long i = 0; i < _Cards.size(); i++) {
         Card *c = _Cards.at(i);
@@ -43,8 +42,5 @@ int Hand::Count() {
 }
 
 void Hand::Reset() {
-    for (Card *card : _Cards) {
-        delete card;
-    }
     _Cards.clear();
 }
