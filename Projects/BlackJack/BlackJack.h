@@ -33,6 +33,17 @@ public:
     } Mode;
 
     //-----------------------------------------------------------------------------
+    // Purpose: To define the state of the current round in refrence to a win or a
+    // loss (maybe somewhere in between)
+    //-----------------------------------------------------------------------------
+    typedef enum {
+        UNKNOWN,
+        WIN,
+        LOSS,
+        TIE,
+    } Outcome;
+
+    //-----------------------------------------------------------------------------
     // Purpose: Renders BlackJack
     //-----------------------------------------------------------------------------
     void Render();
@@ -44,14 +55,9 @@ public:
     void Update(ALLEGRO_EVENT *event);
 
     //-----------------------------------------------------------------------------
-    // Purpose:
+    // Purpose: TODO
     //-----------------------------------------------------------------------------
-    void Hit();
-
-    //-----------------------------------------------------------------------------
-    // Purpose:
-    //-----------------------------------------------------------------------------
-    void Hold();
+    bool Executing;
 
 protected:
     Mode _CurrentMode;
@@ -64,8 +70,10 @@ protected:
     ALLEGRO_FONT *_Font1[7];
     ALLEGRO_FONT *_Font2[7];
     float _Bank;
+    Outcome _Outcome;
     bool _left_button_active;
     bool _right_button_active;
+    bool _Holding;
 };
 
 #endif // BLACK_JACK_H

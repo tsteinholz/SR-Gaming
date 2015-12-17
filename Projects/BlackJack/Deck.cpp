@@ -23,6 +23,9 @@ Deck::~Deck()
 void Deck::Shuffle()
 {
     std::random_shuffle(_Cards.begin(), _Cards.end());
+    for (Card *card : _Cards) {
+        card->Played = false;
+    }
 }
 
 Card *Deck::Draw() {

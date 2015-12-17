@@ -41,3 +41,10 @@ int Hand::Count() {
     }
     return count;
 }
+
+void Hand::Reset() {
+    for (Card *card : _Cards) {
+        delete card;
+    }
+    _Cards.clear();
+}

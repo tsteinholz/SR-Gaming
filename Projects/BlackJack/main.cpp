@@ -103,6 +103,7 @@ int main(int argc, char **argv)
         ALLEGRO_EVENT event;
         al_wait_for_event(queue, &event);
 
+        executing = game->Executing;
         game->Update(&event);
 
         switch(event.type)
