@@ -12,8 +12,14 @@
 #include <allegro5/allegro_physfs.h>
 #include <allegro5/allegro_ttf.h>
 
+//-----------------------------------------------------------------------------
+// Purpose: Functions that can make my code cleaner with less effort
+//-----------------------------------------------------------------------------
 struct Util
 {
+    //-----------------------------------------------------------------------------
+    // Purpose: Safely open a bitmap with error handling and no effort
+    //-----------------------------------------------------------------------------
     static ALLEGRO_BITMAP* LoadB(const char* file)
     {
         ALLEGRO_BITMAP* out = al_load_bitmap(file);
@@ -21,6 +27,9 @@ struct Util
         return out;
     }
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Safely open a audio sample with error handling and no effort
+    //-----------------------------------------------------------------------------
     static ALLEGRO_SAMPLE* LoadS(const char* file)
     {
         ALLEGRO_SAMPLE* out = al_load_sample(file);

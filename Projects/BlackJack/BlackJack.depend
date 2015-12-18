@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1450359039 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
+1450443827 source:h:\c++\cpp-srhs\projects\blackjack\main.cpp
 	"BlackJack.h"
 
 1444226065 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro.h
@@ -244,7 +244,7 @@
 1450359039 source:h:\c++\cpp-srhs\projects\blackjack\card.cpp
 	"Card.h"
 
-1450359039 h:\c++\cpp-srhs\projects\blackjack\card.h
+1450444443 h:\c++\cpp-srhs\projects\blackjack\card.h
 	<algorithm>
 	<cstdio>
 	<unordered_map>
@@ -256,16 +256,16 @@
 1450359039 source:h:\c++\cpp-srhs\projects\blackjack\deck.cpp
 	"Deck.h"
 
-1450359039 h:\c++\cpp-srhs\projects\blackjack\deck.h
+1450444510 h:\c++\cpp-srhs\projects\blackjack\deck.h
 	"Card.h"
 
 1450359428 source:h:\c++\cpp-srhs\projects\blackjack\hand.cpp
 	"Hand.h"
 
-1450359039 h:\c++\cpp-srhs\projects\blackjack\hand.h
+1450444572 h:\c++\cpp-srhs\projects\blackjack\hand.h
 	"Deck.h"
 
-1450359040 h:\c++\cpp-srhs\projects\blackjack\util.h
+1450445352 h:\c++\cpp-srhs\projects\blackjack\util.h
 	<cstdio>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
@@ -324,7 +324,7 @@
 	"Deck.h"
 	"Hand.h"
 
-1450359039 h:\c++\cpp-srhs\projects\blackjack\blackjack.h
+1450444960 h:\c++\cpp-srhs\projects\blackjack\blackjack.h
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_audio.h>
@@ -336,6 +336,6 @@
 	"Hand.h"
 	"Deck.h"
 
-1450359039 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
+1450441176 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
 	"BlackJack.h"
 

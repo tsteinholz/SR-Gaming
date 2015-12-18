@@ -3,6 +3,10 @@
 
 #include "Card.h"
 
+//-----------------------------------------------------------------------------
+// Purpose: Represents a full deck of cards, nothing else, only the full deck
+// of cards with one of each card.
+//-----------------------------------------------------------------------------
 class Deck {
 public:
     Deck();

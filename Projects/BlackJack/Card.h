@@ -11,9 +11,13 @@
 
 #include "util.h"
 
+//-----------------------------------------------------------------------------
+// Purpose: Card in blackjack that has a Suit and a Value that correspond with
+// the matching bitmap image that it is set by default to load.
+//-----------------------------------------------------------------------------
 class Card {
 public:
-    
+
     //-----------------------------------------------------------------------------
     // Purpose: Corresponds to the numeric value of the card as well as the
     // sequential order that the cards appear in the image used to render the cards
@@ -37,7 +41,7 @@ public:
     } Value;
 
     //-----------------------------------------------------------------------------
-    // Purpose: Cooresponding with the Value Enum, this enum has all the suits a
+    // Purpose: Corresponding with the Value Enum, this enum has all the suits a
     // card has and is used to render the cards by enumerating the suits in order
     // of when they appear in the image they are rendered from.
     //-----------------------------------------------------------------------------
@@ -90,17 +94,17 @@ public:
     bool Played;
 
     //-----------------------------------------------------------------------------
-    // Purpose : The location that the card will be rendered
+    // Purpose: The location that the card will be rendered
     //-----------------------------------------------------------------------------
     float Coords[2];
 
     //-----------------------------------------------------------------------------
-    // TODO
+    // Purpose: The Height of the card's bitmap
     //-----------------------------------------------------------------------------
     static float CardHeight;
 
     //-----------------------------------------------------------------------------
-    // TODO
+    // Purpose: The Width of the card's bitmap
     //-----------------------------------------------------------------------------
     static float CardWidth;
 
@@ -117,6 +121,10 @@ protected:
     // location of the according card in the reference image.
     //-----------------------------------------------------------------------------
     Suit _Suit;
+
+    //-----------------------------------------------------------------------------
+    // Purpose: The bitmap of the entire deck
+    //-----------------------------------------------------------------------------
     static ALLEGRO_BITMAP* _Deck;
 };
 

@@ -3,6 +3,11 @@
 
 #include "Deck.h"
 
+//-----------------------------------------------------------------------------
+// Purpose: Represents a hand in blackjack. Contains an array of cards and a
+// pointer to the deck it is drawing from, so two hands can actually share one
+// Deck.
+//-----------------------------------------------------------------------------
 class Hand {
 public:
 
@@ -31,7 +36,14 @@ public:
     void Reset();
 
 protected:
+    //-----------------------------------------------------------------------------
+    // Purpose: Pointer to the deck the hand takes it's cards from
+    //-----------------------------------------------------------------------------
     Deck *_Deck;
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Where we want to store the hand's cards
+    //-----------------------------------------------------------------------------
     Card::Cards _Cards;
 };
 

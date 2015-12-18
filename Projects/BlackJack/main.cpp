@@ -65,6 +65,8 @@ int main(int argc, char **argv)
     al_install_keyboard();
     al_clear_to_color(al_map_rgb(0,0,0));
 
+    al_set_window_title(display, "BlackJack by Thomas Steinholz");
+
     // Load Some Sweet Fonts (Coffee Tin)
 	CoffeeTin[0] = al_load_ttf_font("res/CoffeeTin Initials.ttf", 12, ALLEGRO_ALIGN_CENTRE);
 	CoffeeTin[1] = al_load_ttf_font("res/CoffeeTin Initials.ttf", 18, ALLEGRO_ALIGN_CENTRE);
@@ -92,7 +94,7 @@ int main(int argc, char **argv)
     timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
-    
+
     al_play_sample(AprilShowers, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 
     BlackJack* game = new BlackJack(CoffeeTin, CowboyMovie);
@@ -108,7 +110,10 @@ int main(int argc, char **argv)
 
         switch(event.type)
         {
+        //case ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY://lol
         case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            executing = false;
+            printf("debug: hit the close button");
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
 			if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
