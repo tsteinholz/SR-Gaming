@@ -140,9 +140,10 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
                 _left_button_active = false;
                 _right_button_active = false;
                 printf("debug: Enter Finish State\n");
-                do {
+                while (_DealerHand->Count() <= 18) {
                     _DealerHand->Draw();
-                } while (_DealerHand->Count() <= 18);
+                }
+                printf("debug: dealer hand is %i", _DealerHand->Count());
                 // TODO : set outcome
                 // TODO : add money to the bank based on the outcome
                 // TODO : save bank to file
