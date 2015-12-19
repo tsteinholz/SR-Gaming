@@ -18,6 +18,9 @@ has been done completley by Thomas A. Steinholz, assets are not done completly b
 
 ## Highlights / Showcase 
 
+### [Black Jack](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/BlackJack) 
+![alt text]("BlackJack")
+
 ### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical) 
 ![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v3.jpg "MasterMind")
 
