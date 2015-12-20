@@ -89,6 +89,7 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
 
     switch (_CurrentMode) {
         case SETUP:
+            // TODO : Bug fix, 2nd restart crashes game
             printf("debug: enter setup\n");
             _Deck->Shuffle();
             _PlayerHand->Reset();

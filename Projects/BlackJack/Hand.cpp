@@ -5,7 +5,7 @@ Hand::Hand(Deck *deck) : _Deck(deck) { }
 Hand::~Hand() { }
 
 void Hand::Render() {
-    float offset = Card::CardWidth + 3, x = (900 / 2) - ((_Cards.size() * offset) / 2);
+    float offset = Card::CardWidth + 3, x = (900 / 2) - ((_Cards.size() * offset) / 2) + (Card::CardWidth / 2);
     for (unsigned long i = 0; i < _Cards.size(); i++) {
         Card *c = _Cards.at(i);
         c->Coords[0] = x;
