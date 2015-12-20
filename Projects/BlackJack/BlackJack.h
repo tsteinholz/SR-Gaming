@@ -58,6 +58,12 @@ public:
     //-----------------------------------------------------------------------------
     void Update(ALLEGRO_EVENT *event);
 
+    void Hit();
+
+    void Hold();
+
+    void Compute();
+
     //-----------------------------------------------------------------------------
     // Purpose: If the game is executing or not, used to close down the entire
     // game if appropriate.
@@ -80,7 +86,9 @@ protected:
     bool _Holding;              // If the player is holding or if he is not
 
     float _Bank;                // The Player's bank account amount
+    float _Bet;                 // The amount the bank is paying
     Outcome _Outcome;           // The outcome of the current round
+    char *_Conclusion;          // The conclusion statment
 };
 
 #endif // BLACK_JACK_H

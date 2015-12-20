@@ -1,6 +1,6 @@
 #include "Hand.h"
 
-Hand::Hand(Deck *deck) : _Deck(deck) { }
+Hand::Hand(Deck *deck) : _Deck(deck), Y(400) { }
 
 Hand::~Hand() { }
 
@@ -9,7 +9,7 @@ void Hand::Render() {
     for (unsigned long i = 0; i < _Cards.size(); i++) {
         Card *c = _Cards.at(i);
         c->Coords[0] = x;
-        c->Coords[1] = 400;
+        c->Coords[1] = Y;
         c->Render();
         x += offset;
     }
