@@ -36,17 +36,18 @@ void BlackJack::Render() {
         case SETUP:
         case INPUT:
             // Card Stack
-            // TODO : Move to the middle left so we can render dealer hand
             for (int i = 0; i < 4; i++) {
                 int offset = 3;
                 _CardBack->Coords[0] += offset;
                 _CardBack->Coords[1] += offset;
                 _CardBack->Render();
             }
+            // Dealers Hand
             _CardBack->Coords[0] = 415;
             _CardBack->Coords[1] = 75;
             _DealerHand->Render();
             _CardBack->Render();
+            // Reset Card Stack
             _CardBack->Coords[0] = 75;
             _CardBack->Coords[1] = 225;
 
@@ -75,6 +76,16 @@ void BlackJack::Render() {
             break;
         case FINISH:
 
+            // Card Stack
+            for (int i = 0; i < 4; i++) {
+                int offset = 3;
+                _CardBack->Coords[0] += offset;
+                _CardBack->Coords[1] += offset;
+                _CardBack->Render();
+            }
+            _CardBack->Coords[0] = 75;
+            _CardBack->Coords[1] = 225;
+
             // Button New
             al_draw_scaled_bitmap(_Button, 0, 0, al_get_bitmap_width(_Button), al_get_bitmap_height(_Button), 75, 50,
                                   125, 75, 0);
@@ -87,19 +98,19 @@ void BlackJack::Render() {
             al_draw_text(_Font1[2], al_map_rgb(218, 204, 0), 760, 75, ALLEGRO_ALIGN_CENTRE, "Q U I T");
             if (_right_button_active) al_draw_rectangle(700, 50, 700 + 125, 50 + 75, al_map_rgb(255, 255, 0), 3);
 
-            // Status Text
+            // Conclusion
             al_draw_textf(_Font1[5], al_map_rgb(218, 204, 0), 450, 225, ALLEGRO_ALIGN_CENTRE, _Conclusion);
 
             // Bank Account Money
             al_draw_textf(_Font2[2], al_map_rgb(218, 204, 0), 450, 525, ALLEGRO_ALIGN_CENTRE,
                           "BANK ACCOUNT CONTAINS $%.2f", _Bank);
-
             // Player Hand Count
             al_draw_textf(_Font2[2], al_map_rgb(218, 204, 0), 100, 500, ALLEGRO_ALIGN_CENTRE, "CARD TOTAL IS %i",
                           _PlayerHand->Count());
 
             // Player Hand
             _PlayerHand->Render();
+            // Dealer Hand
             _DealerHand->Render();
             break;
     }
@@ -152,7 +163,7 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
                 }
             }
         case COMPUTE:
-            if (_PlayerHand->Count() >= 21) {
+            if (_PlayerHand->Count() > 21) {
                 Compute();
             } else {
                 if (_Holding)
@@ -179,14 +190,14 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
             }
             if (event->type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
                 if (_left_button_active) {
-                    printf("debug: \'new\' button pressed\n");
+                    //printf("debug: \'new\' button pressed\n");
                     _left_button_active = false;
                     _right_button_active = false;
-                    printf("debug: new round\n");
+                    //printf("debug: new round\n");
                     _CurrentMode = SETUP;
 
                 } else if (_right_button_active) {
-                    printf("debug: \'quit\' button pressed\n");
+                    //printf("debug: \'quit\' button pressed\n");
                     Executing = false;
                     break;
                 }
@@ -227,7 +238,6 @@ void BlackJack::Compute() {
 
     switch (_Outcome) {
 
-        // TODO : add money to the bank based on the outcome
         case WIN:
             //printf("debug: win\n");
             _Bank += (2 * _Bet);
