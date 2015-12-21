@@ -56,9 +56,15 @@ struct Util
     //-----------------------------------------------------------------------------
     // Purpose: Save a float to file
     //-----------------------------------------------------------------------------
-    static inline float SaveFloat(const char *file)
+    static inline void SaveFloat(const char *file, float x)
     {
-
+        // TODO : Saving a generic value to file
+        //std::ofstream output;
+        //output.open(file);
+        //if (output.good()) {
+        //    output.write((unsigned int)x, sizeof(x));
+        //}
+        //output.close();
     }
 };
 
