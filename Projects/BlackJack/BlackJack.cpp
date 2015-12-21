@@ -18,7 +18,7 @@ BlackJack::BlackJack(ALLEGRO_FONT **fonts1, ALLEGRO_FONT **fonts2) : Executing(t
     }
 
     // todo : load bank
-    _Bank = 2000;
+    _Bank = Util::LoadFloat("Bank.txt");
     _Bet = 0;
     _Conclusion = (char *) "";
     _CurrentMode = SETUP;

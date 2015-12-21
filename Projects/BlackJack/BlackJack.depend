@@ -259,14 +259,16 @@
 1450444510 h:\c++\cpp-srhs\projects\blackjack\deck.h
 	"Card.h"
 
-1450359428 source:h:\c++\cpp-srhs\projects\blackjack\hand.cpp
+1450712658 source:h:\c++\cpp-srhs\projects\blackjack\hand.cpp
 	"Hand.h"
 
-1450444572 h:\c++\cpp-srhs\projects\blackjack\hand.h
+1450712658 h:\c++\cpp-srhs\projects\blackjack\hand.h
 	"Deck.h"
 
-1450445352 h:\c++\cpp-srhs\projects\blackjack\util.h
+1450713442 h:\c++\cpp-srhs\projects\blackjack\util.h
 	<cstdio>
+	<fstream>
+	<iostream>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_audio.h>
@@ -324,7 +326,7 @@
 	"Deck.h"
 	"Hand.h"
 
-1450444960 h:\c++\cpp-srhs\projects\blackjack\blackjack.h
+1450712658 h:\c++\cpp-srhs\projects\blackjack\blackjack.h
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
 	<allegro5/allegro_audio.h>
@@ -336,6 +338,6 @@
 	"Hand.h"
 	"Deck.h"
 
-1450441176 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
+1450713100 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
 	"BlackJack.h"
 
