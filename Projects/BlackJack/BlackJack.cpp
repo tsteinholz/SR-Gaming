@@ -123,7 +123,7 @@ void BlackJack::Update(ALLEGRO_EVENT *event) {
             // TODO : Bug fix, 2nd restart crashes game
             //printf("debug: enter setup\n");
             _Conclusion = (char *) "";
-            _Bet = 0;
+            _Bet = 50;
             _Deck->Shuffle();
             _PlayerHand->Reset();
             _DealerHand->Reset();
@@ -258,6 +258,7 @@ void BlackJack::Compute() {
             break;
 
     }
-    // TODO : save bank to file
+    // TODO : save bank to
+    Util::SaveFloat("Bank.txt", _Bank);
     _CurrentMode = FINISH;
 }

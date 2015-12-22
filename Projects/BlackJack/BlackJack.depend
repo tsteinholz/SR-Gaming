@@ -265,7 +265,7 @@
 1450712658 h:\c++\cpp-srhs\projects\blackjack\hand.h
 	"Deck.h"
 
-1450713728 h:\c++\cpp-srhs\projects\blackjack\util.h
+1450787403 h:\c++\cpp-srhs\projects\blackjack\util.h
 	<cstdio>
 	<fstream>
 	<iostream>
@@ -275,7 +275,6 @@
 	<allegro5/allegro_acodec.h>
 	<allegro5/allegro_primitives.h>
 	<allegro5/allegro_font.h>
-	<allegro5/allegro_physfs.h>
 	<allegro5/allegro_ttf.h>
 
 1444226065 h:\c++\codeblocks\allegro-5.0.10-mingw-4.7.0\allegro-5.0.10-mingw-4.7.0\include\allegro5\allegro_audio.h
@@ -338,6 +337,6 @@
 	"Hand.h"
 	"Deck.h"
 
-1450713100 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
+1450787148 source:h:\c++\cpp-srhs\projects\blackjack\blackjack.cpp
 	"BlackJack.h"
 

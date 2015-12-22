@@ -10,8 +10,7 @@
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro_physfs.h>
+#include <allegro5/allegro_font.h>#include <allegro5/allegro_physfs.h>
 #include <allegro5/allegro_ttf.h>
 
 //-----------------------------------------------------------------------------
@@ -47,10 +46,9 @@ struct Util
         std::fstream _file(file, std::ios_base::in);
 
         float ret;
-        while (_file >> ret)
-        {
-            if (ret != NULL || ret != 0) return ret;
-        }
+        _file >> ret;
+        return ret;
+		return -1;
     }
 
     //-----------------------------------------------------------------------------
@@ -59,12 +57,13 @@ struct Util
     static inline void SaveFloat(const char *file, float x)
     {
         // TODO : Saving a generic value to file
-        //std::ofstream output;
-        //output.open(file);
-        //if (output.good()) {
-        //    output.write((unsigned int)x, sizeof(x));
-        //}
-        //output.close();
+        std::ofstream output;
+        output.open(file);
+        if (output.good()) {
+        //  output.write((unsigned int)x, sizeof(x));
+            output << x;
+        }
+        output.close();
     }
 };
 
