@@ -500,7 +500,11 @@ public:
                 {
                     results[i] = m_Grid.at(m_CurrentPosY).GetResult(i).GetColor() == Peg::WHITE;
                 }
-                if (results[0] && results[1] && results[2] && results[3]){ won = true; playing = false; }
+                if (results[0] && results[1] && results[2] && results[3])
+                {
+                    won = true;
+                    playing = false;
+                }
                 m_CurrentPosY++;
                 m_CurrentPosX = 0;
             }
@@ -582,6 +586,15 @@ int main(int argc, char **argv)
     Button enter(85, 320, key_enter);
     Button backsc(210, 320, key_backspace);
 
+    typedef enum
+    {
+        START,
+        GAME,
+        FINISH,
+    } GameMode;
+
+    GameMode _GameMode = START;
+
     MasterMind master_mind(Grid, solution, enter, backsc, input);
     // Game Loop
     bool executing = true, render = false;
@@ -596,12 +609,14 @@ int main(int argc, char **argv)
             executing = false;
             break;
         case ALLEGRO_EVENT_KEY_DOWN:
+            if (_GameMode == START) _GameMode = GAME;
             if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) executing = false;
             break;
         case ALLEGRO_EVENT_TIMER:
             render = true;
             break;
         case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+            if (_GameMode == START) _GameMode = GAME;
             master_mind.Update(event.mouse);
             break;
         }
@@ -610,7 +625,31 @@ int main(int argc, char **argv)
         {
             al_clear_to_color(al_map_rgb(0,0,0));
             al_set_target_bitmap(al_get_backbuffer(display));
-            master_mind.Render();
+
+            switch (_GameMode)
+            {
+                case START:
+                    al_draw_bitmap(background, 0, 0, 0);
+                    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W/2, 50, ALLEGRO_ALIGN_CENTRE, "Master Mind");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), SCREEN_W/2, 150, ALLEGRO_ALIGN_CENTRE, "To play master mind you are supposed to guess the secret solution code via the");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), SCREEN_W/2, 200, ALLEGRO_ALIGN_CENTRE, "color code buttons. Since the buttons were poorly implemented you should try and");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), SCREEN_W/2, 250, ALLEGRO_ALIGN_CENTRE, "click the upper half of the buttons. The glitchy hint giving box to the right of");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), SCREEN_W/2, 300, ALLEGRO_ALIGN_CENTRE, "the input box will output black if you have a color in the solution but not in the");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), SCREEN_W/2, 350, ALLEGRO_ALIGN_CENTRE, "right place and will output white if you have the right color in the right place.");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), SCREEN_W/2, 400, ALLEGRO_ALIGN_CENTRE, "Use a combination of luck and skill to beat the game.");
+                    al_draw_text(century_gothic48B, al_map_rgb(255,255,255), SCREEN_W/2, 500, ALLEGRO_ALIGN_CENTRE, "PUSH ANY BUTTON O");
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-70, ALLEGRO_ALIGN_CENTRE, "Correct Color & Location");
+                    al_draw_filled_circle(160, SCREEN_H-70, 5, al_map_rgb(175, 175, 175));
+                    al_draw_text(century_gothic24, al_map_rgb(255,255,255), 160, SCREEN_H-110, ALLEGRO_ALIGN_CENTRE, "Correct Color");
+                    al_draw_filled_circle(160, SCREEN_H-110, 5, al_map_rgb(0, 0, 0));
+                    break;
+                case GAME:
+                    master_mind.Render();
+                    break;
+                case FINISH:
+                    break;
+            }
+
             al_flip_display();
         }
         render = false;

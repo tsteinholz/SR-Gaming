@@ -6,7 +6,7 @@
 		<Project filename="Projects/MiniProject2/MiniProject2.cbp" />
 		<Project filename="Projects/MiniProject3/MiniProject3.cbp" />
 		<Project filename="Projects/Pong/Pong.cbp" />
-		<Project filename="Projects/FruitNinja/FruitNinja.cbp" />
 		<Project filename="Projects/BlackJack/BlackJack.cbp" />
+		<Project filename="../BattleShip/BattleShip.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
