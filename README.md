@@ -19,7 +19,8 @@ has been done completley by Thomas A. Steinholz, assets are not done completly b
 ## Highlights / Showcase 
 
 ### [Black Jack](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/BlackJack) 
-![alt text]("BlackJack")
+![alt text](https://github.com/tsteinholz/SR-Gaming/raw/master/Projects/BlackJack/screenshots/Screenshot%20from%202015-12-20%2018-59-34.png "BlackJack")
+![alt text](https://github.com/tsteinholz/SR-Gaming/raw/master/Projects/BlackJack/screenshots/Screenshot%20from%202015-12-20%2018-59-23.png "BlackJack")
 
 ### [MasterMind](https://github.com/tsteinholz/CPP-SRHS/tree/master/Projects/MasterMind-Graphical) 
 ![alt text](https://raw.githubusercontent.com/tsteinholz/CPP-SRHS/master/Projects/MasterMind-Graphical/showcase/mastermind-v3.jpg "MasterMind")
